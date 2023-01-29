@@ -18,8 +18,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     int time = 0;
     int score = 0;
-
+ private final JFXPanel jfxPanel = new JFXPanel();  
     public VentanaPrincipal() {
+        
+       
+        
+        
+        
         initComponents();
         startSpeedGame(600);
         startChrono();
@@ -77,29 +82,40 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelXogo.setName(""); // NOI18N
         panelXogo.setLayout(null);
 
-        bloque3.setIcon(new javax.swing.ImageIcon("C:\\Users\\fraid\\Documents\\NetBeansProjects\\Tetris\\mavenproject1\\src\\main\\images\\blocks\\morado.png")); // NOI18N
+        bloque3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/blanco.png"))); // NOI18N
         bloque3.setText("jLabel3");
+        bloque3.setMaximumSize(new java.awt.Dimension(50, 50));
+        bloque3.setMinimumSize(new java.awt.Dimension(50, 50));
+        bloque3.setPreferredSize(new java.awt.Dimension(50, 50));
         panelXogo.add(bloque3);
         bloque3.setBounds(150, 300, 50, 50);
 
-        bloque2.setIcon(new javax.swing.ImageIcon("C:\\Users\\fraid\\Documents\\NetBeansProjects\\Tetris\\mavenproject1\\src\\main\\images\\blocks\\morado.png")); // NOI18N
+        bloque2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blocks/amarillo.png"))); // NOI18N
         bloque2.setText("jLabel3");
+        bloque2.setMaximumSize(new java.awt.Dimension(50, 50));
+        bloque2.setMinimumSize(new java.awt.Dimension(50, 50));
+        bloque2.setPreferredSize(new java.awt.Dimension(50, 50));
         panelXogo.add(bloque2);
         bloque2.setBounds(200, 300, 50, 50);
 
-        bloque1.setIcon(new javax.swing.ImageIcon("C:\\Users\\fraid\\Documents\\NetBeansProjects\\Tetris\\mavenproject1\\src\\main\\images\\blocks\\morado.png")); // NOI18N
+        bloque1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/azul.png"))); // NOI18N
         bloque1.setText("jLabel3");
+        bloque1.setMaximumSize(new java.awt.Dimension(50, 50));
+        bloque1.setMinimumSize(new java.awt.Dimension(50, 50));
+        bloque1.setPreferredSize(new java.awt.Dimension(50, 50));
         panelXogo.add(bloque1);
         bloque1.setBounds(200, 250, 50, 50);
 
-        bloque4.setIcon(new javax.swing.ImageIcon("C:\\Users\\fraid\\Documents\\NetBeansProjects\\Tetris\\mavenproject1\\src\\main\\images\\blocks\\morado.png")); // NOI18N
+        bloque4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/azul.png"))); // NOI18N
         bloque4.setText("jLabel3");
+        bloque4.setMaximumSize(new java.awt.Dimension(50, 50));
+        bloque4.setMinimumSize(new java.awt.Dimension(50, 50));
+        bloque4.setPreferredSize(new java.awt.Dimension(50, 50));
         panelXogo.add(bloque4);
         bloque4.setBounds(100, 300, 50, 50);
 
-        lblBackgroundGame.setIcon(new javax.swing.ImageIcon("C:\\Users\\fraid\\Documents\\NetBeansProjects\\Tetris\\mavenproject1\\src\\main\\images\\backgroundsGame\\10x18backgroundGameSafeZone.png")); // NOI18N
-        lblBackgroundGame.setMinimumSize(new java.awt.Dimension(500, 900));
-        lblBackgroundGame.setPreferredSize(new java.awt.Dimension(500, 900));
+        lblBackgroundGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgroundsGame/10x18backgroundGameSafeZone.png"))); // NOI18N
+        lblBackgroundGame.setText("lblBackgroundGame");
         panelXogo.add(lblBackgroundGame);
         lblBackgroundGame.setBounds(0, 0, 500, 900);
 
@@ -198,8 +214,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         mainPanel.add(panelTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 380, 220, 130));
 
-        backgroundProgram.setIcon(new javax.swing.ImageIcon("C:\\Users\\fraid\\Desktop\\4249454.jpg")); // NOI18N
-        backgroundProgram.setText("jLabel6");
+        backgroundProgram.setText("backgroundProgram");
         mainPanel.add(backgroundProgram, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
 
         getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
