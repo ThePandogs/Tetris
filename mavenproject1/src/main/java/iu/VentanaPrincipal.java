@@ -18,13 +18,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     int time = 0;
     int score = 0;
- private final JFXPanel jfxPanel = new JFXPanel();  
+
     public VentanaPrincipal() {
-        
-       
-        
-        
-        
+
         initComponents();
         startSpeedGame(600);
         startChrono();
@@ -304,7 +300,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         speedGame = new TimerTask() {
             @Override
             public void run() {
-                score ++;
+                score++;
                 testMueveFichas();
                 lblScore.setText(String.valueOf(score));
                 mainPanel.updateUI();
