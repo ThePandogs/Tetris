@@ -4,10 +4,56 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
- * @author a14carlosfd
+ * @author a22danielas
  */
-public class Ficha {
+public abstract class Ficha {
     
+  List <Cadrado> cadrados;         
+int id;
+    public Ficha() {
+        cadrados=new ArrayList <>();
+       
+    }
+
+    public List<Cadrado> getCadrados() {
+        return cadrados;
+    }
+
+    public void setCadrados(List<Cadrado> cadrados) {
+        this.cadrados = cadrados;
+    }
+    
+    public boolean moverDereita() {
+        boolean move = false;
+
+        return move;
+
+    }
+  
+  public abstract boolean rotar();
+            
+          public boolean moverEsquerda() {
+        boolean move = false;
+
+        return move;
+
+    }  
+            
+            
+    
+    public boolean moverAbaixo() {
+        boolean move = false;
+
+        return move;
+
+    }
+    
+    
+    
+          
 }
