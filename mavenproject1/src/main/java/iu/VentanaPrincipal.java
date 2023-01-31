@@ -6,6 +6,7 @@ package iu;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.JLabel;
 
 /**
  *
@@ -78,7 +79,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelXogo.setName(""); // NOI18N
         panelXogo.setLayout(null);
 
-        bloque3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/blanco.png"))); // NOI18N
+        bloque3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blocks/azul.png"))); // NOI18N
         bloque3.setText("jLabel3");
         bloque3.setMaximumSize(new java.awt.Dimension(50, 50));
         bloque3.setMinimumSize(new java.awt.Dimension(50, 50));
@@ -86,7 +87,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelXogo.add(bloque3);
         bloque3.setBounds(150, 300, 50, 50);
 
-        bloque2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blocks/amarillo.png"))); // NOI18N
+        bloque2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blocks/azul.png"))); // NOI18N
         bloque2.setText("jLabel3");
         bloque2.setMaximumSize(new java.awt.Dimension(50, 50));
         bloque2.setMinimumSize(new java.awt.Dimension(50, 50));
@@ -94,7 +95,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelXogo.add(bloque2);
         bloque2.setBounds(200, 300, 50, 50);
 
-        bloque1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/azul.png"))); // NOI18N
+        bloque1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blocks/azul.png"))); // NOI18N
         bloque1.setText("jLabel3");
         bloque1.setMaximumSize(new java.awt.Dimension(50, 50));
         bloque1.setMinimumSize(new java.awt.Dimension(50, 50));
@@ -102,7 +103,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelXogo.add(bloque1);
         bloque1.setBounds(200, 250, 50, 50);
 
-        bloque4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/azul.png"))); // NOI18N
+        bloque4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blocks/azul.png"))); // NOI18N
         bloque4.setText("jLabel3");
         bloque4.setMaximumSize(new java.awt.Dimension(50, 50));
         bloque4.setMinimumSize(new java.awt.Dimension(50, 50));
@@ -210,6 +211,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         mainPanel.add(panelTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 380, 220, 130));
 
+        backgroundProgram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgroundApp.jpg"))); // NOI18N
         backgroundProgram.setText("backgroundProgram");
         mainPanel.add(backgroundProgram, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
 
@@ -324,6 +326,35 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     }
 
+   
+    
+       public void pintarCadrado(JLabel lblCadrado) {
+        panelXogo.add("aa", bloque1);
+        panelXogo.add(lblCadrado);
+       }
+
+    public void borrarCadrado(JLabel lblCadrado) {
+        panelXogo.remove(lblCadrado);
+    }
+
+    public void mostrarNumeroLinas(int numeroLinas) {
+        lblLine.setText(String.valueOf(numeroLinas));
+    }
+
+    public void mostrarFinDoXogo() {
+        //pausas de los cronos
+        //mostrar popup con puntuacion y boton de reinicio.
+        //destruir el juego 
+        //reiniciar cronos
+    }
+
+//    private void iniciarPartida() {
+//        xogo= new Xogo();
+//    }
+
+    
+    
+    
     private void testMueveFichas() {
 
         bloque1.setLocation((int) bloque1.getLocation().getX(), (int) bloque1.getLocation().getY() + 50);
@@ -331,4 +362,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         bloque3.setLocation((int) bloque3.getLocation().getX(), (int) bloque3.getLocation().getY() + 50);
         bloque4.setLocation((int) bloque4.getLocation().getX(), (int) bloque4.getLocation().getY() + 50);
     }
+    
+    
+    
+    
+    
 }
