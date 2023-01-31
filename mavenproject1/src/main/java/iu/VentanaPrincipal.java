@@ -4,9 +4,12 @@
  */
 package iu;
 
-import java.util.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import java.util.TimerTask;
 import javax.swing.JLabel;
+import javax.swing.Timer;
 
 /**
  *
@@ -22,7 +25,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     int speed = 1000;
     TimerTask speedGame;
     TimerTask chrono;
-    Timer timer;
+    // Timer timer;
     private boolean pause = false;
 
     public VentanaPrincipal() {
@@ -380,23 +383,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         startSpeedGame(speed);
     }
 
-//    private void stratChrono() {
-//
-//        Timer timer = new Timer(200, new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                if (segundos < 10) {
-//                    txtfieldSegundos.setText(String.valueOf(minutos + ":" + filler + segundos));
-//                } else {
-//                    txtfieldSegundos.setText(String.valueOf(minutos + ":" + segundos));
-//                }
-//                segundos++;
-//                if (segundos == 60) {
-//                    segundos = 0;
-//                    minutos++;
-//                }
-//
-//            }
-//        });
-//
+    private void stratChrono() {
+
+        Timer cosa = new Timer()
+        Timer timer = new Timer(200, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (time < 10) {
+                    lblTime.setText(String.valueOf("0" + time));
+                } else {
+                    lblTime.setText(String.valueOf(time));
+                }
+                time++;
+            }
+        });
+    }
 }
