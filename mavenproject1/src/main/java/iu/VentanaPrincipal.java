@@ -19,11 +19,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     int time = 0;
     int score = 0;
+    int speed = 1000;
+    TimerTask speedGame;
+    TimerTask chrono;
+    Timer timer;
+    private boolean pause = false;
 
     public VentanaPrincipal() {
 
         initComponents();
-        startSpeedGame(600);
+        startSpeedGame(900);
         startChrono();
     }
 
@@ -66,6 +71,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1100, 950));
         setMinimumSize(new java.awt.Dimension(1100, 950));
+        setUndecorated(true);
         setPreferredSize(null);
         setResizable(false);
         setSize(new java.awt.Dimension(1100, 950));
@@ -75,6 +81,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelXogo.setBackground(new java.awt.Color(204, 204, 255));
+        panelXogo.setMaximumSize(new java.awt.Dimension(500, 900));
         panelXogo.setMinimumSize(new java.awt.Dimension(500, 900));
         panelXogo.setName(""); // NOI18N
         panelXogo.setLayout(null);
@@ -222,7 +229,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tglPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tglPauseActionPerformed
-        // TODO add your handling code here:
+        if (!pause) {
+            pauseCronos();
+        } else
+            resumeCronos();
     }//GEN-LAST:event_tglPauseActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -293,45 +303,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JToggleButton tglPause;
     // End of variables declaration//GEN-END:variables
 
-    private void startSpeedGame(int speed) {
-
-        TimerTask speedGame;
-
-        Timer timer = new Timer();
-
-        speedGame = new TimerTask() {
-            @Override
-            public void run() {
-                score++;
-                testMueveFichas();
-                lblScore.setText(String.valueOf(score));
-                mainPanel.updateUI();
-            }
-        };
-        timer.schedule(speedGame, 1020, speed);
-
-    }
-
-    private void startChrono() {
-        Timer timer = new Timer();
-        TimerTask chrono = new TimerTask() {
-            @Override
-            public void run() {
-                lblTime.setText(String.valueOf(time));
-                time++;
-
-            }
-        };
-        timer.schedule(chrono, 1000, 1000);
-
-    }
-
-   
-    
-       public void pintarCadrado(JLabel lblCadrado) {
-        panelXogo.add("aa", bloque1);
+    public void pintarCadrado(JLabel lblCadrado) {
         panelXogo.add(lblCadrado);
-       }
+    }
 
     public void borrarCadrado(JLabel lblCadrado) {
         panelXogo.remove(lblCadrado);
@@ -351,10 +325,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 //    private void iniciarPartida() {
 //        xogo= new Xogo();
 //    }
-
-    
-    
-    
     private void testMueveFichas() {
 
         bloque1.setLocation((int) bloque1.getLocation().getX(), (int) bloque1.getLocation().getY() + 50);
@@ -362,9 +332,71 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         bloque3.setLocation((int) bloque3.getLocation().getX(), (int) bloque3.getLocation().getY() + 50);
         bloque4.setLocation((int) bloque4.getLocation().getX(), (int) bloque4.getLocation().getY() + 50);
     }
-    
-    
-    
-    
-    
+
+    private void startSpeedGame(int speed) {
+
+        pause = false;
+
+        timer = new Timer();
+
+        speedGame = new TimerTask() {
+            @Override
+            public void run() {
+                score++;
+                testMueveFichas();
+                lblScore.setText(String.valueOf(score));
+                mainPanel.updateUI();
+
+            }
+        };
+        timer.schedule(speedGame, 1020, speed);
+
+    }
+
+    private void startChrono() {
+        timer = new Timer();
+        chrono = new TimerTask() {
+            @Override
+            public void run() {
+                lblTime.setText(String.valueOf(time));
+                time++;
+
+            }
+        };
+        timer.schedule(chrono, 1000, 1000);
+
+    }
+
+    private void pauseCronos() {
+
+        speedGame.cancel();
+        chrono.cancel();
+        pause = true;
+    }
+
+    private void resumeCronos() {
+
+        startChrono();
+        startSpeedGame(speed);
+    }
+
+//    private void stratChrono() {
+//
+//        Timer timer = new Timer(200, new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                if (segundos < 10) {
+//                    txtfieldSegundos.setText(String.valueOf(minutos + ":" + filler + segundos));
+//                } else {
+//                    txtfieldSegundos.setText(String.valueOf(minutos + ":" + segundos));
+//                }
+//                segundos++;
+//                if (segundos == 60) {
+//                    segundos = 0;
+//                    minutos++;
+//                }
+//
+//            }
+//        });
+//
 }
