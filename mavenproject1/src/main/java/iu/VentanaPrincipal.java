@@ -22,17 +22,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     int time = 0;
     int score = 0;
-    int speed = 1000;
-    TimerTask speedGame;
-    TimerTask chrono;
+    int speed = 900;
+
+    Timer timerCrono;
+    Timer timer;
     // Timer timer;
     private boolean pause = false;
 
     public VentanaPrincipal() {
 
         initComponents();
-        startSpeedGame(900);
-        startChrono();
+        startCrono();
+        startSpeed();
+
     }
 
     /**
@@ -336,66 +338,42 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         bloque4.setLocation((int) bloque4.getLocation().getX(), (int) bloque4.getLocation().getY() + 50);
     }
 
-    private void startSpeedGame(int speed) {
-
-        pause = false;
-
-        timer = new Timer();
-
-        speedGame = new TimerTask() {
-            @Override
-            public void run() {
-                score++;
-                testMueveFichas();
-                lblScore.setText(String.valueOf(score));
-                mainPanel.updateUI();
-
-            }
-        };
-        timer.schedule(speedGame, 1020, speed);
-
-    }
-
-    private void startChrono() {
-        timer = new Timer();
-        chrono = new TimerTask() {
-            @Override
-            public void run() {
-                lblTime.setText(String.valueOf(time));
-                time++;
-
-            }
-        };
-        timer.schedule(chrono, 1000, 1000);
-
-    }
-
     private void pauseCronos() {
 
-        speedGame.cancel();
-        chrono.cancel();
+        timerCrono.stop();
+        timer.stop();
         pause = true;
     }
 
     private void resumeCronos() {
 
-        startChrono();
-        startSpeedGame(speed);
+        timerCrono.start();
+        timer.start();
+        pause = false;
     }
 
-    private void stratChrono() {
+    private void startCrono() {
 
-        Timer cosa = new Timer()
-        Timer timer = new Timer(200, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (time < 10) {
-                    lblTime.setText(String.valueOf("0" + time));
-                } else {
-                    lblTime.setText(String.valueOf(time));
-                }
-                time++;
+        timerCrono = new Timer(1000, (ActionEvent e) -> {
+            if (time < 10) {
+                lblTime.setText(String.valueOf("0" + time));
+            } else {
+                lblTime.setText(String.valueOf(time));
             }
+            time++;
         });
+        timerCrono.start();
     }
+
+    private void startSpeed() {
+
+        timer = new Timer(speed, (ActionEvent e) -> {
+            score++;
+            testMueveFichas();
+            lblScore.setText(String.valueOf(score));
+            mainPanel.updateUI();
+        });
+        timer.start();
+    }
+
 }
