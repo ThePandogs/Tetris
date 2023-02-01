@@ -4,8 +4,12 @@
  */
 package iu;
 
-import java.util.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import java.util.TimerTask;
+import javax.swing.JLabel;
+import javax.swing.Timer;
 
 /**
  *
@@ -18,12 +22,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     int time = 0;
     int score = 0;
+    int speed = 900;
+
+    Timer timerCrono;
+    Timer timer;
+    // Timer timer;
+    private boolean pause = false;
 
     public VentanaPrincipal() {
 
         initComponents();
-        startSpeedGame(600);
-        startChrono();
+        startCrono();
+        startSpeed();
+
     }
 
     /**
@@ -65,6 +76,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1100, 950));
         setMinimumSize(new java.awt.Dimension(1100, 950));
+        setUndecorated(true);
         setPreferredSize(null);
         setResizable(false);
         setSize(new java.awt.Dimension(1100, 950));
@@ -74,11 +86,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelXogo.setBackground(new java.awt.Color(204, 204, 255));
+        panelXogo.setMaximumSize(new java.awt.Dimension(500, 900));
         panelXogo.setMinimumSize(new java.awt.Dimension(500, 900));
         panelXogo.setName(""); // NOI18N
         panelXogo.setLayout(null);
 
-        bloque3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/blanco.png"))); // NOI18N
+        bloque3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blocks/azul.png"))); // NOI18N
         bloque3.setText("jLabel3");
         bloque3.setMaximumSize(new java.awt.Dimension(50, 50));
         bloque3.setMinimumSize(new java.awt.Dimension(50, 50));
@@ -86,7 +99,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelXogo.add(bloque3);
         bloque3.setBounds(150, 300, 50, 50);
 
-        bloque2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blocks/amarillo.png"))); // NOI18N
+        bloque2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blocks/azul.png"))); // NOI18N
         bloque2.setText("jLabel3");
         bloque2.setMaximumSize(new java.awt.Dimension(50, 50));
         bloque2.setMinimumSize(new java.awt.Dimension(50, 50));
@@ -94,7 +107,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelXogo.add(bloque2);
         bloque2.setBounds(200, 300, 50, 50);
 
-        bloque1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/azul.png"))); // NOI18N
+        bloque1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blocks/azul.png"))); // NOI18N
         bloque1.setText("jLabel3");
         bloque1.setMaximumSize(new java.awt.Dimension(50, 50));
         bloque1.setMinimumSize(new java.awt.Dimension(50, 50));
@@ -102,7 +115,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelXogo.add(bloque1);
         bloque1.setBounds(200, 250, 50, 50);
 
-        bloque4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/azul.png"))); // NOI18N
+        bloque4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blocks/azul.png"))); // NOI18N
         bloque4.setText("jLabel3");
         bloque4.setMaximumSize(new java.awt.Dimension(50, 50));
         bloque4.setMinimumSize(new java.awt.Dimension(50, 50));
@@ -210,6 +223,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         mainPanel.add(panelTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 380, 220, 130));
 
+        backgroundProgram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgroundsGame/backgroundApp.jpg"))); // NOI18N
         backgroundProgram.setText("backgroundProgram");
         mainPanel.add(backgroundProgram, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
 
@@ -220,7 +234,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tglPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tglPauseActionPerformed
-        // TODO add your handling code here:
+        if (!pause) {
+            pauseCronos();
+        } else
+            resumeCronos();
     }//GEN-LAST:event_tglPauseActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -291,39 +308,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JToggleButton tglPause;
     // End of variables declaration//GEN-END:variables
 
-    private void startSpeedGame(int speed) {
-
-        TimerTask speedGame;
-
-        Timer timer = new Timer();
-
-        speedGame = new TimerTask() {
-            @Override
-            public void run() {
-                score++;
-                testMueveFichas();
-                lblScore.setText(String.valueOf(score));
-                mainPanel.updateUI();
-            }
-        };
-        timer.schedule(speedGame, 1020, speed);
-
+    public void pintarCadrado(JLabel lblCadrado) {
+        panelXogo.add(lblCadrado);
     }
 
-    private void startChrono() {
-        Timer timer = new Timer();
-        TimerTask chrono = new TimerTask() {
-            @Override
-            public void run() {
-                lblTime.setText(String.valueOf(time));
-                time++;
-
-            }
-        };
-        timer.schedule(chrono, 1000, 1000);
-
+    public void borrarCadrado(JLabel lblCadrado) {
+        panelXogo.remove(lblCadrado);
     }
 
+    public void mostrarNumeroLinas(int numeroLinas) {
+        lblLine.setText(String.valueOf(numeroLinas));
+    }
+
+    public void mostrarFinDoXogo() {
+        //pausas de los cronos
+        //mostrar popup con puntuacion y boton de reinicio.
+        //destruir el juego 
+        //reiniciar cronos
+    }
+
+//    private void iniciarPartida() {
+//        xogo= new Xogo();
+//    }
     private void testMueveFichas() {
 
         bloque1.setLocation((int) bloque1.getLocation().getX(), (int) bloque1.getLocation().getY() + 50);
@@ -331,4 +337,43 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         bloque3.setLocation((int) bloque3.getLocation().getX(), (int) bloque3.getLocation().getY() + 50);
         bloque4.setLocation((int) bloque4.getLocation().getX(), (int) bloque4.getLocation().getY() + 50);
     }
+
+    private void pauseCronos() {
+
+        timerCrono.stop();
+        timer.stop();
+        pause = true;
+    }
+
+    private void resumeCronos() {
+
+        timerCrono.start();
+        timer.start();
+        pause = false;
+    }
+
+    private void startCrono() {
+
+        timerCrono = new Timer(1000, (ActionEvent e) -> {
+            if (time < 10) {
+                lblTime.setText(String.valueOf("0" + time));
+            } else {
+                lblTime.setText(String.valueOf(time));
+            }
+            time++;
+        });
+        timerCrono.start();
+    }
+
+    private void startSpeed() {
+
+        timer = new Timer(speed, (ActionEvent e) -> {
+            score++;
+            testMueveFichas();
+            lblScore.setText(String.valueOf(score));
+            mainPanel.updateUI();
+        });
+        timer.start();
+    }
+
 }
