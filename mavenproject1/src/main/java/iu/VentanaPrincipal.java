@@ -38,6 +38,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         startSpeed();
 
         xoguito = new Xogo(this);
+        xoguito.xerarNovaFicha();
 
     }
 
@@ -93,6 +94,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelXogo.setMaximumSize(new java.awt.Dimension(500, 900));
         panelXogo.setMinimumSize(new java.awt.Dimension(500, 900));
         panelXogo.setName(""); // NOI18N
+        panelXogo.setOpaque(false);
         panelXogo.setLayout(null);
 
         bloque3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blocks/azul.png"))); // NOI18N
@@ -127,12 +129,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelXogo.add(bloque4);
         bloque4.setBounds(100, 300, 50, 50);
 
+        mainPanel.add(panelXogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 500, 900));
+
         lblBackgroundGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgroundsGame/10x18backgroundGameSafeZone.png"))); // NOI18N
         lblBackgroundGame.setText("lblBackgroundGame");
-        panelXogo.add(lblBackgroundGame);
-        lblBackgroundGame.setBounds(0, 0, 500, 900);
-
-        mainPanel.add(panelXogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 500, 900));
+        lblBackgroundGame.setMaximumSize(new java.awt.Dimension(500, 900));
+        lblBackgroundGame.setMinimumSize(new java.awt.Dimension(500, 900));
+        lblBackgroundGame.setPreferredSize(new java.awt.Dimension(500, 900));
+        mainPanel.add(lblBackgroundGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 500, 900));
+        lblBackgroundGame.getAccessibleContext().setAccessibleParent(mainPanel);
 
         panelScore.setMinimumSize(new java.awt.Dimension(53, 53));
         panelScore.setPreferredSize(new java.awt.Dimension(110, 110));
@@ -364,8 +369,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 lblTime.setText(String.valueOf(time));
             }
             time++;
-            xoguito.xerarNovaFicha();
-            
+
         });
         timerCrono.start();
     }

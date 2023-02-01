@@ -18,10 +18,10 @@ import java.awt.Color;
  */
 public class FichaBarra extends Ficha {
 
-    public Cadrado c = new Cadrado(150, 25, yellow);
-    public Cadrado c1 = new Cadrado(200, 25, yellow);
-    public Cadrado c2 = new Cadrado(250, 25, yellow);
-    public Cadrado c3 = new Cadrado(300, 25, yellow);
+    public Cadrado c = new Cadrado(150, 50, yellow);
+    public Cadrado c1 = new Cadrado(200, 50, yellow);
+    public Cadrado c2 = new Cadrado(250, 50, yellow);
+    public Cadrado c3 = new Cadrado(300, 50, yellow);
 
     public FichaBarra() {
 

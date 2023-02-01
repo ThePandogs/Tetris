@@ -121,6 +121,8 @@ public class Xogo {
 
         FichaBarra fichita = new FichaBarra();
         for (int i = 0; i < fichita.cadrados.size(); i++) {
+            System.out.println(fichita.cadrados.get(i).cor);
+                 
             v.pintarCadrado(fichita.cadrados.get(i).getLblCadrado());
         
         }
