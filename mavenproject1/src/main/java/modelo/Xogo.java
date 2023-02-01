@@ -26,8 +26,8 @@ public class Xogo {
     public Ficha fichaactual = new FichaBarra();
     public VentanaPrincipal v;
 
-    public Xogo() {
-
+    public Xogo(VentanaPrincipal ventana) {
+        v=ventana;
     }
 
     public int getLadocadrado() {
@@ -90,7 +90,7 @@ public class Xogo {
 //            public void run() {
 //                boolean flag=false;
 //                
-               
+
 //                
 //                  Iterator<Cadrado> itera = fichaactual.getCadrados().iterator();
 //                while (itera.hasNext() ) {
@@ -115,53 +115,46 @@ public class Xogo {
 //            }
 //        };
 //        timer.schedule(speedGame, 1500, 2000);
+    }
 
+    public void xerarNovaFicha() {
 
-
-
-
-
-
-
-
+        FichaBarra fichita = new FichaBarra();
+        for (int i = 0; i < fichita.cadrados.size(); i++) {
+            v.pintarCadrado(fichita.cadrados.get(i).getLblCadrado());
+        
+        }
 
     }
-   
 
     public void rotarFicha() {
-        
-        switch (fichaactual.id){
-        
-            case 1:
-        //Rotacion de Barra
-        int y = fichaactual.getCadrados().get(1).lblCadrado.getY();
-        int x = fichaactual.getCadrados().get(1).lblCadrado.getX();
 
-        //Si la ficha esta tumbada 
-        if (fichaactual.getCadrados().get(2).lblCadrado.getX() != fichaactual.getCadrados().get(3).lblCadrado.getX()) {
-            fichaactual.getCadrados().get(0).lblCadrado.setLocation(x, y - 50);
-            fichaactual.getCadrados().get(2).lblCadrado.setLocation(x, y + 50);
-            fichaactual.getCadrados().get(3).lblCadrado.setLocation(x, y + 100);
-        } //Si esta en vertical
-        else {
-            fichaactual.getCadrados().get(0).lblCadrado.setLocation(x - 50, y);
-            fichaactual.getCadrados().get(2).lblCadrado.setLocation(x + 50, y);
-            fichaactual.getCadrados().get(3).lblCadrado.setLocation(x + 100, y);
-        }
+        switch (fichaactual.id) {
+
+            case 1:
+                //Rotacion de Barra
+                int y = fichaactual.getCadrados().get(1).lblCadrado.getY();
+                int x = fichaactual.getCadrados().get(1).lblCadrado.getX();
+
+                //Si la ficha esta tumbada 
+                if (fichaactual.getCadrados().get(2).lblCadrado.getX() != fichaactual.getCadrados().get(3).lblCadrado.getX()) {
+                    fichaactual.getCadrados().get(0).lblCadrado.setLocation(x, y - 50);
+                    fichaactual.getCadrados().get(2).lblCadrado.setLocation(x, y + 50);
+                    fichaactual.getCadrados().get(3).lblCadrado.setLocation(x, y + 100);
+                } //Si esta en vertical
+                else {
+                    fichaactual.getCadrados().get(0).lblCadrado.setLocation(x - 50, y);
+                    fichaactual.getCadrados().get(2).lblCadrado.setLocation(x + 50, y);
+                    fichaactual.getCadrados().get(3).lblCadrado.setLocation(x + 100, y);
+                }
             case 2:
-        
-        
-        
+
         }
-        
-        
- 
 
     }
 
     public void moverEsquerda() {
 //Movimiento ficha actual hacia la izqueirda
-       
 
         Iterator<Cadrado> iter = fichaactual.getCadrados().iterator();
         while (iter.hasNext()) {
@@ -172,18 +165,18 @@ public class Xogo {
         }
 
     }
- public void moverDereita() {
+
+    public void moverDereita() {
 //Movimiento ficha actual hacia la derecha
-       
 
         Iterator<Cadrado> iter = fichaactual.getCadrados().iterator();
         while (iter.hasNext()) {
             JLabel c = iter.next().getLblCadrado();
-            int x = c.getX() +50;
+            int x = c.getX() + 50;
             c.setLocation(x, c.getY());
-            
 
-        }System.out.println(fichaactual.cadrados.get(3).lblCadrado.getY());
+        }
+        System.out.println(fichaactual.cadrados.get(3).lblCadrado.getY());
 
     }
 }

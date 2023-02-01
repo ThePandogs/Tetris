@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.TimerTask;
 import javax.swing.JLabel;
 import javax.swing.Timer;
+import modelo.Xogo;
 
 /**
  *
@@ -23,6 +24,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     int time = 0;
     int score = 0;
     int speed = 900;
+    Xogo xoguito;
 
     Timer timerCrono;
     Timer timer;
@@ -34,6 +36,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         startCrono();
         startSpeed();
+
+        xoguito = new Xogo(this);
 
     }
 
@@ -309,7 +313,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void pintarCadrado(JLabel lblCadrado) {
-        panelXogo.add(lblCadrado);
+        panelXogo.add(lblCadrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(lblCadrado.getX(), lblCadrado.getY(), 50, 50));
     }
 
     public void borrarCadrado(JLabel lblCadrado) {
@@ -328,7 +332,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
 //    private void iniciarPartida() {
-//        xogo= new Xogo();
 //    }
     private void testMueveFichas() {
 
@@ -361,6 +364,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 lblTime.setText(String.valueOf(time));
             }
             time++;
+            xoguito.xerarNovaFicha();
+            
         });
         timerCrono.start();
     }

@@ -18,28 +18,20 @@ import java.awt.Color;
  */
 public class FichaBarra extends Ficha {
 
-
- public Cadrado c=new Cadrado(150, 25,yellow);
- public Cadrado c1=new Cadrado(200, 25,yellow);
-public  Cadrado c2=new Cadrado(250, 25,yellow);
- public Cadrado c3=new Cadrado(300, 25,yellow);
-
+    public Cadrado c = new Cadrado(150, 25, yellow);
+    public Cadrado c1 = new Cadrado(200, 25, yellow);
+    public Cadrado c2 = new Cadrado(250, 25, yellow);
+    public Cadrado c3 = new Cadrado(300, 25, yellow);
 
     public FichaBarra() {
-
 
         cadrados.add(c);
         cadrados.add(c1);
         cadrados.add(c2);
         cadrados.add(c3);
 
-id=1;
+        id = 1;
 
- 
-        
-        
-        
-        
     }
 
     public List<Cadrado> getCadrados() {
@@ -82,34 +74,12 @@ id=1;
         this.cadrados = cadrados;
     }
 
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     @Override
     public boolean rotar() {
-boolean move = true;
-
-
-
-
+        boolean move = true;
 
         return move;
 
     }
-    
-    
-            
-            
-         
+
 }
