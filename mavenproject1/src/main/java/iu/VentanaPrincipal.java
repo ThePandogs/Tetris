@@ -223,7 +223,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         mainPanel.add(panelTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 380, 220, 130));
 
-        backgroundProgram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgroundApp.jpg"))); // NOI18N
+        backgroundProgram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgroundsGame/backgroundApp.jpg"))); // NOI18N
         backgroundProgram.setText("backgroundProgram");
         mainPanel.add(backgroundProgram, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
 
