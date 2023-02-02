@@ -5,9 +5,6 @@
 package iu;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import java.util.TimerTask;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 import modelo.Xogo;
@@ -39,7 +36,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         xoguito = new Xogo(this);
         xoguito.xerarNovaFicha();
-
+        panelXogo.setFocusable(true);
     }
 
     /**
@@ -95,6 +92,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelXogo.setMinimumSize(new java.awt.Dimension(500, 900));
         panelXogo.setName(""); // NOI18N
         panelXogo.setOpaque(false);
+        panelXogo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                panelXogoKeyTyped(evt);
+            }
+        });
         panelXogo.setLayout(null);
 
         bloque3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blocks/azul.png"))); // NOI18N
@@ -253,6 +255,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
 
+    private void panelXogoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_panelXogoKeyTyped
+
+        switch (evt.getKeyChar()) {
+            case 's' -> xoguito.moverFichaAbaixo();
+            case 'd' -> xoguito.moverDereita();
+            case 'a' -> xoguito.moverEsquerda();
+            case 'w' -> xoguito.rotarFicha();
+            default -> {
+            }
+        }
+
+
+    }//GEN-LAST:event_panelXogoKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -381,6 +397,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             testMueveFichas();
             lblScore.setText(String.valueOf(score));
             mainPanel.updateUI();
+           xoguito.moverFichaAbaixo();
         });
         timer.start();
     }

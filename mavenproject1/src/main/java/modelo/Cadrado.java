@@ -5,7 +5,6 @@
 package modelo;
 
 import java.awt.Color;
-import java.awt.Label;
 import javax.swing.JLabel;
 
 /**
@@ -13,22 +12,21 @@ import javax.swing.JLabel;
  * @author a22danielas
  */
 public class Cadrado {
-   int x;
-   int y;
-  public Color cor;
-  public  JLabel lblCadrado =new JLabel();
 
-    public Cadrado(int x ,int y ,Color cor) {
-this.x=x;
-this.y=y;
-  
-    lblCadrado.setBackground(cor);
-    lblCadrado.setOpaque(true);
+    int x;
+    int y;
+    public Color cor;
+    public JLabel lblCadrado = new JLabel();
+
+    public Cadrado(int x, int y, Color cor) {
+        this.x = x;
+        this.y = y;
+
+        lblCadrado.setBackground(cor);
+        lblCadrado.setOpaque(true);
         lblCadrado.setBounds(x, y, 50, 50);
         lblCadrado.setVisible(true);
-        lblCadrado.updateUI();
-    
-    
+
     }
 
     public int getX() {
@@ -37,6 +35,7 @@ this.y=y;
 
     public int getY() {
         return y;
+
     }
 
     public Color getCorR() {
@@ -49,10 +48,12 @@ this.y=y;
 
     public void setX(int x) {
         this.x = x;
+        this.lblCadrado.setLocation(x, this.y);
     }
 
     public void setY(int y) {
         this.y = y;
+        this.lblCadrado.setLocation(this.x, y);
     }
 
     public void setCorR(Color corR) {
@@ -67,38 +68,12 @@ this.y=y;
         this.cor = cor;
     }
 
-   public String getCoordenadas(){
-   
-       
-       String cor="x= "+x+" : "+"y="+y;
-   
-   
-   
-   
-   
-   
-   
-   
-       return cor;
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   }
-  
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    public String getCoordenadas() {
+
+        String cor = "x= " + x + " : " + "y=" + y;
+
+        return cor;
+
+    }
+
 }

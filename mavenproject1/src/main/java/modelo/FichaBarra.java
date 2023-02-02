@@ -5,12 +5,8 @@
 package modelo;
 
 import static java.awt.Color.*;
-import java.util.ArrayList;
-import java.util.Iterator;
+
 import java.util.List;
-import javax.swing.JLabel;
-import modelo.Xogo;
-import java.awt.Color;
 
 /**
  *
