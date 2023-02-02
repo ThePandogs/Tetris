@@ -5,6 +5,7 @@
 package iu;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 import modelo.Xogo;
@@ -21,7 +22,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     int time = 0;
     int score = 0;
     int speed = 900;
-    Xogo xoguito;
+    Xogo xogo;
 
     Timer timerCrono;
     Timer timer;
@@ -34,8 +35,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         startCrono();
         startSpeed();
 
-        xoguito = new Xogo(this);
-        xoguito.xerarNovaFicha();
+        xogo = new Xogo(this);
+        xogo.xerarNovaFicha();
         panelXogo.setFocusable(true);
     }
 
@@ -256,12 +257,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void panelXogoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_panelXogoKeyTyped
-
+        
+         if (evt.getKeyChar()==KeyEvent.VK_DOWN)
+         {System.out.println("Inserta texto");}
+         
         switch (evt.getKeyChar()) {
-            case 's' -> xoguito.moverFichaAbaixo();
-            case 'd' -> xoguito.moverDereita();
-            case 'a' -> xoguito.moverEsquerda();
-            case 'w' -> xoguito.rotarFicha();
+
+            case 's' ->
+                xogo.moverFichaAbaixo();
+            case 'd' ->
+                xogo.moverDereita();
+            case 'a' ->
+                xogo.moverEsquerda();
+            case 'w' ->
+                xogo.rotarFicha();
             default -> {
             }
         }
@@ -397,7 +406,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             testMueveFichas();
             lblScore.setText(String.valueOf(score));
             mainPanel.updateUI();
-           xoguito.moverFichaAbaixo();
+            xogo.moverFichaAbaixo();
         });
         timer.start();
     }
