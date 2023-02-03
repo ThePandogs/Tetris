@@ -4,8 +4,6 @@
  */
 package modelo;
 
-import java.util.Iterator;
-import javax.swing.JLabel;
 import iu.VentanaPrincipal;
 
 /**
@@ -14,9 +12,21 @@ import iu.VentanaPrincipal;
  */
 public class Xogo {
 
+    public int getLADOCADRADO() {
+        return LADOCADRADO;
+    }
+
     private final int LADOCADRADO = 50;
     private final int MAXY = 900;
     private final int MAXX = 500;
+
+    public int getMAXY() {
+        return MAXY;
+    }
+
+    public int getMAXX() {
+        return MAXX;
+    }
     public int numerolineas = 0;
     public VentanaPrincipal ventanaPricipal;
     FichaBarra fichaActual;
@@ -34,9 +44,7 @@ public class Xogo {
     }
 
     public void moverEsquerda() {
-        for (Cadrado cadrado : fichaActual.getCadrados()) {
-            cadrado.setX(cadrado.getX() - LADOCADRADO);
-        }
+
     }
 
     public void moverDereita() {
@@ -46,18 +54,16 @@ public class Xogo {
     }
 
     public void moverFichaAbaixo() {
-        for (Cadrado cadrado : fichaActual.getCadrados()) {
-            cadrado.setY(cadrado.getY() + LADOCADRADO);
-        }
+
     }
 
     public void xerarNovaFicha() {
 
         fichaActual = new FichaBarra();
-        for (int i = 0; i < fichaActual.cadrados.size(); i++) {
-            System.out.println(fichaActual.cadrados.get(i).cor);
+        for (int i = 0; i < fichaActual.getCadrados().size(); i++) {
+            System.out.println(fichaActual.getCadrados().get(i).cor);
 
-            ventanaPricipal.pintarCadrado(fichaActual.cadrados.get(i).getLblCadrado());
+            ventanaPricipal.pintarCadrado(fichaActual.getCadrados().get(i).getLblCadrado());
 
         }
 
@@ -65,27 +71,6 @@ public class Xogo {
 
     public void rotarFicha() {
 //
-//        switch (fichaactual.id) {
-//
-//            case 1:
-//                //Rotacion de Barra
-//                int y = fichaactual.getCadrados().get(1).lblCadrado.getY();
-//                int x = fichaactual.getCadrados().get(1).lblCadrado.getX();
-//
-//                //Si la ficha esta tumbada 
-//                if (fichaactual.getCadrados().get(2).lblCadrado.getX() != fichaactual.getCadrados().get(3).lblCadrado.getX()) {
-//                    fichaactual.getCadrados().get(0).lblCadrado.setLocation(x, y - 50);
-//                    fichaactual.getCadrados().get(2).lblCadrado.setLocation(x, y + 50);
-//                    fichaactual.getCadrados().get(3).lblCadrado.setLocation(x, y + 100);
-//                } //Si esta en vertical
-//                else {
-//                    fichaactual.getCadrados().get(0).lblCadrado.setLocation(x - 50, y);
-//                    fichaactual.getCadrados().get(2).lblCadrado.setLocation(x + 50, y);
-//                    fichaactual.getCadrados().get(3).lblCadrado.setLocation(x + 100, y);
-//                }
-//            case 2:
-//
-//        }
 
     }
 

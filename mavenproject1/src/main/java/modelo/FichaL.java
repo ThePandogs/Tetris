@@ -8,15 +8,15 @@ package modelo;
  *
  * @author a22danielas
  */
-public class FichaL  extends Ficha{
+public class FichaL extends Ficha {
 
-    public FichaL() {
-        id=3;
+    public FichaL(Xogo xogo) {
+        super(xogo);
     }
 
     @Override
     public boolean rotar() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

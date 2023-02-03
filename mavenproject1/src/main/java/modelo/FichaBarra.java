@@ -14,64 +14,25 @@ import java.util.List;
  */
 public class FichaBarra extends Ficha {
 
-    public Cadrado c = new Cadrado(150, 50, yellow);
-    public Cadrado c1 = new Cadrado(200, 50, yellow);
-    public Cadrado c2 = new Cadrado(250, 50, yellow);
-    public Cadrado c3 = new Cadrado(300, 50, yellow);
+    Cadrado mediumCadrado = new Cadrado(xogo.getMAXX() / 2, xogo.getLADOCADRADO(), yellow);
 
-    public FichaBarra() {
-
-        cadrados.add(c);
-        cadrados.add(c1);
-        cadrados.add(c2);
-        cadrados.add(c3);
-
-        id = 1;
-
+    public FichaBarra(Xogo xogo) {
+        super(xogo);
+        cadrados.add(mediumCadrado);
+        cadrados.add(new Cadrado(mediumCadrado.getX() - xogo.getLADOCADRADO(), mediumCadrado.getY(), yellow));
+        cadrados.add(new Cadrado(mediumCadrado.getX() + xogo.getLADOCADRADO(), mediumCadrado.getY(), yellow));
+        cadrados.add(new Cadrado(mediumCadrado.getX() - xogo.getLADOCADRADO() * 2, mediumCadrado.getY(), yellow));
     }
 
+    @Override
     public List<Cadrado> getCadrados() {
         return cadrados;
     }
 
-    public Cadrado getC() {
-        return c;
-    }
-
-    public Cadrado getC1() {
-        return c1;
-    }
-
-    public Cadrado getC2() {
-        return c2;
-    }
-
-    public Cadrado getC3() {
-        return c3;
-    }
-
-    public void setC(Cadrado c) {
-        this.c = c;
-    }
-
-    public void setC1(Cadrado c1) {
-        this.c1 = c1;
-    }
-
-    public void setC2(Cadrado c2) {
-        this.c2 = c2;
-    }
-
-    public void setC3(Cadrado c3) {
-        this.c3 = c3;
-    }
-
-    public void setCadrados(List<Cadrado> cadrados) {
-        this.cadrados = cadrados;
-    }
 
     @Override
     public boolean rotar() {
+
         boolean move = true;
 
         return move;

@@ -12,48 +12,48 @@ import java.util.List;
  * @author a22danielas
  */
 public abstract class Ficha {
-    
-  List <Cadrado> cadrados;         
-int id;
-    public Ficha() {
-        cadrados=new ArrayList <>();
-       
+
+    List<Cadrado> cadrados;
+    Xogo xogo;
+    public Ficha(Xogo xogo) {
+        cadrados = new ArrayList<>();
+        this.xogo=xogo;
     }
 
     public List<Cadrado> getCadrados() {
         return cadrados;
+
     }
 
     public void setCadrados(List<Cadrado> cadrados) {
         this.cadrados = cadrados;
-    }
-    
-    public boolean moverDereita() {
-        boolean move = false;
-
-        return move;
 
     }
-  
-  public abstract boolean rotar();
-            
-          public boolean moverEsquerda() {
-        boolean move = false;
 
-        return move;
+    public boolean moverDereita(int LADOCADRADO) {
+        for (Cadrado cadrado : this.getCadrados()) {
+            cadrado.setX(cadrado.getX() + LADOCADRADO);
 
-    }  
-            
-            
-    
-    public boolean moverAbaixo() {
-        boolean move = false;
+        }
+        return true;
+    }
 
-        return move;
+    public boolean moverEsquerda(int LADOCADRADO) {
+        for (Cadrado cadrado : this.getCadrados()) {
+            cadrado.setX(cadrado.getX() - LADOCADRADO);
+
+        }
+        return true;
+    }
+
+    public boolean moverAbaixo(int LADOCADRADO) {
+        for (Cadrado cadrado : this.getCadrados()) {
+            cadrado.setY(cadrado.getY() + LADOCADRADO);
+        }
+
+        return true;
 
     }
-    
-    
-    
-          
+
+    public abstract boolean rotar();
 }

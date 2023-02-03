@@ -10,13 +10,17 @@ package modelo;
  */
 public class FichaCadrada extends Ficha {
 
-    public FichaCadrada() {
-        id=4;
+    public FichaCadrada(Xogo xogo) {
+        super(xogo);
     }
+
+  
+    
+    
 
     @Override
     public boolean rotar() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }
