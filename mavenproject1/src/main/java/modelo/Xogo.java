@@ -45,21 +45,20 @@ public class Xogo {
 
     public void moverEsquerda() {
 
+        fichaActual.moverEsquerda();
     }
 
     public void moverDereita() {
-        for (Cadrado cadrado : fichaActual.getCadrados()) {
-            cadrado.setX(cadrado.getX() + LADOCADRADO);
-        }
+        fichaActual.moverDereita();
     }
 
     public void moverFichaAbaixo() {
-
+        fichaActual.moverAbaixo();
     }
 
     public void xerarNovaFicha() {
 
-        fichaActual = new FichaBarra();
+        fichaActual = new FichaBarra(this);
         for (int i = 0; i < fichaActual.getCadrados().size(); i++) {
             System.out.println(fichaActual.getCadrados().get(i).cor);
 
@@ -70,7 +69,8 @@ public class Xogo {
     }
 
     public void rotarFicha() {
-//
+        
+        fichaActual.rotar();
 
     }
 

@@ -15,9 +15,10 @@ public abstract class Ficha {
 
     List<Cadrado> cadrados;
     Xogo xogo;
+
     public Ficha(Xogo xogo) {
         cadrados = new ArrayList<>();
-        this.xogo=xogo;
+        this.xogo = xogo;
     }
 
     public List<Cadrado> getCadrados() {
@@ -30,25 +31,25 @@ public abstract class Ficha {
 
     }
 
-    public boolean moverDereita(int LADOCADRADO) {
+    public boolean moverDereita() {
         for (Cadrado cadrado : this.getCadrados()) {
-            cadrado.setX(cadrado.getX() + LADOCADRADO);
+            cadrado.setX(cadrado.getX() + xogo.getLADOCADRADO());
 
         }
         return true;
     }
 
-    public boolean moverEsquerda(int LADOCADRADO) {
+    public boolean moverEsquerda() {
         for (Cadrado cadrado : this.getCadrados()) {
-            cadrado.setX(cadrado.getX() - LADOCADRADO);
+            cadrado.setX(cadrado.getX() - xogo.getLADOCADRADO());
 
         }
         return true;
     }
 
-    public boolean moverAbaixo(int LADOCADRADO) {
+    public boolean moverAbaixo() {
         for (Cadrado cadrado : this.getCadrados()) {
-            cadrado.setY(cadrado.getY() + LADOCADRADO);
+            cadrado.setY(cadrado.getY() + xogo.getLADOCADRADO());
         }
 
         return true;

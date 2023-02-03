@@ -14,14 +14,14 @@ import java.util.List;
  */
 public class FichaBarra extends Ficha {
 
-    Cadrado mediumCadrado = new Cadrado(xogo.getMAXX() / 2, xogo.getLADOCADRADO(), yellow);
+    Cadrado firstCadrado = new Cadrado((xogo.getMAXX() / 2) - xogo.getLADOCADRADO() * 2, xogo.getLADOCADRADO(), yellow);
 
     public FichaBarra(Xogo xogo) {
         super(xogo);
-        cadrados.add(mediumCadrado);
-        cadrados.add(new Cadrado(mediumCadrado.getX() - xogo.getLADOCADRADO(), mediumCadrado.getY(), yellow));
-        cadrados.add(new Cadrado(mediumCadrado.getX() + xogo.getLADOCADRADO(), mediumCadrado.getY(), yellow));
-        cadrados.add(new Cadrado(mediumCadrado.getX() - xogo.getLADOCADRADO() * 2, mediumCadrado.getY(), yellow));
+        cadrados.add(firstCadrado);
+        cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY(), yellow));
+        cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO() * 2, firstCadrado.getY(), yellow));
+        cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO() * 3, firstCadrado.getY(), yellow));
     }
 
     @Override
@@ -29,14 +29,14 @@ public class FichaBarra extends Ficha {
         return cadrados;
     }
 
-
     @Override
     public boolean rotar() {
 
-        boolean move = true;
-
-        return move;
-
+        cadrados.get(0).setCoordenadas(cadrados.get(1).getX()+ xogo.getLADOCADRADO(), cadrados.get(1).getY()+ xogo.getLADOCADRADO());
+        cadrados.get(2).setCoordenadas(cadrados.get(1).getX()+ xogo.getLADOCADRADO(), cadrados.get(1).getY()- xogo.getLADOCADRADO());
+        cadrados.get(3).setCoordenadas(cadrados.get(1).getX()+ xogo.getLADOCADRADO()*2, cadrados.get(1).getY()- xogo.getLADOCADRADO());
+        
+        return true;
     }
 
 }

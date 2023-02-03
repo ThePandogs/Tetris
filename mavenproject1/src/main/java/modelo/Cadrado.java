@@ -38,6 +38,14 @@ public class Cadrado {
 
     }
 
+    public void setCoordenadas(int x, int y) {
+
+        this.x = x;
+        this.y = y;
+        this.lblCadrado.setLocation(x, y);
+
+    }
+
     public Color getCorR() {
         return cor;
     }
