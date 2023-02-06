@@ -4,7 +4,7 @@
  */
 package modelo;
 
-import static java.awt.Color.*;
+import java.awt.Color;
 
 import java.util.List;
 
@@ -14,14 +14,14 @@ import java.util.List;
  */
 public class FichaBarra extends Ficha {
 
-    Cadrado firstCadrado = new Cadrado((xogo.getMAXX() / 2) - xogo.getLADOCADRADO() * 2, xogo.getLADOCADRADO(), yellow);
+    Cadrado firstCadrado = new Cadrado((xogo.getMAXX() / 2) - xogo.getLADOCADRADO() * 2, xogo.getLADOCADRADO(), Color.YELLOW);
 
     public FichaBarra(Xogo xogo) {
         super(xogo);
         cadrados.add(firstCadrado);
-        cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY(), yellow));
-        cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO() * 2, firstCadrado.getY(), yellow));
-        cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO() * 3, firstCadrado.getY(), yellow));
+        cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY(), Color.YELLOW));
+        cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO() * 2, firstCadrado.getY(), Color.YELLOW));
+        cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO() * 3, firstCadrado.getY(), Color.YELLOW));
     }
 
     @Override
@@ -32,10 +32,15 @@ public class FichaBarra extends Ficha {
     @Override
     public boolean rotar() {
 
-        cadrados.get(0).setCoordenadas(cadrados.get(1).getX()+ xogo.getLADOCADRADO(), cadrados.get(1).getY()+ xogo.getLADOCADRADO());
-        cadrados.get(2).setCoordenadas(cadrados.get(1).getX()+ xogo.getLADOCADRADO(), cadrados.get(1).getY()- xogo.getLADOCADRADO());
-        cadrados.get(3).setCoordenadas(cadrados.get(1).getX()+ xogo.getLADOCADRADO()*2, cadrados.get(1).getY()- xogo.getLADOCADRADO());
-        
+        if (cadrados.get(1).getX() != cadrados.get(0).getX()) {
+            cadrados.get(0).setCoordenadas(cadrados.get(1).getX(), cadrados.get(1).getY() - xogo.getLADOCADRADO());
+            cadrados.get(2).setCoordenadas(cadrados.get(1).getX(), cadrados.get(1).getY() + xogo.getLADOCADRADO());
+            cadrados.get(3).setCoordenadas(cadrados.get(1).getX(), cadrados.get(1).getY() + xogo.getLADOCADRADO() * 2);
+        } else {
+            cadrados.get(0).setCoordenadas(cadrados.get(1).getX() - xogo.getLADOCADRADO(), cadrados.get(1).getY());
+            cadrados.get(2).setCoordenadas(cadrados.get(1).getX() + xogo.getLADOCADRADO(), cadrados.get(1).getY());
+            cadrados.get(3).setCoordenadas(cadrados.get(1).getX() + xogo.getLADOCADRADO() * 2, cadrados.get(1).getY());
+        }
         return true;
     }
 

@@ -4,19 +4,24 @@
  */
 package modelo;
 
+import java.awt.Color;
+
 /**
  *
  * @author a22danielas
  */
 public class FichaCadrada extends Ficha {
 
+    Cadrado firstCadrado = new Cadrado((xogo.getMAXX() / 2) - xogo.getLADOCADRADO(), 0, Color.BLUE);
+
     public FichaCadrada(Xogo xogo) {
         super(xogo);
-    }
 
-  
-    
-    
+        cadrados.add(firstCadrado);
+        cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY(), Color.BLUE));
+        cadrados.add(new Cadrado(firstCadrado.getX(), firstCadrado.getY() + xogo.getLADOCADRADO(), Color.BLUE));
+        cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY() + xogo.getLADOCADRADO(), Color.BLUE));
+    }
 
     @Override
     public boolean rotar() {
