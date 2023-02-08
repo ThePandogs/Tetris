@@ -5,7 +5,6 @@
 package iu;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 import modelo.Xogo;
@@ -49,6 +48,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        GameOverFrame = new javax.swing.JFrame();
+        GameOverPanel = new javax.swing.JPanel();
+        YouLoseTitle = new javax.swing.JLabel();
+        levelTile = new javax.swing.JLabel();
+        timeTitle = new javax.swing.JLabel();
+        scoreTitle = new javax.swing.JLabel();
+        scoreGameOver = new javax.swing.JLabel();
+        timeGameOver = new javax.swing.JLabel();
+        levelGameOver = new javax.swing.JLabel();
+        linesTitle = new javax.swing.JLabel();
+        linesGameOver = new javax.swing.JLabel();
+        restartGameOver = new javax.swing.JButton();
+        mainMenuGameOver = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
         panelXogo = new javax.swing.JPanel();
         lblBackgroundGame = new javax.swing.JLabel();
@@ -72,6 +84,80 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblTimeTitle = new javax.swing.JLabel();
         backgroundProgram = new javax.swing.JLabel();
 
+        GameOverFrame.setLocation(new java.awt.Point(222, 0));
+        GameOverFrame.setUndecorated(true);
+        GameOverFrame.setResizable(false);
+        GameOverFrame.setSize(new java.awt.Dimension(450, 330));
+        GameOverFrame.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        GameOverPanel.setMinimumSize(new java.awt.Dimension(450, 330));
+        GameOverPanel.setPreferredSize(null);
+        GameOverPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        YouLoseTitle.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        YouLoseTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        YouLoseTitle.setText("Game Over");
+        GameOverPanel.add(YouLoseTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 10, 200, -1));
+
+        levelTile.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        levelTile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        levelTile.setText("Level");
+        GameOverPanel.add(levelTile, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 59, 30));
+
+        timeTitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        timeTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        timeTitle.setText("Time");
+        GameOverPanel.add(timeTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 59, 30));
+
+        scoreTitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        scoreTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        scoreTitle.setText("Score");
+        GameOverPanel.add(scoreTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 59, 30));
+
+        scoreGameOver.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        scoreGameOver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        scoreGameOver.setText("0");
+        GameOverPanel.add(scoreGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 60, -1));
+
+        timeGameOver.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        timeGameOver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        timeGameOver.setText("0");
+        GameOverPanel.add(timeGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 60, -1));
+
+        levelGameOver.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        levelGameOver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        levelGameOver.setText("0");
+        GameOverPanel.add(levelGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 60, -1));
+
+        linesTitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        linesTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        linesTitle.setText("Lines");
+        GameOverPanel.add(linesTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 59, 30));
+
+        linesGameOver.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        linesGameOver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        linesGameOver.setText("0");
+        GameOverPanel.add(linesGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 60, -1));
+
+        restartGameOver.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        restartGameOver.setText("Restart");
+        restartGameOver.setFocusable(false);
+        restartGameOver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restartGameOverActionPerformed(evt);
+            }
+        });
+        GameOverPanel.add(restartGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 150, 40));
+
+        mainMenuGameOver.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        mainMenuGameOver.setText("MainMenu");
+        mainMenuGameOver.setFocusable(false);
+        GameOverPanel.add(mainMenuGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 150, 40));
+
+        GameOverFrame.getContentPane().add(GameOverPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 330));
+
+        GameOverFrame.getAccessibleContext().setAccessibleParent(panelXogo);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1100, 950));
         setMinimumSize(new java.awt.Dimension(1100, 950));
@@ -85,11 +171,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelXogo.setBackground(new java.awt.Color(204, 204, 255));
+        panelXogo.setFocusable(false);
         panelXogo.setMaximumSize(new java.awt.Dimension(500, 900));
         panelXogo.setMinimumSize(new java.awt.Dimension(500, 900));
         panelXogo.setName(""); // NOI18N
         panelXogo.setOpaque(false);
         panelXogo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                panelXogoKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 panelXogoKeyTyped(evt);
             }
@@ -154,6 +244,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         tglPause.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         tglPause.setText("Pause");
+        tglPause.setFocusable(false);
         tglPause.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tglPauseActionPerformed(evt);
@@ -163,6 +254,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         btnExit.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnExit.setText("Exit");
+        btnExit.setFocusable(false);
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
@@ -172,6 +264,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         btnRestart.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnRestart.setText("Restart");
+        btnRestart.setFocusable(false);
         panelMenu.add(btnRestart, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 140, 150, 40));
 
         mainPanel.add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 690, 220, 240));
@@ -220,30 +313,35 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void panelXogoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_panelXogoKeyTyped
 
-        if (evt.getKeyChar() == KeyEvent.VK_DOWN) {
-            System.out.println("Inserta texto");
-        }
-
-        switch (evt.getKeyChar()) {
-
-            case 's' -> {
-                xogo.moverFichaAbaixo();
-                mainPanel.updateUI();
-                //reiniciamos timer para que la ficha no baje 2 posiciones seguidas.
-                timer.restart();
-            }
-            case 'd' ->
-                xogo.moverDereita();
-            case 'a' ->
-                xogo.moverEsquerda();
-            case 'w' ->
-                xogo.rotarFicha();
-            default -> {
-            }
-        }
-
 
     }//GEN-LAST:event_panelXogoKeyTyped
+
+    private void panelXogoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_panelXogoKeyPressed
+
+        if (evt.getKeyCode() == 37 || evt.getKeyCode() == 65) {
+
+            xogo.moverEsquerda();
+a
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 87) {
+
+            xogo.rotarFicha();
+
+        } else if (evt.getKeyCode() == 39 || evt.getKeyCode() == 68) {
+            xogo.moverDereita();
+        } else if (evt.getKeyCode() == 40 || evt.getKeyCode() == 83) {
+
+            xogo.moverFichaAbaixo();
+            mainPanel.updateUI();
+            //reiniciamos timer para que la ficha no baje 2 posiciones seguidas.
+            timer.restart();
+        }
+
+
+    }//GEN-LAST:event_panelXogoKeyPressed
+
+    private void restartGameOverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restartGameOverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_restartGameOverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -281,6 +379,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFrame GameOverFrame;
+    private javax.swing.JPanel GameOverPanel;
+    private javax.swing.JLabel YouLoseTitle;
     private javax.swing.JLabel backgroundProgram;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnRestart;
@@ -294,6 +395,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblTime;
     private javax.swing.JLabel lblTimeTitle;
     private javax.swing.JLabel lbllinesNextLevelTitle;
+    private javax.swing.JLabel levelGameOver;
+    private javax.swing.JLabel levelTile;
+    private javax.swing.JLabel linesGameOver;
+    private javax.swing.JLabel linesTitle;
+    private javax.swing.JButton mainMenuGameOver;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel panelLevel;
     private javax.swing.JPanel panelLine;
@@ -302,7 +408,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel panelScore;
     private javax.swing.JPanel panelTime;
     private javax.swing.JPanel panelXogo;
+    private javax.swing.JButton restartGameOver;
+    private javax.swing.JLabel scoreGameOver;
+    private javax.swing.JLabel scoreTitle;
     private javax.swing.JToggleButton tglPause;
+    private javax.swing.JLabel timeGameOver;
+    private javax.swing.JLabel timeTitle;
     // End of variables declaration//GEN-END:variables
 
     public void pintarCadrado(JLabel lblCadrado) {
@@ -318,20 +429,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     public void mostrarFinDoXogo() {
-        //pausas de los cronos
-        //mostrar popup con puntuacion y boton de reinicio.
-        //destruir el juego 
-        //reiniciar cronos
+        pauseCronos();
+     GameOverFrame.setVisible(true);
     }
 
 //    private void iniciarPartida() {
 //    }
-
     private void pauseCronos() {
 
         timerCrono.stop();
         timer.stop();
         pause = true;
+        GameOverFrame.setVisible(true);
+        GameOverFrame.setLocationRelativeTo(panelXogo);
     }
 
     private void resumeCronos() {
