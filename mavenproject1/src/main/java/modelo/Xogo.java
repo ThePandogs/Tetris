@@ -139,7 +139,9 @@ public class Xogo {
         boolean choca = false;
 
         for (int i = 0; i < fichaActual.getCadrados().size(); i++) {
-            if (fichaActual.getCadrados().get(i).getY() == MAXY - LADOCADRADO || !ePosicionValida(fichaActual.getCadrados().get(i).getX(), fichaActual.getCadrados().get(i).getY() + LADOCADRADO * 2)) {
+            if (fichaActual.getCadrados().get(i).getY() == MAXY - LADOCADRADO 
+                    || !ePosicionValida(fichaActual.getCadrados().get(i).getX(),
+                            fichaActual.getCadrados().get(i).getY() + LADOCADRADO * 2)) {
                 choca = true;
             }
         }

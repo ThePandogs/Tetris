@@ -26,17 +26,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     Timer timerCrono;
     Timer timer;
     // Timer timer;
-    private boolean pause = false;
+    private boolean pause;
 
     public VentanaPrincipal() {
 
         initComponents();
-        startCrono();
-        startSpeed();
-
-        xogo = new Xogo(this);
-        xogo.xenerarNovaFicha();
-        panelXogo.setFocusable(true);
+        iniciarPartida();
     }
 
     /**
@@ -318,22 +313,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void panelXogoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_panelXogoKeyPressed
 
-        if (evt.getKeyCode() == 37 || evt.getKeyCode() == 65) {
-
-            xogo.moverEsquerda();
-a
-        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 87) {
-
-            xogo.rotarFicha();
-
-        } else if (evt.getKeyCode() == 39 || evt.getKeyCode() == 68) {
-            xogo.moverDereita();
-        } else if (evt.getKeyCode() == 40 || evt.getKeyCode() == 83) {
-
-            xogo.moverFichaAbaixo();
-            mainPanel.updateUI();
-            //reiniciamos timer para que la ficha no baje 2 posiciones seguidas.
-            timer.restart();
+        switch (evt.getKeyCode()) {
+            case 37, 65 ->
+                xogo.moverEsquerda();
+            case 38, 87 ->
+                xogo.rotarFicha();
+            case 39, 68 ->
+                xogo.moverDereita();
+            case 40, 83 -> {
+                xogo.moverFichaAbaixo();
+                mainPanel.updateUI();
+                //reiniciamos timer para que la ficha no baje 2 posiciones seguidas.
+                timer.restart();
+            }
+            default -> {
+            }
         }
 
 
@@ -430,10 +424,21 @@ a
 
     public void mostrarFinDoXogo() {
         pauseCronos();
-     GameOverFrame.setVisible(true);
+        GameOverFrame.setVisible(true);
     }
 
-//    private void iniciarPartida() {
+    private void iniciarPartida() {
+
+        startCrono();
+        startSpeed();
+
+        xogo = new Xogo(this);
+        xogo.xenerarNovaFicha();
+        panelXogo.setFocusable(true);
+        pause = false;
+    }
+
+//    private void reiniciar () {
 //    }
     private void pauseCronos() {
 
