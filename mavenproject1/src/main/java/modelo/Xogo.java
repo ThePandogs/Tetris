@@ -4,13 +4,8 @@
  */
 package modelo;
 
-import java.awt.Color;
-import static java.awt.Color.yellow;
-import java.util.Iterator;
-import java.util.Timer;
-import java.util.TimerTask;
-import javax.swing.JLabel;
 import iu.VentanaPrincipal;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,172 +13,199 @@ import iu.VentanaPrincipal;
  */
 public class Xogo {
 
-    public int ladocadrado = 50;
-    public int maxY = 825;
-    public int maxX = 500;
-    public boolean pausa = false;
-    public int numerolineas = 0;
-    public Ficha fichaactual = new FichaBarra();
-    public VentanaPrincipal v;
-
-    public Xogo() {
-
+    public int getLADOCADRADO() {
+        return LADOCADRADO;
     }
 
-    public int getLadocadrado() {
-        return ladocadrado;
+    private final int LADOCADRADO = 50;
+    private final int MAXY = 900;
+    private final int MAXX = 500;
+    private int numeroLinas = 0;
+    public VentanaPrincipal ventanaPricipal;
+    Ficha fichaActual;
+    private ArrayList<Cadrado> cadradosChan;
+
+    public int getMAXY() {
+        return MAXY;
     }
 
-    public int getMaxY() {
-        return maxY;
+    public ArrayList<Cadrado> getCadradosChan() {
+        return cadradosChan;
     }
 
-    public int getMaxX() {
-        return maxX;
+    public int getMAXX() {
+        return MAXX;
     }
 
-    public boolean isPausa() {
-        return pausa;
+    public Xogo(VentanaPrincipal ventana) {
+        ventanaPricipal = ventana;
+        cadradosChan = new ArrayList<>();
     }
 
-    public int getNumerolineas() {
-        return numerolineas;
-    }
-
-    public Ficha getFichaactual() {
-        return fichaactual;
-    }
-
-    public void setLadocadrado(int ladocadrado) {
-        this.ladocadrado = ladocadrado;
-    }
-
-    public void setMaxY(int maxY) {
-        this.maxY = maxY;
-    }
-
-    public void setMaxX(int maxX) {
-        this.maxX = maxX;
-    }
-
-    public void setPausa(boolean pausa) {
-        this.pausa = pausa;
-    }
-
-    public void setNumerolineas(int numerolineas) {
-        this.numerolineas = numerolineas;
-    }
-
-    public void setFichaactual(Ficha fichaactual) {
-        this.fichaactual = fichaactual;
-    }
-
-    public void moverFichaAbaixo() {
-//Ejemplo de mover hacia abajo automaticamente
-        //Hacemos un timer con una tarea que cada cierto tiempo sume a la ficha valor en y para bajar constantemente
-//        TimerTask speedGame;
-//
-//        Timer timer = new Timer();
-//
-//        speedGame = new TimerTask() {
-//            @Override
-//            public void run() {
-//                boolean flag=false;
-//                
-               
-//                
-//                  Iterator<Cadrado> itera = fichaactual.getCadrados().iterator();
-//                while (itera.hasNext() ) {
-//                    JLabel ca = itera.next().getLblCadrado();
-//                    if(ca.getY()>=825){
-//                     flag=true;
-//                    
-//                    }
-//
-//                }
-//                
-//                
-//                
-//                
-//                Iterator<Cadrado> iter = fichaactual.getCadrados().iterator();
-//                while (iter.hasNext() && flag==false) {
-//                    JLabel c = iter.next().getLblCadrado();
-//                    int y = c.getY() + 50;
-//                    c.setLocation(c.getX(), y);
-//
-//                }
-//            }
-//        };
-//        timer.schedule(speedGame, 1500, 2000);
-
-
-
-
-
-
-
-
-
-
-    }
-   
-
-    public void rotarFicha() {
-        
-        switch (fichaactual.id){
-        
-            case 1:
-        //Rotacion de Barra
-        int y = fichaactual.getCadrados().get(1).lblCadrado.getY();
-        int x = fichaactual.getCadrados().get(1).lblCadrado.getX();
-
-        //Si la ficha esta tumbada 
-        if (fichaactual.getCadrados().get(2).lblCadrado.getX() != fichaactual.getCadrados().get(3).lblCadrado.getX()) {
-            fichaactual.getCadrados().get(0).lblCadrado.setLocation(x, y - 50);
-            fichaactual.getCadrados().get(2).lblCadrado.setLocation(x, y + 50);
-            fichaactual.getCadrados().get(3).lblCadrado.setLocation(x, y + 100);
-        } //Si esta en vertical
-        else {
-            fichaactual.getCadrados().get(0).lblCadrado.setLocation(x - 50, y);
-            fichaactual.getCadrados().get(2).lblCadrado.setLocation(x + 50, y);
-            fichaactual.getCadrados().get(3).lblCadrado.setLocation(x + 100, y);
-        }
-            case 2:
-        
-        
-        
-        }
-        
-        
- 
-
+    public int getNumeroLinas() {
+        return numeroLinas;
     }
 
     public void moverEsquerda() {
-//Movimiento ficha actual hacia la izqueirda
-       
 
-        Iterator<Cadrado> iter = fichaactual.getCadrados().iterator();
-        while (iter.hasNext()) {
-            JLabel c = iter.next().getLblCadrado();
-            int x = c.getX() - 50;
-            c.setLocation(x, c.getY());
+        boolean posible = true;
 
+        for (int i = 0; i < fichaActual.getCadrados().size(); i++) {
+
+            if (!ePosicionValida(fichaActual.getCadrados().get(i).getX() - LADOCADRADO, fichaActual.getCadrados().get(i).getY())) {
+                posible = false;
+            }
+        }
+
+        if (posible) {
+            fichaActual.moverEsquerda();
         }
 
     }
- public void moverDereita() {
-//Movimiento ficha actual hacia la derecha
-       
 
-        Iterator<Cadrado> iter = fichaactual.getCadrados().iterator();
-        while (iter.hasNext()) {
-            JLabel c = iter.next().getLblCadrado();
-            int x = c.getX() +50;
-            c.setLocation(x, c.getY());
-            
+    public void moverDereita() {
+        boolean posible = true;
 
-        }System.out.println(fichaactual.cadrados.get(3).lblCadrado.getY());
+        for (int i = 0; i < fichaActual.getCadrados().size(); i++) {
+            if (!ePosicionValida(fichaActual.getCadrados().get(i).getX() + LADOCADRADO, fichaActual.getCadrados().get(i).getY())) {
+                posible = false;
+            }
+        }
+
+        if (posible) {
+            fichaActual.moverDereita();
+        }
 
     }
+
+    public void moverFichaAbaixo() {
+        boolean posible = true;
+
+        for (int i = 0; i < fichaActual.getCadrados().size(); i++) {
+            if (!ePosicionValida(fichaActual.getCadrados().get(i).getX(), fichaActual.getCadrados().get(i).getY() + LADOCADRADO)) {
+                posible = false;
+            }
+        }
+
+        if (posible) {
+
+            fichaActual.moverAbaixo();
+            if (chocaFichaCoChan()) {
+                borrarLinaCompletas();
+                xenerarNovaFicha();
+
+            }
+
+        }
+    }
+
+    public void xenerarNovaFicha() {
+
+        switch ((int) (Math.random() * 4 + 1)) {
+
+            case 1 ->
+                fichaActual = new FichaBarra(this);
+            case 2 ->
+                fichaActual = new FichaCadrada(this);
+            case 3 ->
+                fichaActual = new FichaT(this);
+            case 4 ->
+                fichaActual = new FichaL(this);
+        }
+        ventanaPricipal.getTimer().restart();
+        pintarFicha();
+
+    }
+
+    private void pintarFicha() {
+
+        for (int i = 0; i < fichaActual.getCadrados().size(); i++) {
+
+            ventanaPricipal.pintarCadrado(fichaActual.getCadrados().get(i).getLblCadrado());
+        }
+
+    }
+
+    public void rotarFicha() {
+
+        fichaActual.rotar();
+
+    }
+
+   public boolean ePosicionValida(int x, int y) {
+        boolean valido = false;
+        if (x < MAXX && x >= 0 && y < MAXY + LADOCADRADO && y >= 0) {
+            valido = true;
+        }
+        for (int i = 0; i < cadradosChan.size(); i++) {
+           if (cadradosChan.get(i).getX() == x && cadradosChan.get(i).getY() + LADOCADRADO == y) {
+                valido = false;
+            }
+        }
+
+        return valido;
+    }
+
+    public boolean chocaFichaCoChan() {
+        boolean choca = false;
+
+        for (int i = 0; i < fichaActual.getCadrados().size(); i++) {
+
+            if (fichaActual.getCadrados().get(i).getY() == MAXY - LADOCADRADO
+                    || !ePosicionValida(fichaActual.getCadrados().get(i).getX(),
+                            fichaActual.getCadrados().get(i).getY() + LADOCADRADO)) {
+                engadirFichaAoChan();
+            }
+        }
+
+        return choca;
+    }
+
+
+    public void engadirFichaAoChan() {
+
+        cadradosChan.addAll(fichaActual.getCadrados());
+
+    }
+
+    public void borrarLinaCompletas() {
+
+        int filas = MAXY - LADOCADRADO;
+
+        while (filas > 100) {
+            int contador = 0;
+            int j = 0;
+            System.out.println(cadradosChan.size());
+            while (j < cadradosChan.size()) {
+
+                if (cadradosChan.get(j).getY() == filas) {
+                    contador++;
+                }
+                j++;
+            }
+
+            if (contador == 10) {
+                ArrayList<Cadrado> CuadradosParaEliminar = new ArrayList();
+                for (int i = 0; i < cadradosChan.size(); i++) {
+
+                    if (cadradosChan.get(i).getY() == filas) {
+                        ventanaPricipal.borrarCadrado(cadradosChan.get(i).getLblCadrado());
+                        CuadradosParaEliminar.add(cadradosChan.get(i));
+
+                    }
+                }
+                cadradosChan.removeAll(CuadradosParaEliminar);
+                CuadradosParaEliminar.removeAll(CuadradosParaEliminar);
+
+                for (Cadrado bajarLineasSuperiores : cadradosChan) {
+                    if (bajarLineasSuperiores.getY() < filas) {
+                        bajarLineasSuperiores.setCoordenadas(bajarLineasSuperiores.getX(), bajarLineasSuperiores.getY() + LADOCADRADO);
+                    }
+                }
+            }
+            filas -= LADOCADRADO;
+            contador = 0;
+        }
+    }
+
 }

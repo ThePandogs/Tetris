@@ -4,13 +4,9 @@
  */
 package modelo;
 
-import static java.awt.Color.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import javax.swing.JLabel;
-import modelo.Xogo;
 import java.awt.Color;
+
+import java.util.List;
 
 /**
  *
@@ -18,98 +14,34 @@ import java.awt.Color;
  */
 public class FichaBarra extends Ficha {
 
+    Cadrado firstCadrado = new Cadrado((xogo.getMAXX() / 2) - xogo.getLADOCADRADO() * 2, xogo.getLADOCADRADO(), Color.YELLOW);
 
- public Cadrado c=new Cadrado(150, 25,yellow);
- public Cadrado c1=new Cadrado(200, 25,yellow);
-public  Cadrado c2=new Cadrado(250, 25,yellow);
- public Cadrado c3=new Cadrado(300, 25,yellow);
-
-
-    public FichaBarra() {
-
-
-        cadrados.add(c);
-        cadrados.add(c1);
-        cadrados.add(c2);
-        cadrados.add(c3);
-
-id=1;
-
- 
-        
-        
-        
-        
+    public FichaBarra(Xogo xogo) {
+        super(xogo);
+        cadrados.add(firstCadrado);
+        cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY(), Color.YELLOW));
+        cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO() * 2, firstCadrado.getY(), Color.YELLOW));
+        cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO() * 3, firstCadrado.getY(), Color.YELLOW));
     }
 
+    @Override
     public List<Cadrado> getCadrados() {
         return cadrados;
     }
 
-    public Cadrado getC() {
-        return c;
-    }
-
-    public Cadrado getC1() {
-        return c1;
-    }
-
-    public Cadrado getC2() {
-        return c2;
-    }
-
-    public Cadrado getC3() {
-        return c3;
-    }
-
-    public void setC(Cadrado c) {
-        this.c = c;
-    }
-
-    public void setC1(Cadrado c1) {
-        this.c1 = c1;
-    }
-
-    public void setC2(Cadrado c2) {
-        this.c2 = c2;
-    }
-
-    public void setC3(Cadrado c3) {
-        this.c3 = c3;
-    }
-
-    public void setCadrados(List<Cadrado> cadrados) {
-        this.cadrados = cadrados;
-    }
-
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     @Override
     public boolean rotar() {
-boolean move = true;
 
-
-
-
-
-        return move;
-
+        if (cadrados.get(1).getX() != cadrados.get(0).getX()) {
+            cadrados.get(0).setCoordenadas(cadrados.get(1).getX(), cadrados.get(1).getY() - xogo.getLADOCADRADO());
+            cadrados.get(2).setCoordenadas(cadrados.get(1).getX(), cadrados.get(1).getY() + xogo.getLADOCADRADO());
+            cadrados.get(3).setCoordenadas(cadrados.get(1).getX(), cadrados.get(1).getY() + xogo.getLADOCADRADO() * 2);
+        } else {
+            cadrados.get(0).setCoordenadas(cadrados.get(1).getX() - xogo.getLADOCADRADO(), cadrados.get(1).getY());
+            cadrados.get(2).setCoordenadas(cadrados.get(1).getX() + xogo.getLADOCADRADO(), cadrados.get(1).getY());
+            cadrados.get(3).setCoordenadas(cadrados.get(1).getX() + xogo.getLADOCADRADO() * 2, cadrados.get(1).getY());
+        }
+        return true;
     }
-    
-    
-            
-            
-         
+
 }
