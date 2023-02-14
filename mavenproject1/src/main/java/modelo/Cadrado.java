@@ -13,22 +13,23 @@ import javax.swing.JLabel;
  * @author a22danielas
  */
 public class Cadrado {
-   int x;
-   int y;
-  public Color cor;
-  public  JLabel lblCadrado =new JLabel();
+ 
 
-    public Cadrado(int x ,int y ,Color cor) {
-this.x=x;
-this.y=y;
-  
-    lblCadrado.setBackground(cor);
-    lblCadrado.setOpaque(true);
+    int x;
+    int y;
+    public Color cor;
+    public JLabel lblCadrado = new JLabel();
+
+    public Cadrado(int x, int y, Color cor) {
+        this.x = x;
+        this.y = y;
+
+        lblCadrado.setBackground(cor);
+        lblCadrado.setOpaque(true);
         lblCadrado.setBounds(x, y, 50, 50);
         lblCadrado.setVisible(true);
         lblCadrado.updateUI();
-    
-    
+
     }
 
     public int getX() {
@@ -67,27 +68,22 @@ this.y=y;
         this.cor = cor;
     }
 
-   public String getCoordenadas(){
-   
-       
-       String cor="x= "+x+" : "+"y="+y;
-   
-   
-   
-   
-   
-   
-   
-   
-       return cor;
-   
-   
-   
-   
-   
-   
-   
-   
+    public String getCoordenadas() {
+
+        String cor = "x= " + x + " : " + "y=" + y;
+
+        return cor;
+
+    }
+    public void  actualizarCoordenada(int x,int y){
+    
+    this.x=x;
+    this.y=y;
+    lblCadrado.setLocation(x, y);
+    
+    
+    
+    }
    
    }
   
@@ -101,4 +97,4 @@ this.y=y;
     
     
     
-}
+

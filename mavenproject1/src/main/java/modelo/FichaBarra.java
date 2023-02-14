@@ -19,27 +19,18 @@ import java.awt.Color;
 public class FichaBarra extends Ficha {
 
 
- public Cadrado c=new Cadrado(150, 25,yellow);
- public Cadrado c1=new Cadrado(200, 25,yellow);
-public  Cadrado c2=new Cadrado(250, 25,yellow);
- public Cadrado c3=new Cadrado(300, 25,yellow);
-
-
-    public FichaBarra() {
-
+    public Cadrado c = new Cadrado(150, 50, yellow);
+    public Cadrado c1 = new Cadrado(200, 50, yellow);
+    public Cadrado c2 = new Cadrado(250, 50, yellow);
+    public Cadrado c3 = new Cadrado(300, 50, yellow);
+public int posicion=0;
+    public FichaBarra(Xogo x) {
+        super(x);
 
         cadrados.add(c);
         cadrados.add(c1);
         cadrados.add(c2);
         cadrados.add(c3);
-
-id=1;
-
- 
-        
-        
-        
-        
     }
 
     public List<Cadrado> getCadrados() {
@@ -82,34 +73,62 @@ id=1;
         this.cadrados = cadrados;
     }
 
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     @Override
     public boolean rotar() {
-boolean move = true;
+        boolean move = true;
+        //Rotacion de Barra
+        int y = xogo.fichaActual.getCadrados().get(1).lblCadrado.getY();
+        int x = xogo.fichaActual.getCadrados().get(1).lblCadrado.getX();
+     
 
+        switch (posicion) {
 
+            case 0 -> {
+                int cont = 0;
+                //Comprobacion antes de pasar de tumbada a vertical
+                if (xogo.ePosicionValida(x, y - 50)) {
+                    cont++;
+                }
+                if (xogo.ePosicionValida(x, y + 50)) {
+                    cont++;
+                }
+                if (xogo.ePosicionValida(x, y + 100)) {
+                    cont++;
+                }
+                //Si la ficha esta tumbada 
+                if (xogo.fichaActual.getCadrados().get(2).lblCadrado.getX() != xogo.fichaActual.getCadrados().get(3).lblCadrado.getX() && cont == 3) {
+                    xogo.fichaActual.getCadrados().get(0).actualizarCoordenada(x, y - 50);
+                    xogo.fichaActual.getCadrados().get(2).actualizarCoordenada(x, y + 50);
+                    xogo.fichaActual.getCadrados().get(3).actualizarCoordenada(x, y + 100);
+              posicion=1;
+  }
+            }
+            case 1 -> {
+                int cont = 0;
+                //Comprobacion antes de pasar de vertical  a tumbada
+                if (xogo.ePosicionValida(x - 50, y)) {
+                    cont++;
+                }
+                if (xogo.ePosicionValida(x + 50, y)) {
+                    cont++;
+                }
+                if (xogo.ePosicionValida(x + 100, y)) {
+                    cont++;
+                }
+                //Si la ficha esta vertical 
+                if (xogo.fichaActual.getCadrados().get(2).lblCadrado.getX() == xogo.fichaActual.getCadrados().get(3).lblCadrado.getX() && cont == 3) {
+                    xogo.fichaActual.getCadrados().get(0).actualizarCoordenada(x - 50, y);
+                    xogo.fichaActual.getCadrados().get(2).actualizarCoordenada(x + 50, y);
+                    xogo.fichaActual.getCadrados().get(3).actualizarCoordenada(x + 100, y);
+               posicion=0;
+ }
+            }
 
-
+        }
 
         return move;
 
     }
-    
-    
-            
-            
+
          
 }

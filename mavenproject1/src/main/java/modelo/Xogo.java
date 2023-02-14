@@ -11,6 +11,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JLabel;
 import iu.VentanaPrincipal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,172 +20,244 @@ import iu.VentanaPrincipal;
  */
 public class Xogo {
 
-    public int ladocadrado = 50;
-    public int maxY = 825;
-    public int maxX = 500;
-    public boolean pausa = false;
-    public int numerolineas = 0;
-    public Ficha fichaactual = new FichaBarra();
-    public VentanaPrincipal v;
+    private final int LADOCADRADO = 50;
+    private final int MAXY = 850;
+    private final int MAXX = 450;
+    public int numeroLinas = 0;
+    public VentanaPrincipal ventanaPricipal;
+    public Ficha fichaActual;
+    public List<Cadrado> cadradosChan = new ArrayList();
+    public List<Cadrado> linea = new ArrayList();
 
-    public Xogo() {
-
+    public Xogo(VentanaPrincipal ventana) {
+        ventanaPricipal = ventana;
     }
 
-    public int getLadocadrado() {
-        return ladocadrado;
-    }
-
-    public int getMaxY() {
-        return maxY;
-    }
-
-    public int getMaxX() {
-        return maxX;
-    }
-
-    public boolean isPausa() {
-        return pausa;
-    }
-
-    public int getNumerolineas() {
-        return numerolineas;
-    }
-
-    public Ficha getFichaactual() {
-        return fichaactual;
-    }
-
-    public void setLadocadrado(int ladocadrado) {
-        this.ladocadrado = ladocadrado;
-    }
-
-    public void setMaxY(int maxY) {
-        this.maxY = maxY;
-    }
-
-    public void setMaxX(int maxX) {
-        this.maxX = maxX;
-    }
-
-    public void setPausa(boolean pausa) {
-        this.pausa = pausa;
+    public int getnumeroLinas() {
+        return numeroLinas;
     }
 
     public void setNumerolineas(int numerolineas) {
-        this.numerolineas = numerolineas;
+        this.numeroLinas = numerolineas;
     }
 
-    public void setFichaactual(Ficha fichaactual) {
-        this.fichaactual = fichaactual;
-    }
-
-    public void moverFichaAbaixo() {
-//Ejemplo de mover hacia abajo automaticamente
-        //Hacemos un timer con una tarea que cada cierto tiempo sume a la ficha valor en y para bajar constantemente
-//        TimerTask speedGame;
-//
-//        Timer timer = new Timer();
-//
-//        speedGame = new TimerTask() {
-//            @Override
-//            public void run() {
-//                boolean flag=false;
-//                
-               
-//                
-//                  Iterator<Cadrado> itera = fichaactual.getCadrados().iterator();
-//                while (itera.hasNext() ) {
-//                    JLabel ca = itera.next().getLblCadrado();
-//                    if(ca.getY()>=825){
-//                     flag=true;
-//                    
-//                    }
-//
-//                }
-//                
-//                
-//                
-//                
-//                Iterator<Cadrado> iter = fichaactual.getCadrados().iterator();
-//                while (iter.hasNext() && flag==false) {
-//                    JLabel c = iter.next().getLblCadrado();
-//                    int y = c.getY() + 50;
-//                    c.setLocation(c.getX(), y);
-//
-//                }
-//            }
-//        };
-//        timer.schedule(speedGame, 1500, 2000);
-
-
-
-
-
-
-
-
-
-
-    }
-   
-
-    public void rotarFicha() {
-        
-        switch (fichaactual.id){
-        
-            case 1:
-        //Rotacion de Barra
-        int y = fichaactual.getCadrados().get(1).lblCadrado.getY();
-        int x = fichaactual.getCadrados().get(1).lblCadrado.getX();
-
-        //Si la ficha esta tumbada 
-        if (fichaactual.getCadrados().get(2).lblCadrado.getX() != fichaactual.getCadrados().get(3).lblCadrado.getX()) {
-            fichaactual.getCadrados().get(0).lblCadrado.setLocation(x, y - 50);
-            fichaactual.getCadrados().get(2).lblCadrado.setLocation(x, y + 50);
-            fichaactual.getCadrados().get(3).lblCadrado.setLocation(x, y + 100);
-        } //Si esta en vertical
-        else {
-            fichaactual.getCadrados().get(0).lblCadrado.setLocation(x - 50, y);
-            fichaactual.getCadrados().get(2).lblCadrado.setLocation(x + 50, y);
-            fichaactual.getCadrados().get(3).lblCadrado.setLocation(x + 100, y);
-        }
-            case 2:
-        
-        
-        
-        }
-        
-        
- 
-
+    public int getLADOCADRADO() {
+        return LADOCADRADO;
     }
 
     public void moverEsquerda() {
-//Movimiento ficha actual hacia la izqueirda
-       
+        boolean flag = true;
+        Iterator<Cadrado> ita = fichaActual.cadrados.iterator();
+        //Comprobar posicion siguiente de cada cuadrado actual
+        while (ita.hasNext()) {
+            Cadrado ca = ita.next();
+            int x = ca.getX() - LADOCADRADO;
+            int y = ca.getY();
+            if (ePosicionValida(x, y)) {
+            } else {
+                flag = false;
+            }
+        }
+        //Si todas las posiciones son validas
+        if (flag) {
+            fichaActual.moverEsquerda();
+        }
+    }
 
-        Iterator<Cadrado> iter = fichaactual.getCadrados().iterator();
-        while (iter.hasNext()) {
-            JLabel c = iter.next().getLblCadrado();
-            int x = c.getX() - 50;
-            c.setLocation(x, c.getY());
+    public void moverDereita() {
+        boolean flag = true;
+        Iterator<Cadrado> ita = fichaActual.cadrados.iterator();
+        //Comprobar posicion siguiente de cada cuadrado actual
+        while (ita.hasNext()) {
+            Cadrado ca = ita.next();
+            int x = ca.getX() + LADOCADRADO;
+            int y = ca.getY();
+            if (ePosicionValida(x, y)) {
+            } else {
+                flag = false;
+            }
+        }
+        //Si todas las posiciones son validas
+        if (flag) {
+            fichaActual.moverDereita();
+        }
+    }
+
+    public void rotarFicha() {
+        fichaActual.rotar();
+    }
+
+    public void moverFichaAbaixo() {
+        boolean flag = true;
+        //Si la ficha no toca con el suelo es valido 
+        if (!chocaFichaCoChan()) {
+        } else {
+            flag = false;
+        }
+        //Si la posicion es valida 
+        if (flag) {
+            fichaActual.moverAbaixo();
+        } else {
+            //Añade la ficha actual al suelo
+            engadirFichaAoChan();
+
+            //Para despues comprobar si hay lineas completas,y en caso de haberlas,las borra
+            borrarLinasCompletas();
+            //Y genera una nueva ficha 
+            xerarNovaFicha();
+        }
+    }
+
+    public void xerarNovaFicha() {
+
+        ventanaPricipal.getTimer().restart();
+        fichaActual = fichaRandom();
+        boolean flag = true;
+        Iterator<Cadrado> ita = fichaActual.cadrados.iterator();
+        while (ita.hasNext()) {
+            Cadrado actual = ita.next();
+            ventanaPricipal.pintarCadrado(actual.getLblCadrado());
+            if (ventanaPricipal.getComponentAt(actual.getX(), actual.getY()) != null) {
+                flag = false;
+            }
+
+        }
+        if (flag == false) {
 
         }
 
     }
- public void moverDereita() {
-//Movimiento ficha actual hacia la derecha
-       
 
-        Iterator<Cadrado> iter = fichaactual.getCadrados().iterator();
-        while (iter.hasNext()) {
-            JLabel c = iter.next().getLblCadrado();
-            int x = c.getX() +50;
-            c.setLocation(x, c.getY());
-            
+    private Ficha fichaRandom() {
+        int valorDado = (int) Math.floor(Math.random() * 15 + 1);
+        Ficha random = null;
+        while (random == null) {
+            switch (valorDado) {
 
-        }System.out.println(fichaactual.cadrados.get(3).lblCadrado.getY());
+                case 1,5,6,13 -> {
+                    random = new FichaBarra(this);
+                }
+
+                case 2,9,10,14 -> {
+                    random = new FichaT(this);
+                }
+                case 3,7,8 -> {
+                    random = new FichaCadrada(this);
+                }
+                case 4,11,12,15 -> {
+                    random = new FichaL(this);
+                }
+            }
+        }
+
+        return random;
+    }
+
+    public void engadirFichaAoChan() {
+
+        Iterator<Cadrado> ita = fichaActual.cadrados.iterator();
+        while (ita.hasNext()) {
+            Cadrado c = ita.next();
+            cadradosChan.add(c);
+
+        }
+        comprobarPerder();
+    }
+
+    public boolean chocaFichaCoChan() {
+
+        boolean flag = false;
+
+        Iterator<Cadrado> ite = fichaActual.cadrados.iterator();
+        while (ite.hasNext()) {
+            Cadrado actual = ite.next();
+            if (!ePosicionValida(actual.getX(), actual.getY() + LADOCADRADO)) {
+                flag = true;
+            }
+
+        }
+
+        return flag;
+    }
+
+    public boolean ePosicionValida(int x, int y) {
+        boolean tag = true;
+        if (x > MAXX || x < 0 || y > MAXY || y < -LADOCADRADO) {
+            tag = false;
+        }
+        Iterator<Cadrado> ita = cadradosChan.iterator();
+        while (ita.hasNext()) {
+            Cadrado chan = ita.next();
+            if ((chan.getX() == x && chan.getY() == y)) {
+                tag = false;
+            }
+
+        }
+
+        return tag;
+    }
+
+    public void borrarLinasCompletas() {
+        boolean flag = false;
+        Iterator<Cadrado> ite = fichaActual.cadrados.iterator();
+        while (ite.hasNext()) {
+            Cadrado actual = ite.next();
+            Iterator<Cadrado> ita = cadradosChan.iterator();
+            while (ita.hasNext()) {
+                Cadrado chan = ita.next();
+
+                if (chan.getY() == actual.getY()) {
+                    linea.add(chan);
+                }
+            }
+            if (linea.size() == 10) {
+
+                borrarLinas();
+                actualizarBloques();
+            }
+
+            linea.removeAll(linea);
+        }
+
+    }
+
+    public void borrarLinas() {
+        Iterator<Cadrado> ita = linea.iterator();
+        while (ita.hasNext()) {
+            Cadrado este = ita.next();
+
+            ventanaPricipal.borrarCadrado(este.getLblCadrado());
+            cadradosChan.removeAll(linea);
+
+        }
+        numeroLinas++;
+    }
+
+    public void actualizarBloques() {
+        int y = linea.get(0).getY();
+
+        Iterator<Cadrado> ita = cadradosChan.iterator();
+        while (ita.hasNext()) {
+            Cadrado c = ita.next();
+            if (y > c.getY()) {
+                c.actualizarCoordenada(c.getX(), c.getY() + LADOCADRADO);
+
+            }
+
+        }
+
+    }
+
+    public void comprobarPerder() {
+        Iterator<Cadrado> ita = fichaActual.cadrados.iterator();
+        while (ita.hasNext()) {
+            Cadrado actual = ita.next();
+            if (actual.getY() < 100) {
+
+                ventanaPricipal.mostrarFinDoXogo();
+
+            }
+        }
 
     }
 }
