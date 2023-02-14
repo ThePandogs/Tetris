@@ -74,6 +74,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblLevelTitle = new javax.swing.JLabel();
         lbllinesNextLevelTitle = new javax.swing.JLabel();
         panelLine = new javax.swing.JPanel();
+        lblLineTitle = new javax.swing.JLabel();
         lblLine = new javax.swing.JLabel();
         panelTime = new javax.swing.JPanel();
         lblTime = new javax.swing.JLabel();
@@ -215,7 +216,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelXogo.setLayout(null);
         mainPanel.add(panelXogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 500, 900));
 
-        lblBackgroundGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgroundsGame/10x18backgroundGameSafeZone.png"))); // NOI18N
+        lblBackgroundGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/10x18backgroundGameSafeZone.png"))); // NOI18N
         lblBackgroundGame.setText("lblBackgroundGame");
         lblBackgroundGame.setMaximumSize(new java.awt.Dimension(500, 900));
         lblBackgroundGame.setMinimumSize(new java.awt.Dimension(500, 900));
@@ -261,9 +262,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         mainPanel.add(panelLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 690, 220, 240));
 
+        panelLine.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblLineTitle.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lblLineTitle.setText("Lines");
+        panelLine.add(lblLineTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, -1, -1));
+
         lblLine.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        lblLine.setText("Lines");
-        panelLine.add(lblLine);
+        lblLine.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLine.setText("0");
+        panelLine.add(lblLine, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 200, -1));
 
         mainPanel.add(panelLine, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 220, 130));
 
@@ -390,6 +398,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblBackgroundGame;
     private javax.swing.JLabel lblLevelTitle;
     private javax.swing.JLabel lblLine;
+    private javax.swing.JLabel lblLineTitle;
     private javax.swing.JLabel lblNextTitle;
     private javax.swing.JLabel lblScore;
     private javax.swing.JLabel lblScoreTitle;
@@ -429,16 +438,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void iconarCadrado(JLabel lblCadrado) {
 
         if (lblCadrado.getBackground() == Color.BLUE) {
-            lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blocks/azul.png")));
+            lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/azul.png")));
         }
         if (lblCadrado.getBackground() == Color.RED) {
-            lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blocks/orange.png")));
+            lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/naranja.png")));
         }
         if (lblCadrado.getBackground() == Color.YELLOW) {
-            lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blocks/amarillo.png")));
+            lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/amarillo.png")));
         }
         if (lblCadrado.getBackground() == Color.GREEN) {
-            lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blocks/verde.png")));
+            lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/verde.png")));
         }
 
     }
@@ -448,7 +457,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     public void mostrarNumeroLinas() {
-        lblLine.setText(String.valueOf(xogo.getNumeroLinas()));
+        lblLineTitle.setText(String.valueOf(xogo.getNumeroLinas()));
     }
 
     public void mostrarFinDoXogo() {
@@ -468,8 +477,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pause = false;
     }
 
-//    private void reiniciar () {
-//    }
     private void pauseMenu() {
         pause = true;
         timerCrono.stop();
@@ -526,6 +533,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             score++;
             lblScore.setText(String.valueOf(score));
             xogo.moverFichaAbaixo();
+            lblLine.setText(String.valueOf(xogo.getNumeroLinas())
+            );
             mainPanel.updateUI();
         });
         timer.start();

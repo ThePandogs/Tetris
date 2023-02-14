@@ -114,19 +114,14 @@ public class Xogo {
 
         ventanaPricipal.getTimer().restart();
         fichaActual = fichaRandom();
-        boolean flag = true;
         Iterator<Cadrado> ita = fichaActual.cadrados.iterator();
         while (ita.hasNext()) {
             Cadrado actual = ita.next();
             ventanaPricipal.pintarCadrado(actual.getLblCadrado());
-            if (ventanaPricipal.getComponentAt(actual.getX(), actual.getY()) != null) {
-                flag = false;
-            }
+
 
         }
-        if (flag == false) {
-
-        }
+       
 
     }
 
