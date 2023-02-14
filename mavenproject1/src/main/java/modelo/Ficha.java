@@ -5,7 +5,9 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import modelo.Xogo;
 
 /**
  *
@@ -14,47 +16,71 @@ import java.util.List;
 public abstract class Ficha {
 
     List<Cadrado> cadrados;
-    Xogo xogo;
+    int posicion = 0;
+    public Xogo xogo;
 
-    public Ficha(Xogo xogo) {
+    public Ficha(Xogo x) {
         cadrados = new ArrayList<>();
-        this.xogo = xogo;
+        xogo = x;
+
+        
     }
 
     public List<Cadrado> getCadrados() {
         return cadrados;
-
     }
 
     public void setCadrados(List<Cadrado> cadrados) {
         this.cadrados = cadrados;
-
     }
 
     public boolean moverDereita() {
-        for (Cadrado cadrado : this.getCadrados()) {
-            cadrado.setX(cadrado.getX() + xogo.getLADOCADRADO());
 
+        boolean move = false;
+
+        //Ejecutar movimiento
+        Iterator<Cadrado> it = cadrados.iterator();
+
+        while (it.hasNext() ) {
+
+            Cadrado c = it.next();
+
+            c.actualizarCoordenada(c.getX() +  xogo.getLADOCADRADO(), c.getY());
+
+            move = true;
         }
-        return true;
-    }
-
-    public boolean moverEsquerda() {
-        for (Cadrado cadrado : this.getCadrados()) {
-            cadrado.setX(cadrado.getX() - xogo.getLADOCADRADO());
-
-        }
-        return true;
-    }
-
-    public boolean moverAbaixo() {
-        for (Cadrado cadrado : this.getCadrados()) {
-            cadrado.setY(cadrado.getY() + xogo.getLADOCADRADO());
-        }
-
-        return true;
+        return move;
 
     }
 
     public abstract boolean rotar();
+
+    public boolean moverEsquerda() {
+        boolean move = false;
+
+        
+
+        Iterator<Cadrado> it = xogo.fichaActual.cadrados.iterator();
+        while (it.hasNext() ) {
+            Cadrado c = it.next();
+            c.actualizarCoordenada(c.getX() -  xogo.getLADOCADRADO(), c.getY());
+            move = true;
+        }
+        return move;
+
+    }
+
+    public boolean moverAbaixo() {
+        boolean move = false;
+
+        Iterator<Cadrado> it = cadrados.iterator();
+        while (it.hasNext()) {
+            Cadrado c = it.next();
+            c.actualizarCoordenada(c.getX(), c.getY() + xogo.getLADOCADRADO());
+            move = true;
+        }
+        return move;
+
+    }
+
 }

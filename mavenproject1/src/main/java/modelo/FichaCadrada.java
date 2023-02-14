@@ -4,28 +4,28 @@
  */
 package modelo;
 
-import java.awt.Color;
+import static java.awt.Color.blue;
 
 /**
  *
  * @author a22danielas
  */
 public class FichaCadrada extends Ficha {
-
-    Cadrado firstCadrado = new Cadrado((xogo.getMAXX() / 2) - xogo.getLADOCADRADO(), 0, Color.BLUE);
-
-    public FichaCadrada(Xogo xogo) {
-        super(xogo);
-
-        cadrados.add(firstCadrado);
-        cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY(), Color.BLUE));
-        cadrados.add(new Cadrado(firstCadrado.getX(), firstCadrado.getY() + xogo.getLADOCADRADO(), Color.BLUE));
-        cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY() + xogo.getLADOCADRADO(), Color.BLUE));
+    public Cadrado c = new Cadrado(200, 0, blue);
+    public Cadrado c1 = new Cadrado(250, 0, blue);
+    public Cadrado c2 = new Cadrado(200, 50, blue);
+    public Cadrado c3 = new Cadrado(250, 50, blue);
+    public FichaCadrada(Xogo x) {
+          super(x);
+         cadrados.add(c);
+          cadrados.add(c1);
+            cadrados.add(c2);
+              cadrados.add(c3);
     }
 
     @Override
     public boolean rotar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Ficha cuadrada no implementa rotacion."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
 }
