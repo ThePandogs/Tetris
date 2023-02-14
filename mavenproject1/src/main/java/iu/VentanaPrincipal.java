@@ -436,8 +436,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     public void mostrarFinDoXogo() {
-        pauseMenu();
+           timerCrono.stop();
+        timer.stop();
+        pause = true;
         extraFrame.setVisible(true);
+        gameOverPanel.setVisible(true);
     }
 
     private void iniciarPartida() {
@@ -478,25 +481,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         extraFrame.setVisible(false);
         pausePanel.setVisible(false);
         gameOverPanel.setVisible(false);
-        time = 5;
-        score = 0;
+        time = 0;
+        score= -10;
         speed = speedDefault;
         xogo.getCadradosChan().clear();
         panelXogo.removeAll();
         xogo.xenerarNovaFicha();
         timer.start();
         timerCrono.start();
+        
 
     }
 
-    private void gameOverMenu() {
-
-        timerCrono.stop();
-        timer.stop();
-        pause = true;
-        extraFrame.setVisible(true);
-        gameOverPanel.setVisible(true);
-    }
+   
 
     private void startCrono() {
 

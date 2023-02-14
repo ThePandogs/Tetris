@@ -51,7 +51,7 @@ public class Xogo {
         boolean posible = true;
 
         for (int i = 0; i < fichaActual.getCadrados().size(); i++) {
-            
+
             if (!ePosicionValida(fichaActual.getCadrados().get(i).getX() - LADOCADRADO, fichaActual.getCadrados().get(i).getY())) {
                 posible = false;
             }
@@ -112,9 +112,8 @@ public class Xogo {
             case 4 ->
                 fichaActual = new FichaL(this);
         }
-
+        ventanaPricipal.getTimer().restart();
         pintarFicha();
-           ventanaPricipal.getTimer().restart();
 
     }
 
@@ -133,13 +132,13 @@ public class Xogo {
 
     }
 
-    public boolean ePosicionValida(int x, int y) {
+   public boolean ePosicionValida(int x, int y) {
         boolean valido = false;
         if (x < MAXX && x >= 0 && y < MAXY + LADOCADRADO && y >= 0) {
             valido = true;
         }
         for (int i = 0; i < cadradosChan.size(); i++) {
-            if (cadradosChan.get(i).getX() == x  && cadradosChan.get(i).getY() - LADOCADRADO == y) {
+           if (cadradosChan.get(i).getX() == x && cadradosChan.get(i).getY() + LADOCADRADO == y) {
                 valido = false;
             }
         }
@@ -151,17 +150,17 @@ public class Xogo {
         boolean choca = false;
 
         for (int i = 0; i < fichaActual.getCadrados().size(); i++) {
-            
+
             if (fichaActual.getCadrados().get(i).getY() == MAXY - LADOCADRADO
                     || !ePosicionValida(fichaActual.getCadrados().get(i).getX(),
-                            fichaActual.getCadrados().get(i).getY() + LADOCADRADO )) {
+                            fichaActual.getCadrados().get(i).getY() + LADOCADRADO)) {
                 engadirFichaAoChan();
             }
         }
 
-
         return choca;
     }
+
 
     public void engadirFichaAoChan() {
 
