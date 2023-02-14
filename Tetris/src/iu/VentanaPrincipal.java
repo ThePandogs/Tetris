@@ -74,7 +74,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblNextTitle = new javax.swing.JLabel();
         panelLevel = new javax.swing.JPanel();
         lblLevelTitle = new javax.swing.JLabel();
-        lbllinesNextLevelTitle = new javax.swing.JLabel();
+        circleProgressBar1 = new style.CircleProgressBar();
         panelLine = new javax.swing.JPanel();
         lblLineTitle = new javax.swing.JLabel();
         lblLine = new javax.swing.JLabel();
@@ -216,7 +216,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelXogo.setLayout(null);
         mainPanel.add(panelXogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 500, 900));
 
-        lblBackgroundGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/10x18backgroundGame.png"))); // NOI18N
+        lblBackgroundGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/10x18backgroundGameSafeZone.png"))); // NOI18N
         lblBackgroundGame.setText("lblBackgroundGame");
         lblBackgroundGame.setMaximumSize(new java.awt.Dimension(500, 900));
         lblBackgroundGame.setMinimumSize(new java.awt.Dimension(500, 900));
@@ -224,70 +224,113 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         mainPanel.add(lblBackgroundGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 500, 900));
         lblBackgroundGame.getAccessibleContext().setAccessibleParent(mainPanel);
 
+        panelScore.setBackground(new java.awt.Color(231, 231, 231));
+        panelScore.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         panelScore.setMinimumSize(new java.awt.Dimension(53, 53));
         panelScore.setPreferredSize(new java.awt.Dimension(110, 110));
         panelScore.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblScoreTitle.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lblScoreTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblScoreTitle.setText("Score");
-        panelScore.add(lblScoreTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 5, -1, -1));
+        lblScoreTitle.setMaximumSize(new java.awt.Dimension(100, 40));
+        lblScoreTitle.setMinimumSize(new java.awt.Dimension(100, 40));
+        lblScoreTitle.setPreferredSize(new java.awt.Dimension(100, 40));
+        panelScore.add(lblScoreTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 5, -1, -1));
 
+        lblScore.setBackground(new java.awt.Color(102, 0, 102));
         lblScore.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         lblScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblScore.setText("0");
-        panelScore.add(lblScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 70, 180, -1));
+        lblScore.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblScore.setMaximumSize(new java.awt.Dimension(100, 40));
+        lblScore.setMinimumSize(new java.awt.Dimension(100, 40));
+        lblScore.setPreferredSize(new java.awt.Dimension(100, 40));
+        panelScore.add(lblScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 180, -1));
 
         mainPanel.add(panelScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 220, 130));
 
+        panelNextFigure.setBackground(new java.awt.Color(231, 231, 231));
+        panelNextFigure.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         panelNextFigure.setMaximumSize(new java.awt.Dimension(220, 260));
         panelNextFigure.setMinimumSize(new java.awt.Dimension(220, 260));
         panelNextFigure.setPreferredSize(new java.awt.Dimension(220, 260));
+        panelNextFigure.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblNextTitle.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lblNextTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNextTitle.setText("Next");
-        panelNextFigure.add(lblNextTitle);
+        lblNextTitle.setMaximumSize(new java.awt.Dimension(100, 40));
+        lblNextTitle.setMinimumSize(new java.awt.Dimension(100, 40));
+        lblNextTitle.setPreferredSize(new java.awt.Dimension(100, 40));
+        panelNextFigure.add(lblNextTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 5, -1, -1));
 
         mainPanel.add(panelNextFigure, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 30, 220, 280));
 
+        panelLevel.setBackground(new java.awt.Color(231, 231, 231));
+        panelLevel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         panelLevel.setPreferredSize(new java.awt.Dimension(220, 220));
         panelLevel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblLevelTitle.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         lblLevelTitle.setText("Level");
-        panelLevel.add(lblLevelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
+        panelLevel.add(lblLevelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
 
-        lbllinesNextLevelTitle.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lbllinesNextLevelTitle.setText("Lines for next level:");
-        panelLevel.add(lbllinesNextLevelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
+        circleProgressBar1.setMaximum(5);
+        circleProgressBar1.setToolTipText("");
+        circleProgressBar1.setFocusable(false);
+        panelLevel.add(circleProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 80, 150, 140));
 
         mainPanel.add(panelLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 690, 220, 240));
 
+        panelLine.setBackground(new java.awt.Color(231, 231, 231));
+        panelLine.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         panelLine.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblLineTitle.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lblLineTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblLineTitle.setText("Lines");
-        panelLine.add(lblLineTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, -1, -1));
+        lblLineTitle.setMaximumSize(new java.awt.Dimension(100, 40));
+        lblLineTitle.setMinimumSize(new java.awt.Dimension(100, 40));
+        lblLineTitle.setPreferredSize(new java.awt.Dimension(100, 40));
+        panelLine.add(lblLineTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 5, -1, -1));
 
+        lblLine.setBackground(new java.awt.Color(102, 0, 102));
         lblLine.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         lblLine.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblLine.setText("0");
-        panelLine.add(lblLine, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 200, -1));
+        lblLine.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblLine.setMaximumSize(new java.awt.Dimension(100, 40));
+        lblLine.setMinimumSize(new java.awt.Dimension(100, 40));
+        lblLine.setPreferredSize(new java.awt.Dimension(100, 40));
+        panelLine.add(lblLine, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 180, -1));
 
         mainPanel.add(panelLine, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 220, 130));
 
+        panelTime.setBackground(new java.awt.Color(231, 231, 231));
+        panelTime.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         panelTime.setMaximumSize(new java.awt.Dimension(220, 130));
         panelTime.setMinimumSize(new java.awt.Dimension(220, 130));
         panelTime.setPreferredSize(new java.awt.Dimension(220, 130));
         panelTime.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblTime.setBackground(new java.awt.Color(102, 0, 102));
         lblTime.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         lblTime.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTime.setText("0");
-        panelTime.add(lblTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 180, -1));
+        lblTime.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblTime.setMaximumSize(new java.awt.Dimension(100, 40));
+        lblTime.setMinimumSize(new java.awt.Dimension(100, 40));
+        lblTime.setPreferredSize(new java.awt.Dimension(100, 40));
+        panelTime.add(lblTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 180, -1));
 
         lblTimeTitle.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lblTimeTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTimeTitle.setText("Time");
-        panelTime.add(lblTimeTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 5, -1, -1));
+        lblTimeTitle.setMaximumSize(new java.awt.Dimension(100, 40));
+        lblTimeTitle.setMinimumSize(new java.awt.Dimension(100, 40));
+        lblTimeTitle.setPreferredSize(new java.awt.Dimension(100, 40));
+        panelTime.add(lblTimeTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 5, 100, 40));
 
         mainPanel.add(panelTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 380, 220, 130));
 
@@ -301,6 +344,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         mainPanel.add(tglPause, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 730, 150, 40));
 
+        backgroundProgram.setBackground(new java.awt.Color(204, 204, 204));
+        backgroundProgram.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        backgroundProgram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/backgroundApp.jpg"))); // NOI18N
         backgroundProgram.setText("backgroundProgram");
         mainPanel.add(backgroundProgram, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
 
@@ -393,6 +439,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel YouLoseTitle;
     private javax.swing.JLabel backgroundProgram;
+    private style.CircleProgressBar circleProgressBar1;
     private javax.swing.JFrame extraFrame;
     private javax.swing.JPanel gameOverPanel;
     private javax.swing.JLabel lblBackgroundGame;
@@ -404,7 +451,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblScoreTitle;
     private javax.swing.JLabel lblTime;
     private javax.swing.JLabel lblTimeTitle;
-    private javax.swing.JLabel lbllinesNextLevelTitle;
     private javax.swing.JLabel levelGameOver;
     private javax.swing.JLabel levelTile;
     private javax.swing.JLabel linesGameOver;
