@@ -5,19 +5,17 @@
 package modelo;
 
 import java.util.Iterator;
-import javax.swing.JLabel;
 import iu.VentanaPrincipal;
-import java.awt.Component;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.Timer;
+
 
 /**
  *
  * @author a22danielas
  */
 public class Xogo {
+
 
     private final int LADOCADRADO = 50;
     private final int MAXY = 850;
@@ -32,7 +30,7 @@ public class Xogo {
         ventanaPricipal = ventana;
     }
 
-    public int getnumeroLinas() {
+    public int getNumeroLinas() {
         return numeroLinas;
     }
 
@@ -42,6 +40,11 @@ public class Xogo {
 
     public int getLADOCADRADO() {
         return LADOCADRADO;
+    }
+    
+    
+    public List<Cadrado> getCadradosChan() {
+        return cadradosChan;
     }
 
     public void moverEsquerda() {
@@ -103,11 +106,11 @@ public class Xogo {
             //Para despues comprobar si hay lineas completas,y en caso de haberlas,las borra
             borrarLinasCompletas();
             //Y genera una nueva ficha 
-            xerarNovaFicha();
+            xenerarNovaFicha();
         }
     }
 
-    public void xerarNovaFicha() {
+    public void xenerarNovaFicha() {
 
         ventanaPricipal.getTimer().restart();
         fichaActual = fichaRandom();
