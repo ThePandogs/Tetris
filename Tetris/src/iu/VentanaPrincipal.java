@@ -29,7 +29,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     Timer timerCrono;
     Timer timer;
-    // Timer timer;
+    Timer timerFPS;
+   
     private boolean pause;
 
     public VentanaPrincipal() {
@@ -517,6 +518,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     private void iniciarPartida() {
+        startFPS();
         startCrono();
         startSpeed();
         xogo = new Xogo(this);
@@ -551,7 +553,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pausePanel.setVisible(false);
         gameOverPanel.setVisible(false);
         time = 0;
-        score = -10;
+        score = 0;
         speed = speedDefault;
         xogo.getCadradosChan().clear();
         panelXogo.removeAll();
@@ -579,13 +581,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         timer = new Timer(speed, (ActionEvent e) -> {
             score++;
-            lblScore.setText(String.valueOf(score));
             xogo.moverFichaAbaixo();
-            lblLine.setText(String.valueOf(xogo.getNumeroLinas())
-            );
+            lblScore.setText(String.valueOf(score));
+            lblLine.setText(String.valueOf(xogo.getNumeroLinas()));
             mainPanel.updateUI();
         });
         timer.start();
+    }
+
+    private void startFPS() {
+
+        timerFPS = new Timer(25, (ActionEvent e) -> {
+
+            mainPanel.updateUI();
+        });
+        timerFPS.start();
     }
 
 }
