@@ -5,6 +5,7 @@
 package iu;
 
 import java.awt.event.ActionEvent;
+import static java.lang.Thread.sleep;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 import modelo.Xogo;
@@ -21,6 +22,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private int time = 0;
     private int score = 0;
     private int speed = 900;
+    private int speedDefault = 900;
     private Xogo xogo;
 
     Timer timerCrono;
@@ -191,7 +193,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1100, 950));
         setMinimumSize(new java.awt.Dimension(1100, 950));
-        setUndecorated(true);
         setPreferredSize(null);
         setResizable(false);
         setSize(new java.awt.Dimension(1100, 950));
@@ -337,12 +338,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_panelXogoKeyPressed
 
+    public Timer getTimer() {
+        return timer;
+    }
+
     private void restartGameOverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restartGameOverActionPerformed
-        // TODO add your handling code here:
+        reiniciarPartida();
     }//GEN-LAST:event_restartGameOverActionPerformed
 
     private void restartPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restartPauseActionPerformed
-        // TODO add your handling code here:
+        reiniciarPartida();
     }//GEN-LAST:event_restartPauseActionPerformed
 
     /**
@@ -427,7 +432,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     public void mostrarNumeroLinas() {
-        lblLine.setText(String.valueOf(xogo.getNumerolineas()));
+        lblLine.setText(String.valueOf(xogo.getNumeroLinas()));
     }
 
     public void mostrarFinDoXogo() {
@@ -449,24 +454,42 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 //    private void reiniciar () {
 //    }
     private void pauseMenu() {
-
+        pause = true;
         timerCrono.stop();
         timer.stop();
-        pause = true;
+
         extraFrame.setVisible(true);
         pausePanel.setVisible(true);
     }
 
     private void resumeMenu() {
-
+        pause = false;
         timerCrono.start();
         timer.start();
-        pause = false;
+
         extraFrame.setVisible(false);
         pausePanel.setVisible(false);
     }
-    
-      private void gameOverMenu() {
+
+    private void reiniciarPartida() {
+
+        pause = false;
+
+        extraFrame.setVisible(false);
+        pausePanel.setVisible(false);
+        gameOverPanel.setVisible(false);
+        time = 0;
+        score = 0;
+        speed = speedDefault;
+        xogo.getCadradosChan().clear();
+        panelXogo.removeAll();
+        xogo.xenerarNovaFicha();
+        timer.start();
+        timerCrono.start();
+
+    }
+
+    private void gameOverMenu() {
 
         timerCrono.stop();
         timer.stop();
@@ -474,7 +497,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         extraFrame.setVisible(true);
         gameOverPanel.setVisible(true);
     }
-    
 
     private void startCrono() {
 
