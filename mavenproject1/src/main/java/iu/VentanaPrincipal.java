@@ -369,7 +369,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         timer.stop();
         pause = true;
     }
-dasdasdahdajdhajsdhjahda adha
+
     private void resumeCronos() {
 
         timerCrono.start();
