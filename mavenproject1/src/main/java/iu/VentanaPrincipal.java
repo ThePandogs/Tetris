@@ -478,7 +478,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         extraFrame.setVisible(false);
         pausePanel.setVisible(false);
         gameOverPanel.setVisible(false);
-        time = 0;
+        time = 5;
         score = 0;
         speed = speedDefault;
         xogo.getCadradosChan().clear();
