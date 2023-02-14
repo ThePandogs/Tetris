@@ -5,7 +5,7 @@
 package iu;
 
 import java.awt.event.ActionEvent;
-import static java.lang.Thread.sleep;
+
 import javax.swing.JLabel;
 import javax.swing.Timer;
 import modelo.Xogo;
@@ -19,11 +19,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form VentanaPrincipal
      */
+
     private int time = 0;
     private int score = 0;
     private int speed = 900;
     private int speedDefault = 900;
     private Xogo xogo;
+
 
     Timer timerCrono;
     Timer timer;
@@ -33,7 +35,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
 
         initComponents();
+
         iniciarPartida();
+
     }
 
     /**
@@ -206,11 +210,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelXogo.setMaximumSize(new java.awt.Dimension(500, 900));
         panelXogo.setMinimumSize(new java.awt.Dimension(500, 900));
         panelXogo.setName(""); // NOI18N
+
         panelXogo.setOpaque(false);
         panelXogo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 panelXogoKeyPressed(evt);
             }
+
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 panelXogoKeyTyped(evt);
             }
@@ -220,11 +226,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         lblBackgroundGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgroundsGame/10x18backgroundGameSafeZone.png"))); // NOI18N
         lblBackgroundGame.setText("lblBackgroundGame");
+
         lblBackgroundGame.setMaximumSize(new java.awt.Dimension(500, 900));
         lblBackgroundGame.setMinimumSize(new java.awt.Dimension(500, 900));
         lblBackgroundGame.setPreferredSize(new java.awt.Dimension(500, 900));
         mainPanel.add(lblBackgroundGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 500, 900));
         lblBackgroundGame.getAccessibleContext().setAccessibleParent(mainPanel);
+
 
         panelScore.setMinimumSize(new java.awt.Dimension(53, 53));
         panelScore.setPreferredSize(new java.awt.Dimension(110, 110));
@@ -286,6 +294,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         mainPanel.add(panelTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 380, 220, 130));
 
+
         tglPause.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         tglPause.setText("Pause");
         tglPause.setFocusable(false);
@@ -295,6 +304,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         mainPanel.add(tglPause, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 730, 150, 40));
+
 
         backgroundProgram.setText("backgroundProgram");
         mainPanel.add(backgroundProgram, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
@@ -349,6 +359,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void restartPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restartPauseActionPerformed
         reiniciarPartida();
     }//GEN-LAST:event_restartPauseActionPerformed
+
+    private void panelXogoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_panelXogoKeyTyped
+        switch (evt.getKeyChar()) {
+            case 's' ->
+                xogo.moverFichaAbaixo();
+            case 'd' ->
+                xogo.moverDereita();
+            case 'a' ->
+                xogo.moverEsquerda();
+            case 'w' ->
+                xogo.rotarFicha();
+            default -> {
+            }
+        }
+    }//GEN-LAST:event_panelXogoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -423,6 +448,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel timeTitle;
     // End of variables declaration//GEN-END:variables
 
+
     public void pintarCadrado(JLabel lblCadrado) {
         panelXogo.add(lblCadrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(lblCadrado.getX(), lblCadrado.getY(), 50, 50));
     }
@@ -431,8 +457,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelXogo.remove(lblCadrado);
     }
 
+
     public void mostrarNumeroLinas() {
         lblLine.setText(String.valueOf(xogo.getNumeroLinas()));
+
     }
 
     public void mostrarFinDoXogo() {
