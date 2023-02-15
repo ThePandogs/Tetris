@@ -30,7 +30,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     Timer timerCrono;
     Timer timer;
     Timer timerFPS;
-   
+
     private boolean pause;
 
     public VentanaPrincipal() {
@@ -49,10 +49,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         extraFrame = new javax.swing.JFrame();
-        pausePanel = new javax.swing.JPanel();
-        pauseTitle = new javax.swing.JLabel();
-        restartPause = new javax.swing.JButton();
-        mainMenuPause = new javax.swing.JButton();
         gameOverPanel = new javax.swing.JPanel();
         YouLoseTitle = new javax.swing.JLabel();
         levelTile = new javax.swing.JLabel();
@@ -65,6 +61,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         linesGameOver = new javax.swing.JLabel();
         restartGameOver = new javax.swing.JButton();
         mainMenuGameOver = new javax.swing.JButton();
+        pausePanel = new javax.swing.JPanel();
+        pauseTitle = new javax.swing.JLabel();
+        restartPause = new javax.swing.JButton();
+        mainMenuPause = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
         panelXogo = new javax.swing.JPanel();
         lblBackgroundGame = new javax.swing.JLabel();
@@ -93,35 +93,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         extraFrame.setSize(new java.awt.Dimension(490, 330));
         extraFrame.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         extraFrame.setLocationRelativeTo(panelXogo);
-
-        pausePanel.setMinimumSize(new java.awt.Dimension(450, 330));
-        pausePanel.setLayout(null);
-        pausePanel.setVisible(false);
-
-        pauseTitle.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        pauseTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        pauseTitle.setText("Pause");
-        pausePanel.add(pauseTitle);
-        pauseTitle.setBounds(130, 80, 200, 48);
-
-        restartPause.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        restartPause.setText("Restart");
-        restartPause.setFocusable(false);
-        restartPause.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                restartPauseActionPerformed(evt);
-            }
-        });
-        pausePanel.add(restartPause);
-        restartPause.setBounds(150, 200, 150, 40);
-
-        mainMenuPause.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        mainMenuPause.setText("MainMenu");
-        mainMenuPause.setFocusable(false);
-        pausePanel.add(mainMenuPause);
-        mainMenuPause.setBounds(150, 250, 150, 40);
-
-        extraFrame.getContentPane().add(pausePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         gameOverPanel.setMaximumSize(new java.awt.Dimension(450, 330));
         gameOverPanel.setMinimumSize(new java.awt.Dimension(450, 330));
@@ -190,6 +161,35 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         gameOverPanel.add(mainMenuGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 150, 40));
 
         extraFrame.getContentPane().add(gameOverPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
+
+        pausePanel.setMinimumSize(new java.awt.Dimension(450, 330));
+        pausePanel.setLayout(null);
+        pausePanel.setVisible(false);
+
+        pauseTitle.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        pauseTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pauseTitle.setText("Pause");
+        pausePanel.add(pauseTitle);
+        pauseTitle.setBounds(130, 80, 200, 48);
+
+        restartPause.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        restartPause.setText("Restart");
+        restartPause.setFocusable(false);
+        restartPause.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restartPauseActionPerformed(evt);
+            }
+        });
+        pausePanel.add(restartPause);
+        restartPause.setBounds(150, 200, 150, 40);
+
+        mainMenuPause.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        mainMenuPause.setText("MainMenu");
+        mainMenuPause.setFocusable(false);
+        pausePanel.add(mainMenuPause);
+        mainMenuPause.setBounds(150, 250, 150, 40);
+
+        extraFrame.getContentPane().add(pausePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1100, 950));
@@ -380,8 +380,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 xogo.moverDereita();
             case 40, 83 -> {
                 xogo.moverFichaAbaixo();
-                mainPanel.updateUI();
-                //reiniciamos timer para que la ficha no baje 2 posiciones seguidas.
                 timer.restart();
             }
             default -> {
@@ -501,6 +499,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     }
 
+    public boolean isPause() {
+        return pause;
+    }
+
     public void borrarCadrado(JLabel lblCadrado) {
         panelXogo.remove(lblCadrado);
     }
@@ -515,6 +517,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pause = true;
         extraFrame.setVisible(true);
         gameOverPanel.setVisible(true);
+      
     }
 
     private void iniciarPartida() {
@@ -572,6 +575,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 lblTime.setText(String.valueOf(time));
             }
             time++;
+            score = score + 1 * speed / 100;
 
         });
         timerCrono.start();
@@ -580,11 +584,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void startSpeed() {
 
         timer = new Timer(speed, (ActionEvent e) -> {
-            score++;
+            System.out.println("Inserta texto");
             xogo.moverFichaAbaixo();
-            lblScore.setText(String.valueOf(score));
-            lblLine.setText(String.valueOf(xogo.getNumeroLinas()));
-            mainPanel.updateUI();
+
         });
         timer.start();
     }
@@ -592,7 +594,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void startFPS() {
 
         timerFPS = new Timer(25, (ActionEvent e) -> {
-
+            lblScore.setText(String.valueOf(score));
+            lblLine.setText(String.valueOf(xogo.getNumeroLinas()));
             mainPanel.updateUI();
         });
         timerFPS.start();
