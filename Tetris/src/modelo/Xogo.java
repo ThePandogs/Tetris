@@ -13,11 +13,9 @@ import java.util.List;
  *
  * @author a22danielas
  * @author a14carlosfd
- * 
+ *
  */
-
 public class Xogo {
-
 
     private final int LADOCADRADO = 50;
     private final int MAXY = 850;
@@ -43,8 +41,7 @@ public class Xogo {
     public int getLADOCADRADO() {
         return LADOCADRADO;
     }
-    
-    
+
     public List<Cadrado> getCadradosChan() {
         return cadradosChan;
     }
@@ -92,64 +89,43 @@ public class Xogo {
     }
 
     public void moverFichaAbaixo() {
-        boolean flag = true;
-        //Si la ficha no toca con el suelo es valido 
+
         if (!chocaFichaCoChan()) {
-        } else {
-            flag = false;
-        }
-        //Si la posicion es valida 
-        if (flag) {
             fichaActual.moverAbaixo();
         } else {
-            //Añade la ficha actual al suelo
-            engadirFichaAoChan();
-
-            //Para despues comprobar si hay lineas completas,y en caso de haberlas,las borra
-            borrarLinasCompletas();
-            //Y genera una nueva ficha 
-            xenerarNovaFicha();
+            engadeFichaBorraLinasCompletasXeneraNovaFicha();
         }
     }
 
     public void xenerarNovaFicha() {
 
-        ventanaPricipal.getTimer().restart();
-        fichaActual = fichaRandom();
+        switch (numeroRandom()) {
+
+            case 1,5,6,13 -> {
+                fichaActual = new FichaBarra(this);
+            }
+
+            case 2,9,10,14 -> {
+                fichaActual = new FichaT(this);
+            }
+            case 3,7,8 -> {
+                fichaActual = new FichaCadrada(this);
+            }
+            case 4,11,12,15 -> {
+                fichaActual = new FichaL(this);
+            }
+        }
+
         Iterator<Cadrado> ita = fichaActual.cadrados.iterator();
         while (ita.hasNext()) {
             Cadrado actual = ita.next();
             ventanaPricipal.pintarCadrado(actual.getLblCadrado());
 
-
         }
-       
-
     }
 
-    private Ficha fichaRandom() {
-        int valorDado = (int) Math.floor(Math.random() * 15 + 1);
-        Ficha random = null;
-        while (random == null) {
-            switch (valorDado) {
-
-                case 1,5,6,13 -> {
-                    random = new FichaBarra(this);
-                }
-
-                case 2,9,10,14 -> {
-                    random = new FichaT(this);
-                }
-                case 3,7,8 -> {
-                    random = new FichaCadrada(this);
-                }
-                case 4,11,12,15 -> {
-                    random = new FichaL(this);
-                }
-            }
-        }
-
-        return random;
+    private int numeroRandom() {
+        return (int) Math.floor(Math.random() * 15 + 1);
     }
 
     public void engadirFichaAoChan() {
@@ -260,4 +236,10 @@ public class Xogo {
 
     }
 
+    private void engadeFichaBorraLinasCompletasXeneraNovaFicha() {
+        engadirFichaAoChan();
+        borrarLinasCompletas();
+        xenerarNovaFicha();
+
+    }
 }
