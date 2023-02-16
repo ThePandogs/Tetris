@@ -75,7 +75,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblNextTitle = new javax.swing.JLabel();
         panelLevel = new javax.swing.JPanel();
         lblLevelTitle = new javax.swing.JLabel();
-        circleProgressBar1 = new style.CircleProgressBar();
+        progress = new style.CircleProgressBar();
         panelLine = new javax.swing.JPanel();
         lblLineTitle = new javax.swing.JLabel();
         lblLine = new javax.swing.JLabel();
@@ -277,10 +277,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblLevelTitle.setText("Level");
         panelLevel.add(lblLevelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
 
-        circleProgressBar1.setMaximum(5);
-        circleProgressBar1.setToolTipText("");
-        circleProgressBar1.setFocusable(false);
-        panelLevel.add(circleProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 80, 150, 140));
+        progress.setMaximum(5);
+        progress.setToolTipText("");
+        progress.setFocusable(false);
+        panelLevel.add(progress, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 80, 150, 140));
 
         mainPanel.add(panelLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 690, 220, 240));
 
@@ -438,7 +438,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel YouLoseTitle;
     private javax.swing.JLabel backgroundProgram;
-    private style.CircleProgressBar circleProgressBar1;
     private javax.swing.JFrame extraFrame;
     private javax.swing.JPanel gameOverPanel;
     private javax.swing.JLabel lblBackgroundGame;
@@ -465,6 +464,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel panelXogo;
     private javax.swing.JPanel pausePanel;
     private javax.swing.JLabel pauseTitle;
+    private style.CircleProgressBar progress;
     private javax.swing.JButton restartGameOver;
     private javax.swing.JButton restartPause;
     private javax.swing.JLabel scoreGameOver;
@@ -565,7 +565,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         timerCrono.start();
 
     }
-
+private void actualizarProgreso(){
+    
+    progress.setValue(xogo.getNumeroLinas());
+        
+    }
     private void startCrono() {
 
         timerCrono = new Timer(1000, (ActionEvent e) -> {
@@ -584,7 +588,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void startSpeed() {
 
         timer = new Timer(speed, (ActionEvent e) -> {
-            System.out.println("Inserta texto");
             xogo.moverFichaAbaixo();
 
         });

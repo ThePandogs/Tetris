@@ -75,8 +75,8 @@ public class FichaBarra extends Ficha {
     public boolean rotar() {
         boolean move = true;
         //Rotacion de Barra
-        int y = xogo.fichaActual.getCadrados().get(1).lblCadrado.getY();
-        int x = xogo.fichaActual.getCadrados().get(1).lblCadrado.getX();
+        int y = xogo.getFichaActual().getCadrados().get(1).lblCadrado.getY();
+        int x = xogo.getFichaActual().getCadrados().get(1).lblCadrado.getX();
 
         switch (posicion) {
 
@@ -93,10 +93,10 @@ public class FichaBarra extends Ficha {
                     cont++;
                 }
                 //Si la ficha esta tumbada 
-                if (xogo.fichaActual.getCadrados().get(2).lblCadrado.getX() != xogo.fichaActual.getCadrados().get(3).lblCadrado.getX() && cont == 3) {
-                    xogo.fichaActual.getCadrados().get(0).actualizarCoordenada(x, y - 50);
-                    xogo.fichaActual.getCadrados().get(2).actualizarCoordenada(x, y + 50);
-                    xogo.fichaActual.getCadrados().get(3).actualizarCoordenada(x, y + 100);
+                if (xogo.getFichaActual().getCadrados().get(2).lblCadrado.getX() != xogo.getFichaActual().getCadrados().get(3).lblCadrado.getX() && cont == 3) {
+                    xogo.getFichaActual().getCadrados().get(0).actualizarCoordenada(x, y - 50);
+                    xogo.getFichaActual().getCadrados().get(2).actualizarCoordenada(x, y + 50);
+                    xogo.getFichaActual().getCadrados().get(3).actualizarCoordenada(x, y + 100);
                     posicion = 1;
                 }
             }
@@ -113,10 +113,10 @@ public class FichaBarra extends Ficha {
                     cont++;
                 }
                 //Si la ficha esta vertical 
-                if (xogo.fichaActual.getCadrados().get(2).lblCadrado.getX() == xogo.fichaActual.getCadrados().get(3).lblCadrado.getX() && cont == 3) {
-                    xogo.fichaActual.getCadrados().get(0).actualizarCoordenada(x - 50, y);
-                    xogo.fichaActual.getCadrados().get(2).actualizarCoordenada(x + 50, y);
-                    xogo.fichaActual.getCadrados().get(3).actualizarCoordenada(x + 100, y);
+                if (xogo.getFichaActual().getCadrados().get(2).lblCadrado.getX() == xogo.getFichaActual().getCadrados().get(3).lblCadrado.getX() && cont == 3) {
+                    xogo.getFichaActual().getCadrados().get(0).actualizarCoordenada(x - 50, y);
+                    xogo.getFichaActual().getCadrados().get(2).actualizarCoordenada(x + 50, y);
+                    xogo.getFichaActual().getCadrados().get(3).actualizarCoordenada(x + 100, y);
                     posicion = 0;
                 }
             }

@@ -74,8 +74,8 @@ public class FichaT extends Ficha {
     public boolean rotar() {
         boolean move = true;
         //Rotacion de T
-        int y = xogo.fichaActual.getCadrados().get(1).lblCadrado.getY();
-        int x = xogo.fichaActual.getCadrados().get(1).lblCadrado.getX();
+        int y = xogo.getFichaActual().getCadrados().get(1).lblCadrado.getY();
+        int x = xogo.getFichaActual().getCadrados().get(1).lblCadrado.getX();
 
         switch (posicion) {
 //El case 0 corresponde con la posicion 3 del diagrama,siguiendo el orden 3,0,1,2
@@ -92,9 +92,9 @@ public class FichaT extends Ficha {
                     cont++;
                 }
                 if (cont == 3) {
-                    xogo.fichaActual.getCadrados().get(0).actualizarCoordenada(x, y - 50);
-                    xogo.fichaActual.getCadrados().get(2).actualizarCoordenada(x + 50, y);
-                    xogo.fichaActual.getCadrados().get(3).actualizarCoordenada(x, y + 50);
+                    xogo.getFichaActual().getCadrados().get(0).actualizarCoordenada(x, y - 50);
+                    xogo.getFichaActual().getCadrados().get(2).actualizarCoordenada(x + 50, y);
+                    xogo.getFichaActual().getCadrados().get(3).actualizarCoordenada(x, y + 50);
                     posicion = 1;
                 }
             }
@@ -110,9 +110,9 @@ public class FichaT extends Ficha {
                     cont++;
                 }
                 if (cont == 3) {
-                    xogo.fichaActual.getCadrados().get(0).actualizarCoordenada(x - 50, y);
-                    xogo.fichaActual.getCadrados().get(2).actualizarCoordenada(x + 50, y);
-                    xogo.fichaActual.getCadrados().get(3).actualizarCoordenada(x, y + 50);
+                    xogo.getFichaActual().getCadrados().get(0).actualizarCoordenada(x - 50, y);
+                    xogo.getFichaActual().getCadrados().get(2).actualizarCoordenada(x + 50, y);
+                    xogo.getFichaActual().getCadrados().get(3).actualizarCoordenada(x, y + 50);
                     posicion = 2;
                 }
             }
@@ -128,9 +128,9 @@ public class FichaT extends Ficha {
                     cont++;
                 }
                 if (cont == 3) {
-                    xogo.fichaActual.getCadrados().get(0).actualizarCoordenada(x, y - 50);
-                    xogo.fichaActual.getCadrados().get(2).actualizarCoordenada(x, y + 50);
-                    xogo.fichaActual.getCadrados().get(3).actualizarCoordenada(x - 50, y);
+                    xogo.getFichaActual().getCadrados().get(0).actualizarCoordenada(x, y - 50);
+                    xogo.getFichaActual().getCadrados().get(2).actualizarCoordenada(x, y + 50);
+                    xogo.getFichaActual().getCadrados().get(3).actualizarCoordenada(x - 50, y);
                     posicion = 3;
                 }
 
@@ -147,9 +147,9 @@ public class FichaT extends Ficha {
                     cont++;
                 }
                 if (cont == 3) {
-                    xogo.fichaActual.getCadrados().get(0).actualizarCoordenada(x - 50, y);
-                    xogo.fichaActual.getCadrados().get(2).actualizarCoordenada(x + 50, y);
-                    xogo.fichaActual.getCadrados().get(3).actualizarCoordenada(x, y - 50);
+                    xogo.getFichaActual().getCadrados().get(0).actualizarCoordenada(x - 50, y);
+                    xogo.getFichaActual().getCadrados().get(2).actualizarCoordenada(x + 50, y);
+                    xogo.getFichaActual().getCadrados().get(3).actualizarCoordenada(x, y - 50);
                     posicion = 0;
                 }
 

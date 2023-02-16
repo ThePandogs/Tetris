@@ -559,7 +559,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="style.CircleProgressBar" name="circleProgressBar1">
+            <Component class="style.CircleProgressBar" name="progress">
               <Properties>
                 <Property name="maximum" type="int" value="5"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>

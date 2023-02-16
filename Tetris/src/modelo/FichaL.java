@@ -30,8 +30,8 @@ public  Cadrado c2=new Cadrado(250, 50,green);
     public boolean rotar() {
  boolean move = true;
         //Rotacion de L
-        int y = xogo.fichaActual.getCadrados().get(1).lblCadrado.getY();
-        int x = xogo.fichaActual.getCadrados().get(1).lblCadrado.getX();
+        int y = xogo.getFichaActual().getCadrados().get(1).lblCadrado.getY();
+        int x = xogo.getFichaActual().getCadrados().get(1).lblCadrado.getX();
 
         switch (posicion) {
 //El case 0 corresponde con la posicion 1 del diagrama y el orden es 1,2,3,0
@@ -48,9 +48,9 @@ public  Cadrado c2=new Cadrado(250, 50,green);
                     cont++;
                 }
                 if (cont == 3) {
-                    xogo.fichaActual.getCadrados().get(0).actualizarCoordenada(x, y +50);
-                    xogo.fichaActual.getCadrados().get(2).actualizarCoordenada(x , y-50);
-                    xogo.fichaActual.getCadrados().get(3).actualizarCoordenada(x-50, y -50);
+                    xogo.getFichaActual().getCadrados().get(0).actualizarCoordenada(x, y +50);
+                    xogo.getFichaActual().getCadrados().get(2).actualizarCoordenada(x , y-50);
+                    xogo.getFichaActual().getCadrados().get(3).actualizarCoordenada(x-50, y -50);
                posicion = 1; }
                 
             }
@@ -66,9 +66,9 @@ public  Cadrado c2=new Cadrado(250, 50,green);
                     cont++;
                 }
                 if (cont == 3) {
-                    xogo.fichaActual.getCadrados().get(0).actualizarCoordenada(x - 50, y);
-                    xogo.fichaActual.getCadrados().get(2).actualizarCoordenada(x + 50, y);
-                    xogo.fichaActual.getCadrados().get(3).actualizarCoordenada(x-50, y + 50);
+                    xogo.getFichaActual().getCadrados().get(0).actualizarCoordenada(x - 50, y);
+                    xogo.getFichaActual().getCadrados().get(2).actualizarCoordenada(x + 50, y);
+                    xogo.getFichaActual().getCadrados().get(3).actualizarCoordenada(x-50, y + 50);
                 posicion = 2;}
                 
             }
@@ -84,9 +84,9 @@ public  Cadrado c2=new Cadrado(250, 50,green);
                     cont++;
                 }
                 if (cont == 3) {
-                    xogo.fichaActual.getCadrados().get(0).actualizarCoordenada(x, y - 50);
-                    xogo.fichaActual.getCadrados().get(2).actualizarCoordenada(x, y + 50);
-                    xogo.fichaActual.getCadrados().get(3).actualizarCoordenada(x + 50, y+50);
+                    xogo.getFichaActual().getCadrados().get(0).actualizarCoordenada(x, y - 50);
+                    xogo.getFichaActual().getCadrados().get(2).actualizarCoordenada(x, y + 50);
+                    xogo.getFichaActual().getCadrados().get(3).actualizarCoordenada(x + 50, y+50);
                   posicion = 3;}
               
 
@@ -103,9 +103,9 @@ public  Cadrado c2=new Cadrado(250, 50,green);
                     cont++;
                 }
                 if (cont == 3) {
-                    xogo.fichaActual.getCadrados().get(0).actualizarCoordenada(x - 50, y);
-                    xogo.fichaActual.getCadrados().get(2).actualizarCoordenada(x + 50, y);
-                    xogo.fichaActual.getCadrados().get(3).actualizarCoordenada(x+50, y - 50);
+                    xogo.getFichaActual().getCadrados().get(0).actualizarCoordenada(x - 50, y);
+                    xogo.getFichaActual().getCadrados().get(2).actualizarCoordenada(x + 50, y);
+                    xogo.getFichaActual().getCadrados().get(3).actualizarCoordenada(x+50, y - 50);
                     posicion = 0;
                 }
                 
