@@ -585,7 +585,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         timer = new Timer(speed, (ActionEvent e) -> {
             System.out.println("Inserta texto");
-            xogo.moverFichaAbaixo();
+           xogo.moverFichaAbaixo();
 
         });
         timer.start();
