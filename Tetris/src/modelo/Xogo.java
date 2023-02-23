@@ -25,13 +25,19 @@ public class Xogo {
     private Ficha fichaActual;
     private List<Cadrado> cadradosChan = new ArrayList();
     private List<Cadrado> linea = new ArrayList();
-private int level=0;
+    private int level = 0;
+    private int LinasNextLevel = 0;
+
     public Xogo(VentanaPrincipal ventana) {
         ventanaPricipal = ventana;
     }
 
-   public int getNumeroLinas() {
+    public int getNumeroLinas() {
         return numeroLinas;
+    }
+
+    public int getLinasNextLevel() {
+        return LinasNextLevel;
     }
 
     public void setNumerolineas(int numerolineas) {
@@ -53,7 +59,6 @@ private int level=0;
     public Ficha getFichaActual() {
         return fichaActual;
     }
-    
 
     public void moverEsquerda() {
         boolean flag = true;
@@ -110,17 +115,17 @@ private int level=0;
 
         switch (numeroRandom()) {
 
-            case 1,5,6,13 -> {
+            case 1, 5, 6, 13 -> {
                 fichaActual = new FichaBarra(this);
             }
 
-            case 2,9,10,14 -> {
+            case 2, 9, 10, 14 -> {
                 fichaActual = new FichaT(this);
             }
-            case 3,7,8 -> {
+            case 3, 7, 8 -> {
                 fichaActual = new FichaCadrada(this);
             }
-            case 4,11,12,15 -> {
+            case 4, 11, 12, 15 -> {
                 fichaActual = new FichaL(this);
             }
         }
@@ -215,7 +220,8 @@ private int level=0;
 
         }
         numeroLinas++;
-         aumentarNivel(numeroLinas);
+        LinasNextLevel++;
+        aumentarNivel(numeroLinas);
     }
 
     public void actualizarBloques() {
@@ -252,13 +258,15 @@ private int level=0;
         xenerarNovaFicha();
 
     }
-      public void aumentarNivel(int linas) {
- System.out.println(ventanaPricipal.getTimer().getDelay());
-       
-            if(numeroLinas%5==0){
-ventanaPricipal.getTimer().setDelay(ventanaPricipal.getTimer().getDelay()-100);
- System.out.println(ventanaPricipal.getTimer().getDelay());
- level++;
+
+    public void aumentarNivel(int linas) {
+        System.out.println(ventanaPricipal.getTimer().getDelay());
+
+        if (numeroLinas % 5 == 0) {
+            ventanaPricipal.getTimer().setDelay(ventanaPricipal.getTimer().getDelay() - 100);
+            System.out.println(ventanaPricipal.getTimer().getDelay());
+            level++;
+            LinasNextLevel = 0;
         }
-}
+    }
 }
