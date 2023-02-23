@@ -17,14 +17,11 @@ import java.util.List;
  */
 public class Xogo {
 
-
     private final int LADOCADRADO = 50;
     private final int MAXY = 850;
     private final int MAXX = 450;
 
     private int numeroLinas = 0;
-
-
 
     private VentanaPrincipal ventanaPricipal;
     private Ficha fichaActual;
@@ -33,7 +30,6 @@ public class Xogo {
 
     private int level = 0;
     private int LinasNextLevel = 0;
-
 
     public Xogo(VentanaPrincipal ventana) {
         ventanaPricipal = ventana;
@@ -135,7 +131,7 @@ public class Xogo {
             case 4, 11, 12, 15 -> {
                 fichaActual = new FichaL(this);
             }
-             case 19,18,17,16 -> {
+            case 19, 18, 17, 16 -> {
                 fichaActual = new FichaLReverse(this);
             }
         }
@@ -229,7 +225,7 @@ public class Xogo {
             cadradosChan.removeAll(linea);
 
         }
-        
+
         numeroLinas++;
 
         LinasNextLevel++;
@@ -268,21 +264,9 @@ public class Xogo {
     private void engadeFichaBorraLinasCompletasXeneraNovaFicha() {
         engadirFichaAoChan();
         borrarLinasCompletas();
-         
-        xenerarNovaFicha();
-       
-       
-    }
 
-    public void aumentarNivel(int linas) {
- System.out.println(ventanaPricipal.getTimer().getDelay());
-       
-            if(numeroLinas%5==0){
-ventanaPricipal.getTimer().setDelay(ventanaPricipal.getTimer().getDelay()-100);
- System.out.println(ventanaPricipal.getTimer().getDelay());
- level++;
-        }
-        
+        xenerarNovaFicha();
+
     }
 
     public void aumentarNivel(int linas) {

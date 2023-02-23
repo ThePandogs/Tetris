@@ -90,9 +90,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         extraFrame.setLocation(new java.awt.Point(0, 0));
         extraFrame.setMinimumSize(new java.awt.Dimension(460, 340));
         extraFrame.setUndecorated(true);
-        extraFrame.setResizable(false);
-        extraFrame.setSize(new java.awt.Dimension(490, 330));
-        extraFrame.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        extraFrame.setSize(new java.awt.Dimension(450, 330));
+        extraFrame.getContentPane().setLayout(null);
         extraFrame.setLocationRelativeTo(panelXogo);
 
         gameOverPanel.setMaximumSize(new java.awt.Dimension(450, 330));
@@ -161,7 +160,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         mainMenuGameOver.setFocusable(false);
         gameOverPanel.add(mainMenuGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 150, 40));
 
-        extraFrame.getContentPane().add(gameOverPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
+        extraFrame.getContentPane().add(gameOverPanel);
+        gameOverPanel.setBounds(0, 0, 450, 330);
 
         pausePanel.setMinimumSize(new java.awt.Dimension(450, 330));
         pausePanel.setLayout(null);
@@ -190,7 +190,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pausePanel.add(mainMenuPause);
         mainMenuPause.setBounds(150, 250, 150, 40);
 
-        extraFrame.getContentPane().add(pausePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
+        extraFrame.getContentPane().add(pausePanel);
+        pausePanel.setBounds(0, 0, 450, 330);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1100, 950));
