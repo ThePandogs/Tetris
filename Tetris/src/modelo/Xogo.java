@@ -17,15 +17,16 @@ import java.util.List;
  */
 public class Xogo {
 
+
     private final int LADOCADRADO = 50;
     private final int MAXY = 850;
     private final int MAXX = 450;
-    public int numeroLinas = 0;
-    public VentanaPrincipal ventanaPricipal;
-    public Ficha fichaActual;
-    public List<Cadrado> cadradosChan = new ArrayList();
-    public List<Cadrado> linea = new ArrayList();
-
+    private int numeroLinas = 0;
+    private VentanaPrincipal ventanaPricipal;
+    private Ficha fichaActual;
+    private List<Cadrado> cadradosChan = new ArrayList();
+    private List<Cadrado> linea = new ArrayList();
+    private int level=0;
     public Xogo(VentanaPrincipal ventana) {
         ventanaPricipal = ventana;
     }
@@ -45,6 +46,15 @@ public class Xogo {
     public List<Cadrado> getCadradosChan() {
         return cadradosChan;
     }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public Ficha getFichaActual() {
+        return fichaActual;
+    }
+    
 
     public void moverEsquerda() {
         boolean flag = true;
@@ -114,6 +124,9 @@ public class Xogo {
             case 4,11,12,15 -> {
                 fichaActual = new FichaL(this);
             }
+             case 19,18,17,16 -> {
+                fichaActual = new FichaLReverse(this);
+            }
         }
 
         Iterator<Cadrado> ita = fichaActual.cadrados.iterator();
@@ -125,7 +138,7 @@ public class Xogo {
     }
 
     private int numeroRandom() {
-        return (int) Math.floor(Math.random() * 15 + 1);
+        return (int) Math.floor(Math.random() * 19 + 1);
     }
 
     public void engadirFichaAoChan() {
@@ -205,7 +218,9 @@ public class Xogo {
             cadradosChan.removeAll(linea);
 
         }
+        
         numeroLinas++;
+        aumentarNivel(numeroLinas);
     }
 
     public void actualizarBloques() {
@@ -239,7 +254,20 @@ public class Xogo {
     private void engadeFichaBorraLinasCompletasXeneraNovaFicha() {
         engadirFichaAoChan();
         borrarLinasCompletas();
+         
         xenerarNovaFicha();
+       
+       
+    }
 
+    public void aumentarNivel(int linas) {
+ System.out.println(ventanaPricipal.getTimer().getDelay());
+       
+            if(numeroLinas%5==0){
+ventanaPricipal.getTimer().setDelay(ventanaPricipal.getTimer().getDelay()-100);
+ System.out.println(ventanaPricipal.getTimer().getDelay());
+ level++;
+        }
+        
     }
 }

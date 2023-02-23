@@ -58,7 +58,7 @@ public abstract class Ficha {
     public boolean moverEsquerda() {
         boolean move = false;
 
-        Iterator<Cadrado> it = xogo.fichaActual.cadrados.iterator();
+        Iterator<Cadrado> it = xogo.getFichaActual().cadrados.iterator();
         while (it.hasNext()) {
             Cadrado c = it.next();
             c.actualizarCoordenada(c.getX() - xogo.getLADOCADRADO(), c.getY());
