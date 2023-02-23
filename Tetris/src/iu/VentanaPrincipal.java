@@ -602,7 +602,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void startSpeed() {
 
         timer = new Timer(speed, (ActionEvent e) -> {
+
             xogo.moverFichaAbaixo();
+
 
         });
         timer.start();
