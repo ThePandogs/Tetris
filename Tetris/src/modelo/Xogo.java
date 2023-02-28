@@ -116,7 +116,7 @@ public class Xogo {
 
     public void xenerarNovaFicha() {
 
-        switch (numeroRandom()) {
+        switch (numeroRandom(30)) {
 
             case 1, 5, 6, 13,30 -> {
                 fichaActual = new FichaBarra(this);
@@ -149,8 +149,8 @@ public class Xogo {
         }
     }
 
-    private int numeroRandom() {
-        return (int) Math.floor(Math.random() * 30 + 1);
+    private int numeroRandom(int max) {
+        return (int) Math.floor(Math.random() * max + 1);
     }
 
     public void engadirFichaAoChan() {
