@@ -177,7 +177,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pausePanel.setAlignmentY(0.0F);
         pausePanel.setMaximumSize(new java.awt.Dimension(450, 330));
         pausePanel.setMinimumSize(new java.awt.Dimension(450, 330));
-        pausePanel.setPreferredSize(null);
         pausePanel.setLayout(null);
         pausePanel.setVisible(false);
 
@@ -216,6 +215,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelXogo.setBackground(new java.awt.Color(204, 204, 255));
+        panelXogo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         panelXogo.setFocusable(false);
         panelXogo.setMaximumSize(new java.awt.Dimension(500, 900));
         panelXogo.setMinimumSize(new java.awt.Dimension(500, 900));
