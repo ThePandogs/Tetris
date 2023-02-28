@@ -4,17 +4,18 @@
  */
 package modelo;
 
-import static java.awt.Color.green;
+
+import static java.awt.Color.pink;
 
 /**
  *
  * @author dania
  */
 public class FichaLReverse extends Ficha{
-    public Cadrado c=new Cadrado(150, 50,green);
- public Cadrado c1=new Cadrado(200, 50,green);
-public  Cadrado c2=new Cadrado(250, 50,green);
- public Cadrado c3=new Cadrado(250, 100,green);
+    public Cadrado c=new Cadrado(150, 50,pink);
+ public Cadrado c1=new Cadrado(200, 50,pink);
+public  Cadrado c2=new Cadrado(250, 50,pink);
+ public Cadrado c3=new Cadrado(150, 0,pink);
     public FichaLReverse(Xogo x ) {
           super(x);
           cadrados.add(c);
@@ -51,21 +52,23 @@ public  Cadrado c2=new Cadrado(250, 50,green);
                 
             }
             case 1 -> {
-                int cont = 0;
-                if (xogo.ePosicionValida(x + 50, y)) {
-                    cont++;
-                }
+
+   int cont = 0;
                 if (xogo.ePosicionValida(x - 50, y)) {
                     cont++;
                 }
-                if (xogo.ePosicionValida(x-50, y - 50)) {
+                if (xogo.ePosicionValida(x + 50, y)) {
+                    cont++;
+                }
+                if (xogo.ePosicionValida(x+50, y + 50)) {
                     cont++;
                 }
                 if (cont == 3) {
-                    xogo.getFichaActual().getCadrados().get(0).actualizarCoordenada(x + 50, y);
-                    xogo.getFichaActual().getCadrados().get(2).actualizarCoordenada(x - 50, y);
-                    xogo.getFichaActual().getCadrados().get(3).actualizarCoordenada(x-50, y - 50);
-                posicion = 2;}
+                    xogo.getFichaActual().getCadrados().get(0).actualizarCoordenada(x - 50, y);
+                    xogo.getFichaActual().getCadrados().get(2).actualizarCoordenada(x + 50, y);
+                    xogo.getFichaActual().getCadrados().get(3).actualizarCoordenada(x+50, y +50);
+                    posicion = 2;
+                }
                 
             }
             case 2 -> {
@@ -88,24 +91,23 @@ public  Cadrado c2=new Cadrado(250, 50,green);
 
             }
             case 3 -> {
+
+                
                 int cont = 0;
-                if (xogo.ePosicionValida(x - 50, y)) {
-                    cont++;
-                }
                 if (xogo.ePosicionValida(x + 50, y)) {
                     cont++;
                 }
-                if (xogo.ePosicionValida(x+50, y + 50)) {
+                if (xogo.ePosicionValida(x - 50, y)) {
+                    cont++;
+                }
+                if (xogo.ePosicionValida(x-50, y - 50)) {
                     cont++;
                 }
                 if (cont == 3) {
-                    xogo.getFichaActual().getCadrados().get(0).actualizarCoordenada(x - 50, y);
-                    xogo.getFichaActual().getCadrados().get(2).actualizarCoordenada(x + 50, y);
-                    xogo.getFichaActual().getCadrados().get(3).actualizarCoordenada(x+50, y +50);
-                    posicion = 0;
-                }
-                
-
+                    xogo.getFichaActual().getCadrados().get(0).actualizarCoordenada(x + 50, y);
+                    xogo.getFichaActual().getCadrados().get(2).actualizarCoordenada(x - 50, y);
+                    xogo.getFichaActual().getCadrados().get(3).actualizarCoordenada(x-50, y - 50);
+                posicion = 0;}
             }
         }
 
