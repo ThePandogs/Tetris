@@ -4,8 +4,7 @@
  */
 package modelo;
 
-import static java.awt.Color.red;
-import static java.awt.Color.yellow;
+import static java.awt.Color.orange;
 import java.util.List;
 
 /**
@@ -16,10 +15,10 @@ import java.util.List;
  */
 public class FichaT extends Ficha {
 
-    public Cadrado c = new Cadrado(150, 50, red);
-    public Cadrado c1 = new Cadrado(200, 50, red);
-    public Cadrado c2 = new Cadrado(250, 50, red);
-    public Cadrado c3 = new Cadrado(200, 0, red);
+    public Cadrado c = new Cadrado(150, 50, orange);
+    public Cadrado c1 = new Cadrado(200, 50, orange);
+    public Cadrado c2 = new Cadrado(250, 50, orange);
+    public Cadrado c3 = new Cadrado(200, 0, orange);
 
     public FichaT(Xogo x) {
         super(x);
