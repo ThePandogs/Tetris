@@ -23,8 +23,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     private int time = 0;
     private int score = 0;
+    private int timeCooldown = 0;
     private int speed = 900;
     private final int SPEEDEFAULT = 900;
+
     private Xogo xogo;
 
     Timer timerCrono;
@@ -415,6 +417,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return timer;
     }
 
+    public int getTimeCooldown() {
+        return timeCooldown;
+    }
+
+    public void setTimeCooldown(int timeCooldown) {
+        this.timeCooldown = timeCooldown;
+    }
+
+
     private void restartGameOverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restartGameOverActionPerformed
         reiniciarPartida();
     }//GEN-LAST:event_restartGameOverActionPerformed
@@ -606,6 +617,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
             time++;
             score = score + 1 * speed / 100;
+            timeCooldown++;
 
         });
         timerCrono.start();
