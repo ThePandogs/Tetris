@@ -121,30 +121,38 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         scoreTitle.setText("Score");
         gameOverPanel.add(scoreTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 59, 30));
 
+        scoreGameOver.setBackground(new java.awt.Color(102, 0, 102));
         scoreGameOver.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         scoreGameOver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         scoreGameOver.setText("0");
-        gameOverPanel.add(scoreGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 60, -1));
+        scoreGameOver.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        gameOverPanel.add(scoreGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 90, 25));
 
+        timeGameOver.setBackground(new java.awt.Color(102, 0, 102));
         timeGameOver.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         timeGameOver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         timeGameOver.setText("0");
-        gameOverPanel.add(timeGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 60, -1));
+        timeGameOver.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        gameOverPanel.add(timeGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, 90, 25));
 
+        levelGameOver.setBackground(new java.awt.Color(102, 0, 102));
         levelGameOver.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         levelGameOver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         levelGameOver.setText("0");
-        gameOverPanel.add(levelGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 60, -1));
+        levelGameOver.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        gameOverPanel.add(levelGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 90, 25));
 
         linesTitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         linesTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         linesTitle.setText("Lines");
         gameOverPanel.add(linesTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 59, 30));
 
+        linesGameOver.setBackground(new java.awt.Color(102, 0, 102));
         linesGameOver.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         linesGameOver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         linesGameOver.setText("0");
-        gameOverPanel.add(linesGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 60, -1));
+        linesGameOver.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        gameOverPanel.add(linesGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 90, 25));
 
         restartGameOver.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         restartGameOver.setText("Restart");
@@ -533,6 +541,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pause = true;
         extraFrame.setVisible(true);
         gameOverPanel.setVisible(true);
+        scoreGameOver.setText(lblScore.getText());
+        timeGameOver.setText(lblTime.getText());
+        linesGameOver.setText(lblLine.getText());
+        levelGameOver.setText(lblLevel.getText());
+        tglPause.setVisible(false);
 
     }
 
@@ -571,6 +584,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         extraFrame.setVisible(false);
         pausePanel.setVisible(false);
         gameOverPanel.setVisible(false);
+        tglPause.setVisible(true);
         time = 0;
         score = 0;
         speed = SPEEDEFAULT;
@@ -579,12 +593,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         xogo.xenerarNovaFicha();
         timer.start();
         timerCrono.start();
-
-    }
-
-    private void actualizarProgreso() {
-
-        progressLevel.setValue(xogo.getNumeroLinas());
 
     }
 
@@ -609,7 +617,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
             xogo.moverFichaAbaixo();
 
-
         });
         timer.start();
     }
@@ -620,7 +627,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             lblScore.setText(String.valueOf(score));
             lblLine.setText(String.valueOf(xogo.getNumeroLinas()));
             lblLevel.setText(String.valueOf(xogo.getLevel()));
-           progressLevel.setValue(xogo.getLinasNextLevel());
+            progressLevel.setValue(xogo.getLinasNextLevel());
 
             mainPanel.updateUI();
         });
