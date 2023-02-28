@@ -4,17 +4,17 @@
  */
 package modelo;
 
-import static java.awt.Color.blue;
+import static java.awt.Color.magenta;
 
 /**
  *
  * @author a22danielas
  */
 public class FichaZ extends Ficha {
-  public Cadrado c = new Cadrado(200, 0, blue);
-    public Cadrado c1 = new Cadrado(250, 0, blue);
-    public Cadrado c2 = new Cadrado(250, 50, blue);
-    public Cadrado c3 = new Cadrado(300, 50, blue);
+  public Cadrado c = new Cadrado(200, 0, magenta);
+    public Cadrado c1 = new Cadrado(250, 0, magenta);
+    public Cadrado c2 = new Cadrado(250, 50, magenta);
+    public Cadrado c3 = new Cadrado(300, 50, magenta);
     public FichaZ(Xogo x) {
          super(x);
          cadrados.add(c);

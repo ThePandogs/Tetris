@@ -5,17 +5,17 @@
 package modelo;
 
 
-import static java.awt.Color.pink;
+import static java.awt.Color.cyan;
 
 /**
  *
  * @author dania
  */
 public class FichaLReverse extends Ficha{
-    public Cadrado c=new Cadrado(150, 50,pink);
- public Cadrado c1=new Cadrado(200, 50,pink);
-public  Cadrado c2=new Cadrado(250, 50,pink);
- public Cadrado c3=new Cadrado(150, 0,pink);
+    public Cadrado c=new Cadrado(150, 50,cyan);
+ public Cadrado c1=new Cadrado(200, 50,cyan);
+public  Cadrado c2=new Cadrado(250, 50,cyan);
+ public Cadrado c3=new Cadrado(150, 0,cyan);
     public FichaLReverse(Xogo x ) {
           super(x);
           cadrados.add(c);

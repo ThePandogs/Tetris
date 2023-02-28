@@ -4,17 +4,17 @@
  */
 package modelo;
 
-import static java.awt.Color.blue;
+import static java.awt.Color.gray;
 
 /**
  *
  * @author a22danielas
  */
 public class FichaZReverse extends Ficha {
-     public Cadrado c = new Cadrado(300, 0, blue);
-    public Cadrado c1 = new Cadrado(250, 0, blue);
-    public Cadrado c2 = new Cadrado(250, 50, blue);
-    public Cadrado c3 = new Cadrado(200, 50, blue);
+     public Cadrado c = new Cadrado(300, 0, gray);
+    public Cadrado c1 = new Cadrado(250, 0, gray);
+    public Cadrado c2 = new Cadrado(250, 50, gray);
+    public Cadrado c3 = new Cadrado(200, 50, gray);
     public FichaZReverse(Xogo x) {
          super(x);
          cadrados.add(c);
