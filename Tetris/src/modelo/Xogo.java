@@ -6,6 +6,7 @@ package modelo;
 
 import java.util.Iterator;
 import iu.VentanaPrincipal;
+import static java.awt.Color.yellow;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +21,10 @@ public class Xogo {
     private final int LADOCADRADO = 50;
     private final int MAXY = 850;
     private final int MAXX = 450;
-
+    private int id;
     private int numeroLinas = 0;
-
+    private boolean limit = false;
+    private int keep;
     private VentanaPrincipal ventanaPricipal;
     private Ficha fichaActual;
     private List<Cadrado> cadradosChan = new ArrayList();
@@ -119,34 +121,73 @@ public class Xogo {
         switch (numeroRandom(30)) {
 
             case 1, 5, 6, 13,30 -> {
+
                 fichaActual = new FichaBarra(this);
+                id = 1;
+                if (seRepiteFicha(id)) {
+                    fichaActual = new FichaT(this);
+                }
             }
 
             case 2, 9, 10, 14 -> {
+
                 fichaActual = new FichaT(this);
+                id = 2;
+                if (seRepiteFicha(id)) {
+                    fichaActual = new FichaCadrada(this);
+                }
             }
-            case 3, 7, 8,28,29-> {
+            case 3, 7, 8,28,29 -> {
+
                 fichaActual = new FichaCadrada(this);
+                id = 3;
+                if (seRepiteFicha(id)) {
+                    fichaActual = new FichaL(this);
+                }
             }
             case 4, 11, 12, 15 -> {
+
                 fichaActual = new FichaL(this);
+                id = 4;
+                if (seRepiteFicha(id)) {
+                    fichaActual = new FichaLReverse(this);
+                }
             }
             case 19, 18, 17, 16 -> {
                 fichaActual = new FichaLReverse(this);
+                id = 5;
+                if (seRepiteFicha(id)) {
+                    fichaActual = new FichaZ(this);
+                }
             }
-             case 20, 22, 24, 26 -> {
+            case 20, 22, 24, 26 -> {
                 fichaActual = new FichaZ(this);
+                id = 6;
+                if (seRepiteFicha(id)) {
+                    fichaActual = new FichaZReverse(this);
+                }
+
             }
-              case 21, 23, 25, 27 -> {
+            case 21, 23, 25, 27 -> {
                 fichaActual = new FichaZReverse(this);
+                id = 7;
+                if (seRepiteFicha(id)) {
+                    fichaActual = new FichaBarra(this);
+                }
             }
         }
+
         Iterator<Cadrado> ita = fichaActual.cadrados.iterator();
         while (ita.hasNext()) {
             Cadrado actual = ita.next();
             ventanaPricipal.pintarCadrado(actual.getLblCadrado());
 
         }
+    }
+
+    public boolean seRepiteFicha(int id) {
+
+
     }
 
     private int numeroRandom(int max) {
@@ -269,8 +310,9 @@ public class Xogo {
     private void engadeFichaBorraLinasCompletasXeneraNovaFicha() {
         engadirFichaAoChan();
         borrarLinasCompletas();
-if(!ventanaPricipal.isPause()){
-        xenerarNovaFicha();}
+        if (!ventanaPricipal.isPause()) {
+            xenerarNovaFicha();
+        }
 
     }
 
@@ -282,6 +324,31 @@ if(!ventanaPricipal.isPause()){
             System.out.println(ventanaPricipal.getTimer().getDelay());
             level++;
             LinasNextLevel = 0;
+            aumentarDificultad();
+        }
+
+    }
+
+    public void aumentarDificultad() {
+
+        ArrayList<Integer> posiciones = new ArrayList<>();
+
+        Iterator<Cadrado> suelo = cadradosChan.iterator();
+        while (suelo.hasNext()) {
+            Cadrado siguiente = suelo.next();
+            siguiente.actualizarCoordenada(siguiente.getX(), siguiente.getY() - 50);
+        }
+        for (int i = 0; i < numeroRandom(10); i++) {
+            int random = numeroRandom(10);
+            while (posiciones.contains(random)) {
+                random = numeroRandom(10);
+
+            }
+            Cadrado c = new Cadrado(random * 50, MAXY, yellow);
+            cadradosChan.add(c);
+            ventanaPricipal.pintarCadrado(c.getLblCadrado());
+            posiciones.add(random);
+
         }
     }
 }
