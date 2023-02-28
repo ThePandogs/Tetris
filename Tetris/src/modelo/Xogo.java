@@ -118,14 +118,14 @@ public class Xogo {
 
         switch (numeroRandom()) {
 
-            case 1, 5, 6, 13 -> {
+            case 1, 5, 6, 13,30 -> {
                 fichaActual = new FichaBarra(this);
             }
 
             case 2, 9, 10, 14 -> {
                 fichaActual = new FichaT(this);
             }
-            case 3, 7, 8 -> {
+            case 3, 7, 8,28,29-> {
                 fichaActual = new FichaCadrada(this);
             }
             case 4, 11, 12, 15 -> {
@@ -134,8 +134,13 @@ public class Xogo {
             case 19, 18, 17, 16 -> {
                 fichaActual = new FichaLReverse(this);
             }
+             case 20, 22, 24, 26 -> {
+                fichaActual = new FichaZ(this);
+            }
+              case 21, 23, 25, 27 -> {
+                fichaActual = new FichaZReverse(this);
+            }
         }
-
         Iterator<Cadrado> ita = fichaActual.cadrados.iterator();
         while (ita.hasNext()) {
             Cadrado actual = ita.next();
@@ -145,7 +150,7 @@ public class Xogo {
     }
 
     private int numeroRandom() {
-        return (int) Math.floor(Math.random() * 19 + 1);
+        return (int) Math.floor(Math.random() * 30 + 1);
     }
 
     public void engadirFichaAoChan() {
