@@ -5,6 +5,9 @@
     <Container class="javax.swing.JFrame" name="extraFrame">
       <Properties>
         <Property name="alwaysOnTop" type="boolean" value="true"/>
+        <Property name="bounds" type="java.awt.Rectangle" editor="org.netbeans.beaninfo.editors.RectangleEditor">
+          <Rectangle value="[450, 330, 0, 0]"/>
+        </Property>
         <Property name="location" type="java.awt.Point" editor="org.netbeans.beaninfo.editors.PointEditor">
           <Point value="[0, 0]"/>
         </Property>
@@ -13,7 +16,7 @@
         </Property>
         <Property name="undecorated" type="boolean" value="true"/>
         <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[490, 400]"/>
+          <Dimension value="[450, 330]"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -21,7 +24,7 @@
       </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-        <Property name="useNullLayout" type="boolean" value="true"/>
+        <Property name="useNullLayout" type="boolean" value="false"/>
       </Layout>
       <SubComponents>
         <Container class="javax.swing.JPanel" name="gameOverPanel">
@@ -41,7 +44,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
+              <AbsoluteConstraints x="0" y="0" width="450" height="320"/>
             </Constraint>
           </Constraints>
 
@@ -210,8 +213,16 @@
         </Container>
         <Container class="javax.swing.JPanel" name="pausePanel">
           <Properties>
+            <Property name="alignmentX" type="float" value="0.0"/>
+            <Property name="alignmentY" type="float" value="0.0"/>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[450, 330]"/>
+            </Property>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[450, 330]"/>
+            </Property>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="null"/>
             </Property>
           </Properties>
           <AuxValues>

@@ -24,7 +24,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private int time = 0;
     private int score = 0;
     private int speed = 900;
-    private int speedDefault = 900;
+    private final int SPEEDEFAULT = 900;
     private Xogo xogo;
 
     Timer timerCrono;
@@ -87,11 +87,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         backgroundProgram = new javax.swing.JLabel();
 
         extraFrame.setAlwaysOnTop(true);
+        extraFrame.setBounds(new java.awt.Rectangle(450, 330, 0, 0));
         extraFrame.setLocation(new java.awt.Point(0, 0));
         extraFrame.setMinimumSize(new java.awt.Dimension(460, 340));
         extraFrame.setUndecorated(true);
         extraFrame.setSize(new java.awt.Dimension(450, 330));
-        extraFrame.getContentPane().setLayout(null);
+        extraFrame.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         extraFrame.setLocationRelativeTo(panelXogo);
 
         gameOverPanel.setMaximumSize(new java.awt.Dimension(450, 330));
@@ -160,10 +161,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         mainMenuGameOver.setFocusable(false);
         gameOverPanel.add(mainMenuGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 150, 40));
 
-        extraFrame.getContentPane().add(gameOverPanel);
-        gameOverPanel.setBounds(0, 0, 450, 330);
+        extraFrame.getContentPane().add(gameOverPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 320));
 
+        pausePanel.setAlignmentX(0.0F);
+        pausePanel.setAlignmentY(0.0F);
+        pausePanel.setMaximumSize(new java.awt.Dimension(450, 330));
         pausePanel.setMinimumSize(new java.awt.Dimension(450, 330));
+        pausePanel.setPreferredSize(null);
         pausePanel.setLayout(null);
         pausePanel.setVisible(false);
 
@@ -190,8 +194,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pausePanel.add(mainMenuPause);
         mainMenuPause.setBounds(150, 250, 150, 40);
 
-        extraFrame.getContentPane().add(pausePanel);
-        pausePanel.setBounds(0, 0, 450, 330);
+        extraFrame.getContentPane().add(pausePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 330));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1100, 950));
@@ -570,7 +573,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         gameOverPanel.setVisible(false);
         time = 0;
         score = 0;
-        speed = speedDefault;
+        speed = SPEEDEFAULT;
         xogo.getCadradosChan().clear();
         panelXogo.removeAll();
         xogo.xenerarNovaFicha();
