@@ -269,8 +269,8 @@ public class Xogo {
     private void engadeFichaBorraLinasCompletasXeneraNovaFicha() {
         engadirFichaAoChan();
         borrarLinasCompletas();
-
-        xenerarNovaFicha();
+if(!ventanaPricipal.isPause()){
+        xenerarNovaFicha();}
 
     }
 
