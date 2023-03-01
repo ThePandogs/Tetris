@@ -21,10 +21,8 @@ public class Xogo {
     private final int LADOCADRADO = 50;
     private final int MAXY = 850;
     private final int MAXX = 450;
-    private int id;
     private int numeroLinas = 0;
     private boolean limit = false;
-    private int keep;
     private VentanaPrincipal ventanaPricipal;
     private Ficha fichaActual;
     private List<Cadrado> cadradosChan = new ArrayList();
