@@ -71,9 +71,8 @@ public class Xogo {
             Cadrado ca = ita.next();
             int x = ca.getX() - LADOCADRADO;
             int y = ca.getY();
-            if (ePosicionValida(x, y)) {
-            } else {
-                flag = false;
+            if (!ePosicionValida(x, y)) {
+                  flag = false;
             }
         }
         //Si todas las posiciones son validas
@@ -90,9 +89,8 @@ public class Xogo {
             Cadrado ca = ita.next();
             int x = ca.getX() + LADOCADRADO;
             int y = ca.getY();
-            if (ePosicionValida(x, y)) {
-            } else {
-                flag = false;
+            if (!ePosicionValida(x, y)) {
+                 flag = false;
             }
         }
         //Si todas las posiciones son validas
@@ -112,6 +110,7 @@ public class Xogo {
         } else {
             engadeFichaBorraLinasCompletasXeneraNovaFicha();
         }
+
     }
 
     public void xenerarNovaFicha() {
@@ -287,9 +286,9 @@ public class Xogo {
     private void engadeFichaBorraLinasCompletasXeneraNovaFicha() {
         engadirFichaAoChan();
         borrarLinasCompletas();
-        if (!ventanaPricipal.isPause()) {
+  
             xenerarNovaFicha();
-        }
+        
 
     }
 
@@ -301,12 +300,12 @@ public class Xogo {
             System.out.println(ventanaPricipal.getTimer().getDelay());
             level++;
             LinasNextLevel = 0;
-            aumentarDificultad();
+          
         }
 
     }
 
-    public void aumentarDificultad() {
+    public void anadirCuadradosAleatorios() {
 
         ArrayList<Integer> posiciones = new ArrayList<>();
 
@@ -315,10 +314,10 @@ public class Xogo {
             Cadrado siguiente = suelo.next();
             siguiente.actualizarCoordenada(siguiente.getX(), siguiente.getY() - 50);
         }
-        for (int i = 0; i < numeroRandom(10); i++) {
-            int random = numeroRandom(10);
+        for (int i = 0; i < numeroRandom(9); i++) {
+            int random = numeroRandom(9);
             while (posiciones.contains(random)) {
-                random = numeroRandom(10);
+                random = numeroRandom(9);
 
             }
             Cadrado c = new Cadrado(random * 50, MAXY, yellow);
@@ -328,4 +327,6 @@ public class Xogo {
 
         }
     }
+    
+
 }

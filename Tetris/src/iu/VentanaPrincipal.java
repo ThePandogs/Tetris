@@ -524,7 +524,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mainMenuPauseActionPerformed
 
     private void ExitlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitlblMouseClicked
-       System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_ExitlblMouseClicked
 
     /**
@@ -609,7 +609,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void iniciarPartida() {
 
-        inicializarContadores();;
+        inicializarContadores();
         startRefreshScreen();
         startCrono();
         startSpeed();
@@ -710,7 +710,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         gameOverPanel.setVisible(false);
         tglPause.setVisible(true);
 
-        inicializarContadores();;
         iniciarPartida();
 
     }
@@ -730,8 +729,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
             time++;
             score = score + 1 * speed / 100;
-            timeCooldown++;
 
+            if (xogo.getLevel() >3 && time % 10 == 0) {
+                xogo.anadirCuadradosAleatorios();
+            }
         });
         timerCrono.start();
     }
@@ -783,6 +784,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public void setTimeCooldown(int timeCooldown) {
         this.timeCooldown = timeCooldown;
+    }
+
+    public int getTime() {
+        return time;
     }
 
 }
