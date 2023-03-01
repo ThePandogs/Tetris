@@ -186,8 +186,11 @@ public class Xogo {
         boolean flag = false;
 
         Iterator<Cadrado> ite = fichaActual.cadrados.iterator();
+        
         while (ite.hasNext()) {
             Cadrado actual = ite.next();
+            
+            
             if (!ePosicionValida(actual.getX(), actual.getY() + LADOCADRADO)) {
                 flag = true;
             }
