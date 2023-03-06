@@ -72,7 +72,7 @@ public class Xogo {
             int x = ca.getX() - LADOCADRADO;
             int y = ca.getY();
             if (!ePosicionValida(x, y)) {
-                  flag = false;
+                flag = false;
             }
         }
         //Si todas las posiciones son validas
@@ -90,7 +90,7 @@ public class Xogo {
             int x = ca.getX() + LADOCADRADO;
             int y = ca.getY();
             if (!ePosicionValida(x, y)) {
-                 flag = false;
+                flag = false;
             }
         }
         //Si todas las posiciones son validas
@@ -120,36 +120,35 @@ public class Xogo {
             case 1, 5, 6, 13,30 -> {
 
                 fichaActual = new FichaBarra(this);
-               
+
             }
 
             case 2, 9, 10, 14 -> {
 
                 fichaActual = new FichaT(this);
-              
+
             }
             case 3, 7, 8,28,29 -> {
 
                 fichaActual = new FichaCadrada(this);
-            
+
             }
             case 4, 11, 12, 15 -> {
 
                 fichaActual = new FichaL(this);
-              
+
             }
             case 19, 18, 17, 16 -> {
                 fichaActual = new FichaLReverse(this);
-               
+
             }
             case 20, 22, 24, 26 -> {
                 fichaActual = new FichaZ(this);
-              
 
             }
             case 21, 23, 25, 27 -> {
                 fichaActual = new FichaZReverse(this);
-               
+
             }
         }
 
@@ -160,8 +159,6 @@ public class Xogo {
 
         }
     }
-
-   
 
     private int numeroRandom(int max) {
         return (int) Math.floor(Math.random() * max + 1);
@@ -183,11 +180,10 @@ public class Xogo {
         boolean flag = false;
 
         Iterator<Cadrado> ite = fichaActual.cadrados.iterator();
-        
+
         while (ite.hasNext()) {
             Cadrado actual = ite.next();
-            
-            
+
             if (!ePosicionValida(actual.getX(), actual.getY() + LADOCADRADO)) {
                 flag = true;
             }
@@ -252,7 +248,7 @@ public class Xogo {
 
         LinasNextLevel++;
 
-        aumentarNivel(numeroLinas);
+        aumentarNivel(numeroLinas,ventanaPricipal.getTimer().getDelay());
     }
 
     public void actualizarBloques() {
@@ -286,22 +282,20 @@ public class Xogo {
     private void engadeFichaBorraLinasCompletasXeneraNovaFicha() {
         engadirFichaAoChan();
         borrarLinasCompletas();
-  
-            xenerarNovaFicha();
-        
+
+        xenerarNovaFicha();
 
     }
 
-    public void aumentarNivel(int linas) {
-        System.out.println(ventanaPricipal.getTimer().getDelay());
-
-        if (numeroLinas % 5 == 0) {
-            ventanaPricipal.getTimer().setDelay(ventanaPricipal.getTimer().getDelay() - 100);
-            System.out.println(ventanaPricipal.getTimer().getDelay());
+    public boolean aumentarNivel(int lineas,int delay) {
+        boolean tag = false;
+        if (lineas % 5 == 0 && delay>100) {
+            ventanaPricipal.getTimer().setDelay( delay- 100);
             level++;
             LinasNextLevel = 0;
-          
+            tag = true;
         }
+        return tag;
 
     }
 
@@ -327,6 +321,5 @@ public class Xogo {
 
         }
     }
-    
 
 }
