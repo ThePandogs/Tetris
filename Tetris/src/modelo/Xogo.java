@@ -22,7 +22,6 @@ public class Xogo {
     private final int MAXY = 850;
     private final int MAXX = 450;
     private int numeroLinas = 0;
-    private boolean limit = false;
     private VentanaPrincipal ventanaPricipal;
     private Ficha fichaActual;
     private List<Cadrado> cadradosChan = new ArrayList();
@@ -65,14 +64,14 @@ public class Xogo {
 
     public void moverEsquerda() {
         boolean flag = true;
-        Iterator<Cadrado> ita = fichaActual.cadrados.iterator();
+        Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
         //Comprobar posicion siguiente de cada cuadrado actual
-        while (ita.hasNext()) {
-            Cadrado ca = ita.next();
+        while (actual.hasNext()) {
+            Cadrado ca = actual.next();
             int x = ca.getX() - LADOCADRADO;
             int y = ca.getY();
             if (!ePosicionValida(x, y)) {
-                  flag = false;
+                flag = false;
             }
         }
         //Si todas las posiciones son validas
@@ -83,14 +82,14 @@ public class Xogo {
 
     public void moverDereita() {
         boolean flag = true;
-        Iterator<Cadrado> ita = fichaActual.cadrados.iterator();
+        Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
         //Comprobar posicion siguiente de cada cuadrado actual
-        while (ita.hasNext()) {
-            Cadrado ca = ita.next();
+        while (actual.hasNext()) {
+            Cadrado ca = actual.next();
             int x = ca.getX() + LADOCADRADO;
             int y = ca.getY();
             if (!ePosicionValida(x, y)) {
-                 flag = false;
+                flag = false;
             }
         }
         //Si todas las posiciones son validas
@@ -120,48 +119,45 @@ public class Xogo {
             case 1, 5, 6, 13,30 -> {
 
                 fichaActual = new FichaBarra(this);
-               
+
             }
 
             case 2, 9, 10, 14 -> {
 
                 fichaActual = new FichaT(this);
-              
+
             }
             case 3, 7, 8,28,29 -> {
 
                 fichaActual = new FichaCadrada(this);
-            
+
             }
             case 4, 11, 12, 15 -> {
 
                 fichaActual = new FichaL(this);
-              
+
             }
             case 19, 18, 17, 16 -> {
                 fichaActual = new FichaLReverse(this);
-               
+
             }
             case 20, 22, 24, 26 -> {
                 fichaActual = new FichaZ(this);
-              
 
             }
             case 21, 23, 25, 27 -> {
                 fichaActual = new FichaZReverse(this);
-               
+
             }
         }
 
-        Iterator<Cadrado> ita = fichaActual.cadrados.iterator();
-        while (ita.hasNext()) {
-            Cadrado actual = ita.next();
-            ventanaPricipal.pintarCadrado(actual.getLblCadrado());
+        Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
+        while (actual.hasNext()) {
+            Cadrado cactual = actual.next();
+            ventanaPricipal.pintarCadrado(cactual.getLblCadrado());
 
         }
     }
-
-   
 
     private int numeroRandom(int max) {
         return (int) Math.floor(Math.random() * max + 1);
@@ -169,26 +165,25 @@ public class Xogo {
 
     public void engadirFichaAoChan() {
 
-        Iterator<Cadrado> ita = fichaActual.cadrados.iterator();
-        while (ita.hasNext()) {
-            Cadrado c = ita.next();
+        Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
+        while (actual.hasNext()) {
+            Cadrado c = actual.next();
             cadradosChan.add(c);
 
         }
-        comprobarPerder();
+
     }
 
     public boolean chocaFichaCoChan() {
 
         boolean flag = false;
 
-        Iterator<Cadrado> ite = fichaActual.cadrados.iterator();
-        
-        while (ite.hasNext()) {
-            Cadrado actual = ite.next();
-            
-            
-            if (!ePosicionValida(actual.getX(), actual.getY() + LADOCADRADO)) {
+        Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
+
+        while (actual.hasNext()) {
+            Cadrado cactual = actual.next();
+
+            if (!ePosicionValida(cactual.getX(), cactual.getY() + LADOCADRADO)) {
                 flag = true;
             }
 
@@ -202,10 +197,10 @@ public class Xogo {
         if (x > MAXX || x < 0 || y > MAXY || y < -LADOCADRADO) {
             tag = false;
         }
-        Iterator<Cadrado> ita = cadradosChan.iterator();
-        while (ita.hasNext()) {
-            Cadrado chan = ita.next();
-            if ((chan.getX() == x && chan.getY() == y)) {
+        Iterator<Cadrado> chan = cadradosChan.iterator();
+        while (chan.hasNext()) {
+            Cadrado cchan = chan.next();
+            if ((cchan.getX() == x && cchan.getY() == y)) {
                 tag = false;
             }
 
@@ -215,21 +210,23 @@ public class Xogo {
     }
 
     public void borrarLinasCompletas() {
-        boolean flag = false;
-        Iterator<Cadrado> ite = fichaActual.cadrados.iterator();
-        while (ite.hasNext()) {
-            Cadrado actual = ite.next();
-            Iterator<Cadrado> ita = cadradosChan.iterator();
-            while (ita.hasNext()) {
-                Cadrado chan = ita.next();
+        Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
+        while (actual.hasNext()) {
+            Cadrado cactual = actual.next();
+            Iterator<Cadrado> chan = cadradosChan.iterator();
+            while (chan.hasNext()) {
+                Cadrado cchan = chan.next();
 
-                if (chan.getY() == actual.getY()) {
-                    linea.add(chan);
+                if (cchan.getY() == cactual.getY()) {
+                    linea.add(cchan);
                 }
             }
             if (linea.size() == 10) {
 
                 borrarLinas();
+                numeroLinas++;
+                LinasNextLevel++;
+                aumentarNivel(numeroLinas, ventanaPricipal.getTimer().getDelay());
                 actualizarBloques();
             }
 
@@ -239,28 +236,23 @@ public class Xogo {
     }
 
     public void borrarLinas() {
-        Iterator<Cadrado> ita = linea.iterator();
-        while (ita.hasNext()) {
-            Cadrado este = ita.next();
+        Iterator<Cadrado> blinea = linea.iterator();
+        while (blinea.hasNext()) {
+            Cadrado este = blinea.next();
 
             ventanaPricipal.borrarCadrado(este.getLblCadrado());
             cadradosChan.removeAll(linea);
 
         }
 
-        numeroLinas++;
-
-        LinasNextLevel++;
-
-        aumentarNivel(numeroLinas);
     }
 
     public void actualizarBloques() {
         int y = linea.get(0).getY();
 
-        Iterator<Cadrado> ita = cadradosChan.iterator();
-        while (ita.hasNext()) {
-            Cadrado c = ita.next();
+        Iterator<Cadrado> chan = cadradosChan.iterator();
+        while (chan.hasNext()) {
+            Cadrado c = chan.next();
             if (y > c.getY()) {
                 c.actualizarCoordenada(c.getX(), c.getY() + LADOCADRADO);
 
@@ -270,38 +262,38 @@ public class Xogo {
 
     }
 
-    public void comprobarPerder() {
-        Iterator<Cadrado> ita = fichaActual.cadrados.iterator();
-        while (ita.hasNext()) {
-            Cadrado actual = ita.next();
-            if (actual.getY() < 100) {
+    public boolean comprobarPerder() {
+        boolean tag = false;
+        Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
+        while (actual.hasNext()) {
+            Cadrado cactual = actual.next();
+            if (cactual.getY() < 100) {
 
                 ventanaPricipal.mostrarFinDoXogo();
-
+                tag = true;
             }
         }
+        return tag;
 
     }
 
     private void engadeFichaBorraLinasCompletasXeneraNovaFicha() {
         engadirFichaAoChan();
-        borrarLinasCompletas();
-  
+        if (!comprobarPerder()) {
+            borrarLinasCompletas();
             xenerarNovaFicha();
-        
-
+        }
     }
 
-    public void aumentarNivel(int linas) {
-        System.out.println(ventanaPricipal.getTimer().getDelay());
-
-        if (numeroLinas % 5 == 0) {
-            ventanaPricipal.getTimer().setDelay(ventanaPricipal.getTimer().getDelay() - 100);
-            System.out.println(ventanaPricipal.getTimer().getDelay());
+    public boolean aumentarNivel(int lineas, int delay) {
+        boolean tag = false;
+        if (lineas % 5 == 0 && delay > 100) {
+            ventanaPricipal.getTimer().setDelay(delay - 100);
             level++;
             LinasNextLevel = 0;
-          
+            tag = true;
         }
+        return tag;
 
     }
 
@@ -314,12 +306,18 @@ public class Xogo {
             Cadrado siguiente = suelo.next();
             siguiente.actualizarCoordenada(siguiente.getX(), siguiente.getY() - 50);
         }
+        
+        //Elige la posicion donde incluira un cuadrado y el numero de cuadrados que incluira 
         for (int i = 0; i < numeroRandom(9); i++) {
             int random = numeroRandom(9);
+            
+            //Si la posicion escogida ya esta ocupada
             while (posiciones.contains(random)) {
                 random = numeroRandom(9);
 
             }
+            
+            //Añade el cuadrado
             Cadrado c = new Cadrado(random * 50, MAXY, yellow);
             cadradosChan.add(c);
             ventanaPricipal.pintarCadrado(c.getLblCadrado());
@@ -327,6 +325,5 @@ public class Xogo {
 
         }
     }
-    
 
 }
