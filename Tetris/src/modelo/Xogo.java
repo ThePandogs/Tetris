@@ -22,7 +22,6 @@ public class Xogo {
     private final int MAXY = 850;
     private final int MAXX = 450;
     private int numeroLinas = 0;
-    private boolean limit = false;
     private VentanaPrincipal ventanaPricipal;
     private Ficha fichaActual;
     private List<Cadrado> cadradosChan = new ArrayList();
@@ -211,7 +210,6 @@ public class Xogo {
     }
 
     public void borrarLinasCompletas() {
-        boolean flag = false;
         Iterator<Cadrado> ite = fichaActual.cadrados.iterator();
         while (ite.hasNext()) {
             Cadrado actual = ite.next();
@@ -248,7 +246,7 @@ public class Xogo {
 
         LinasNextLevel++;
 
-        aumentarNivel(numeroLinas,ventanaPricipal.getTimer().getDelay());
+        aumentarNivel(numeroLinas, ventanaPricipal.getTimer().getDelay());
     }
 
     public void actualizarBloques() {
@@ -287,10 +285,10 @@ public class Xogo {
 
     }
 
-    public boolean aumentarNivel(int lineas,int delay) {
+    public boolean aumentarNivel(int lineas, int delay) {
         boolean tag = false;
-        if (lineas % 5 == 0 && delay>100) {
-            ventanaPricipal.getTimer().setDelay( delay- 100);
+        if (lineas % 5 == 0 && delay > 100) {
+            ventanaPricipal.getTimer().setDelay(delay - 100);
             level++;
             LinasNextLevel = 0;
             tag = true;
