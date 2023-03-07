@@ -634,16 +634,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         if (lblCadrado.getBackground() == Color.BLUE) {
             lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/azul.png")));
-        }
-        if (lblCadrado.getBackground() == Color.RED) {
-            lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/naranja.png")));
-        }
-        if (lblCadrado.getBackground() == Color.YELLOW) {
+        } else if (lblCadrado.getBackground() == Color.RED) {
+            lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rojo.png")));
+        } else if (lblCadrado.getBackground() == Color.YELLOW) {
             lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/amarillo.png")));
-        }
-
-        if (lblCadrado.getBackground() == Color.GREEN) {
+        } else if (lblCadrado.getBackground() == Color.GREEN) {
             lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/verde.png")));
+        } else if (lblCadrado.getBackground() == Color.WHITE) {
+            lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/blanco.png")));
+        } else if (lblCadrado.getBackground() == Color.MAGENTA) {
+            lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/morado.png")));
+        } else if (lblCadrado.getBackground() == Color.ORANGE) {
+            lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/naranja.png")));
         }
 
     }
@@ -730,7 +732,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             time++;
             score = score + 1 * speed / 100;
 
-            if (xogo.getLevel() >3 && time % 20 == 0) {
+            if (xogo.getLevel() > 3 && time % 20 == 0) {
                 xogo.anadirCuadradosAleatorios();
             }
         });
