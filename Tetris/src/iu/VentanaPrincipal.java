@@ -4,11 +4,19 @@
  */
 package iu;
 
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 import modelo.Xogo;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  *
@@ -790,4 +798,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return time;
     }
 
+    public void ReproducirSonido() throws IOException {
+
+        try {
+            File prueba = new File("./src/resources/audio/shot2.wav");
+         
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(prueba);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+            System.out.println("Error al reproducir el sonido.");
+        }
+    }
 }
