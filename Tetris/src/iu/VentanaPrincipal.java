@@ -730,7 +730,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             time++;
             score = score + 1 * speed / 100;
 
-            if (xogo.getLevel() >3 && time % 10 == 0) {
+            if (xogo.getLevel() >3 && time % 20 == 0) {
                 xogo.anadirCuadradosAleatorios();
             }
         });
