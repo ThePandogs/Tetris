@@ -171,7 +171,7 @@ public class Xogo {
             cadradosChan.add(c);
 
         }
-        comprobarPerder();
+
     }
 
     public boolean chocaFichaCoChan() {
@@ -264,25 +264,27 @@ public class Xogo {
 
     }
 
-    public void comprobarPerder() {
+    public boolean comprobarPerder() {
+        boolean tag = false;
         Iterator<Cadrado> ita = fichaActual.cadrados.iterator();
         while (ita.hasNext()) {
             Cadrado actual = ita.next();
             if (actual.getY() < 100) {
 
                 ventanaPricipal.mostrarFinDoXogo();
-
+                tag = true;
             }
         }
+        return tag;
 
     }
 
     private void engadeFichaBorraLinasCompletasXeneraNovaFicha() {
         engadirFichaAoChan();
-        borrarLinasCompletas();
-
-        xenerarNovaFicha();
-
+        if (!comprobarPerder()) {
+            borrarLinasCompletas();
+            xenerarNovaFicha();
+        }
     }
 
     public boolean aumentarNivel(int lineas, int delay) {
