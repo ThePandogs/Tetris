@@ -7,8 +7,11 @@ package modelo;
 import java.util.Iterator;
 import iu.VentanaPrincipal;
 import static java.awt.Color.yellow;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -236,15 +239,19 @@ public class Xogo {
     }
 
     public void borrarLinas() {
-        Iterator<Cadrado> blinea = linea.iterator();
-        while (blinea.hasNext()) {
-            Cadrado este = blinea.next();
-
-            ventanaPricipal.borrarCadrado(este.getLblCadrado());
-            cadradosChan.removeAll(linea);
-
+        try {
+            Iterator<Cadrado> blinea = linea.iterator();
+            while (blinea.hasNext()) {
+                Cadrado este = blinea.next();
+                
+                ventanaPricipal.borrarCadrado(este.getLblCadrado());
+                cadradosChan.removeAll(linea);
+                
+            }
+            ventanaPricipal.ReproducirSonido();
+        } catch (IOException ex) {
+            Logger.getLogger(Xogo.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public void actualizarBloques() {
@@ -325,5 +332,17 @@ public class Xogo {
 
         }
     }
-
 }
+
+   
+     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
