@@ -27,8 +27,10 @@ public class FichaCadrada extends Ficha {
     }
 
     @Override
-    public boolean rotar() {
-        throw new UnsupportedOperationException("Ficha cuadrada no implementa rotacion."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean rotar() throws UnsupportedOperationException {
+   
+        return false;
+      
     }
     
 }
