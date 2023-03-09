@@ -28,6 +28,7 @@ public class FichaCadrada extends Ficha {
     }
 
     @Override
+
     public boolean rotar() {
 try {
    // Código que puede lanzar la excepción UnsupportedOperationException
@@ -36,6 +37,7 @@ try {
    System.out.println("Esta operación no está soportada todavía.");
 }
         return false;
+
     }
 
    
