@@ -649,7 +649,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         iconarCadrado(lblCadrado);
         
 lblCadrado.setOpaque(false);
-lblCadrado.setBorder(BorderFactory.createLineBorder(Color.BLACK,5));
+lblCadrado.setBorder(BorderFactory.createLineBorder(Color.BLACK,3));
     }
 
      private void iconarCadrado(JLabel lblCadrado) {
