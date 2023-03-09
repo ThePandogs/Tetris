@@ -26,7 +26,7 @@ public class Cadrado {
 
         lblCadrado.setBackground(cor);
         lblCadrado.setOpaque(true);
-        lblCadrado.setBounds(x, y, 50, 50);
+        lblCadrado.setBounds(x, y, 53, 53);
         lblCadrado.setVisible(true);
         lblCadrado.updateUI();
 

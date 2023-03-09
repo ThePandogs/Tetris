@@ -277,6 +277,7 @@ public class Xogo {
             if (cactual.getY() < 100) {
 
                 ventanaPricipal.mostrarFinDoXogo();
+                
                 tag = true;
             }
         }
@@ -285,10 +286,15 @@ public class Xogo {
     }
 
     private void engadeFichaBorraLinasCompletasXeneraNovaFicha() {
-        engadirFichaAoChan();
-        if (!comprobarPerder()) {
-            borrarLinasCompletas();
-            xenerarNovaFicha();
+        try {
+            engadirFichaAoChan();
+            ventanaPricipal.ReproducirSuelo();
+            if (!comprobarPerder()) {
+                borrarLinasCompletas();
+                xenerarNovaFicha();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Xogo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
