@@ -838,7 +838,7 @@ clip.close();
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(prueba);
              clip = AudioSystem.getClip();
             clip.open(audioInputStream);
-            clip.start();
+            clip.loop(ABORT);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             System.out.println("Error al reproducir el sonido.");
         }
