@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 import modelo.Xogo;
@@ -17,6 +19,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.BorderFactory;
 
 /**
  *
@@ -42,14 +45,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private Timer timerFPS;
 
     private boolean pause;
+    private Clip clip;
+    private Clip effect2;
 
     public VentanaPrincipal() {
 
-        initComponents();
-        gameJPanel.setVisible(false);
-        gameJPanel.requestFocus();
-        gameJPanel.requestFocusInWindow();
-
+      
+            initComponents();
+            gameJPanel.setVisible(false);
+            gameJPanel.requestFocus();
+            gameJPanel.requestFocusInWindow();
+        
     }
 
     /**
@@ -617,28 +623,36 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void iniciarPartida() {
 
-        inicializarContadores();
-        startRefreshScreen();
-        startCrono();
-        startSpeed();
-        cleanPanelXogo();
-
-        xogo = new Xogo(this);
-        xogo.xenerarNovaFicha();
-        pause = false;
-        tglPause.setSelected(false);
-        panelXogo.setFocusable(true);
-        panelXogo.requestFocus();
+        try {
+            inicializarContadores();
+            startRefreshScreen();
+            startCrono();
+            startSpeed();
+            cleanPanelXogo();
+            
+            xogo = new Xogo(this);
+            xogo.xenerarNovaFicha();
+            pause = false;
+            tglPause.setSelected(false);
+            panelXogo.setFocusable(true);
+            panelXogo.requestFocus();
+            ReproducirBSO();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void pintarCadrado(JLabel lblCadrado) {
         panelXogo.add(lblCadrado);
 
         iconarCadrado(lblCadrado);
-
+        
+lblCadrado.setOpaque(false);
+lblCadrado.setBorder(BorderFactory.createLineBorder(Color.BLACK,5));
     }
 
-    private void iconarCadrado(JLabel lblCadrado) {
+     private void iconarCadrado(JLabel lblCadrado) {
 
         if (lblCadrado.getBackground() == Color.BLUE) {
             lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/azul.png")));
@@ -679,7 +693,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         linesGameOver.setText(lblLine.getText());
         levelGameOver.setText(lblLevel.getText());
         tglPause.setVisible(false);
-
+clip.close();
+   effect2.close();
     }
 
     public boolean isPause() {
@@ -702,6 +717,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pause();
         pausePanel.setVisible(true);
         extraFrame.setVisible(true);
+        clip.stop();
 
     }
 
@@ -709,6 +725,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         resume();
         extraFrame.setVisible(false);
         pausePanel.setVisible(false);
+        clip.start();
     }
 
     private void restartGame() {
@@ -806,9 +823,35 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             File prueba = new File("./src/resources/audio/shot2.wav");
          
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(prueba);
-            Clip clip = AudioSystem.getClip();
+            Clip effect = AudioSystem.getClip();
+            effect.open(audioInputStream);
+            effect.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+            System.out.println("Error al reproducir el sonido.");
+        }
+    }
+      public void ReproducirBSO() throws IOException {
+
+        try {
+            File prueba = new File("./src/resources/audio/bso.wav");
+         
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(prueba);
+             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+            System.out.println("Error al reproducir el sonido.");
+        }
+    }
+      public void ReproducirSuelo() throws IOException {
+
+        try {
+            File prueba = new File("./src/resources/audio/suelo.wav");
+         
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(prueba);
+            Clip effect2 = AudioSystem.getClip();
+            effect2.open(audioInputStream);
+            effect2.start();
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             System.out.println("Error al reproducir el sonido.");
         }

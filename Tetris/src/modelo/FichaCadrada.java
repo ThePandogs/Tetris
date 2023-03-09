@@ -24,13 +24,21 @@ public class FichaCadrada extends Ficha {
           cadrados.add(c1);
             cadrados.add(c2);
               cadrados.add(c3);
+               id=2;
     }
 
     @Override
-    public boolean rotar() throws UnsupportedOperationException {
-   
+
+    public boolean rotar() {
+try {
+   // Código que puede lanzar la excepción UnsupportedOperationException
+} catch (UnsupportedOperationException e) {
+   // Manejar la excepción aquí
+   System.out.println("Esta operación no está soportada todavía.");
+}
         return false;
-      
+
     }
-    
+
+   
 }

@@ -22,6 +22,7 @@ public  Cadrado c2=new Cadrado(250, 50,white);
           cadrados.add(c1);
             cadrados.add(c2);
               cadrados.add(c3);
+               id=4;
     }
 
     @Override

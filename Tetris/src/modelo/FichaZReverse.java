@@ -4,23 +4,29 @@
  */
 package modelo;
 
-import static java.awt.Color.red;
+
+import static java.awt.Color.RED;
+import static java.awt.Color.gray;
+
 
 /**
  *
  * @author a22danielas
  */
 public class FichaZReverse extends Ficha {
-     public Cadrado c = new Cadrado(300, 0, red);
-    public Cadrado c1 = new Cadrado(250, 0, red);
-    public Cadrado c2 = new Cadrado(250, 50, red);
-    public Cadrado c3 = new Cadrado(200, 50, red);
+
+     public Cadrado c = new Cadrado(300, 0, RED);
+    public Cadrado c1 = new Cadrado(250, 0, RED);
+    public Cadrado c2 = new Cadrado(250, 50, RED);
+    public Cadrado c3 = new Cadrado(200, 50, RED);
+
     public FichaZReverse(Xogo x) {
          super(x);
          cadrados.add(c);
           cadrados.add(c1);
             cadrados.add(c2);
               cadrados.add(c3);
+               id=7;
     }
 
     @Override

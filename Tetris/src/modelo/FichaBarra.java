@@ -29,6 +29,7 @@ public class FichaBarra extends Ficha {
         cadrados.add(c1);
         cadrados.add(c2);
         cadrados.add(c3);
+        id=1;
     }
 
     public List<Cadrado> getCadrados() {

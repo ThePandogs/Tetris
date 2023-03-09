@@ -26,6 +26,7 @@ public class FichaT extends Ficha {
         cadrados.add(c1);
         cadrados.add(c2);
         cadrados.add(c3);
+         id=5;
 
     }
 
