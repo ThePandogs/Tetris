@@ -631,7 +631,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             cleanPanelXogo();
             
             xogo = new Xogo(this);
-            xogo.xenerarNovaFicha();
+//            xogo.xenerarNovaFicha();
             pause = false;
             tglPause.setSelected(false);
             panelXogo.setFocusable(true);
