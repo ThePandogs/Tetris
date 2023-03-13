@@ -13,6 +13,7 @@ import javax.swing.JLabel;
  * @author a14carlosfd
  *
  */
+
 public class Cadrado {
 
     int x;
