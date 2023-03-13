@@ -13,7 +13,6 @@ import java.util.List;
  * @author a14carlosfd
  *
  */
-
 public class FichaT extends Ficha {
 
     public Cadrado c = new Cadrado(150, 50, orange);

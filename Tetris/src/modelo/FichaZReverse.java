@@ -4,29 +4,29 @@
  */
 package modelo;
 
+
 import static java.awt.Color.RED;
+import static java.awt.Color.gray;
+
 
 /**
  *
  * @author a22danielas
- * @author a14carlosfd
- *
  */
-
 public class FichaZReverse extends Ficha {
 
-    public Cadrado c = new Cadrado(300, 0, RED);
+     public Cadrado c = new Cadrado(300, 0, RED);
     public Cadrado c1 = new Cadrado(250, 0, RED);
     public Cadrado c2 = new Cadrado(250, 50, RED);
     public Cadrado c3 = new Cadrado(200, 50, RED);
 
     public FichaZReverse(Xogo x) {
-        super(x);
-        cadrados.add(c);
-        cadrados.add(c1);
-        cadrados.add(c2);
-        cadrados.add(c3);
-        id = 7;
+         super(x);
+         cadrados.add(c);
+          cadrados.add(c1);
+            cadrados.add(c2);
+              cadrados.add(c3);
+               id=7;
     }
 
     @Override
@@ -40,47 +40,45 @@ public class FichaZReverse extends Ficha {
             case 0 -> {
                 int cont = 0;
                 //Comprobacion antes de pasar 
-                if (xogo.ePosicionValida(x, y - 50)) {
+                if (xogo.ePosicionValida(x, y -50)) {
                     cont++;
                 }
-                if (xogo.ePosicionValida(x + 50, y)) {
+                if (xogo.ePosicionValida(x+50 , y)) {
                     cont++;
                 }
-                if (xogo.ePosicionValida(x + 50, y + 50)) {
+                if (xogo.ePosicionValida(x+50, y +50)) {
                     cont++;
                 }
                 if (cont == 3) {
-                    xogo.getFichaActual().getCadrados().get(0).actualizarCoordenada(x, y - 50);
-                    xogo.getFichaActual().getCadrados().get(2).actualizarCoordenada(x + 50, y);
-                    xogo.getFichaActual().getCadrados().get(3).actualizarCoordenada(x + 50, y + 50);
-                    posicion = 1;
-                }
-
+                    xogo.getFichaActual().getCadrados().get(0).actualizarCoordenada(x, y -50);
+                    xogo.getFichaActual().getCadrados().get(2).actualizarCoordenada(x+50 , y);
+                    xogo.getFichaActual().getCadrados().get(3).actualizarCoordenada(x+50, y +50);
+               posicion = 1; }
+                
             }
             case 1 -> {
 
-                int cont = 0;
+   int cont = 0;
                 if (xogo.ePosicionValida(x + 50, y)) {
                     cont++;
                 }
-                if (xogo.ePosicionValida(x, y + 50)) {
+                if (xogo.ePosicionValida(x , y+50)) {
                     cont++;
                 }
-                if (xogo.ePosicionValida(x - 50, y + 50)) {
+                if (xogo.ePosicionValida(x-50, y + 50)) {
                     cont++;
                 }
                 if (cont == 3) {
                     xogo.getFichaActual().getCadrados().get(0).actualizarCoordenada(x + 50, y);
-                    xogo.getFichaActual().getCadrados().get(2).actualizarCoordenada(x, y + 50);
-                    xogo.getFichaActual().getCadrados().get(3).actualizarCoordenada(x - 50, y + 50);
+                    xogo.getFichaActual().getCadrados().get(2).actualizarCoordenada(x , y+50);
+                    xogo.getFichaActual().getCadrados().get(3).actualizarCoordenada(x-50, y + 50);
                     posicion = 0;
                 }
-
+                
             }
-
+        
         }
 
-        return move;
-    }
-
+        return move;    }
+        
 }

@@ -14,7 +14,6 @@ import java.util.List;
  * @author a14carlosfd
  *
  */
-
 public abstract class Ficha {
 
     List<Cadrado> cadrados;

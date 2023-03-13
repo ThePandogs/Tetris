@@ -9,10 +9,7 @@ import static java.awt.Color.magenta;
 /**
  *
  * @author a22danielas
- * @author a14carlosfd
- *
  */
-
 public class FichaZ extends Ficha {
   public Cadrado c = new Cadrado(200, 0, magenta);
     public Cadrado c1 = new Cadrado(250, 0, magenta);

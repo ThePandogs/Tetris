@@ -4,15 +4,13 @@
  */
 package modelo;
 
+
 import static java.awt.Color.white;
 
 /**
  *
- * @author a22danielas
- * @author a14carlosfd
- *
+ * @author dania
  */
-
 public class FichaLReverse extends Ficha{
     public Cadrado c=new Cadrado(150, 50,white);
  public Cadrado c1=new Cadrado(200, 50,white);
