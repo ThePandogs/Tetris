@@ -622,7 +622,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void iniciarPartida() {
-
  inicializarContadores();
             startRefreshScreen();
             startCrono();
@@ -636,7 +635,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             panelXogo.requestFocus();
         try {
            
-
             ReproducirBSO();
             
         } catch (IOException ex) {
