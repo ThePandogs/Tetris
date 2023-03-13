@@ -113,7 +113,7 @@ public class Xogo {
     }
 
     public void moverDereita() {
-        boolean flag = true;
+        boolean posicionValida = true;
         Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
         //Comprobar posicion siguiente de cada cuadrado actual
         while (actual.hasNext()) {
@@ -121,11 +121,11 @@ public class Xogo {
             int x = ca.getX() + LADOCADRADO;
             int y = ca.getY();
             if (!ePosicionValida(x, y)) {
-                flag = false;
+                posicionValida = false;
             }
         }
-        //Si todas las posiciones son validas
-        if (flag) {
+
+        if (posicionValida) {
             fichaActual.moverDereita();
         }
     }
