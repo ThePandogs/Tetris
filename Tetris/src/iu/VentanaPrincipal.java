@@ -622,20 +622,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void iniciarPartida() {
-
-        try {
-            inicializarContadores();
+ inicializarContadores();
             startRefreshScreen();
             startCrono();
             startSpeed();
             cleanPanelXogo();
             
             xogo = new Xogo(this);
-//            xogo.xenerarNovaFicha();
             pause = false;
             tglPause.setSelected(false);
             panelXogo.setFocusable(true);
             panelXogo.requestFocus();
+        try {
+           
             ReproducirBSO();
             
         } catch (IOException ex) {
