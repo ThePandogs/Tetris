@@ -94,8 +94,8 @@ public class FichaBarra extends Ficha {
                 if (xogo.ePosicionValida(x, y + 100)) {
                     cont++;
                 }
-                //Si la ficha esta tumbada 
-                if (xogo.getFichaActual().getCadrados().get(2).lblCadrado.getX() != xogo.getFichaActual().getCadrados().get(3).lblCadrado.getX() && cont == 3) {
+                //Si la ficha esta tumbada xogo.getFichaActual().getCadrados().get(2).lblCadrado.getX() != xogo.getFichaActual().getCadrados().get(3).lblCadrado.getX() &&
+                if ( cont == 3) {
                     xogo.getFichaActual().getCadrados().get(0).actualizarCoordenada(x, y - 50);
                     xogo.getFichaActual().getCadrados().get(2).actualizarCoordenada(x, y + 50);
                     xogo.getFichaActual().getCadrados().get(3).actualizarCoordenada(x, y + 100);
@@ -114,8 +114,8 @@ public class FichaBarra extends Ficha {
                 if (xogo.ePosicionValida(x + 100, y)) {
                     cont++;
                 }
-                //Si la ficha esta vertical 
-                if (xogo.getFichaActual().getCadrados().get(2).lblCadrado.getX() == xogo.getFichaActual().getCadrados().get(3).lblCadrado.getX() && cont == 3) {
+                //Si la ficha esta vertical  xogo.getFichaActual().getCadrados().get(2).lblCadrado.getX() == xogo.getFichaActual().getCadrados().get(3).lblCadrado.getX() && 
+                if (cont == 3) {
                     xogo.getFichaActual().getCadrados().get(0).actualizarCoordenada(x - 50, y);
                     xogo.getFichaActual().getCadrados().get(2).actualizarCoordenada(x + 50, y);
                     xogo.getFichaActual().getCadrados().get(3).actualizarCoordenada(x + 100, y);
