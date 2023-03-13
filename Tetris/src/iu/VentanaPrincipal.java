@@ -650,20 +650,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelXogo.setFocusable(true);
         panelXogo.requestFocus();
         try {
-
-            inicializarContadores();
-            startRefreshScreen();
-            startCrono();
-            startSpeed();
-            cleanPanelXogo();
-            
-            xogo = new Xogo(this);
-
-            pause = false;
-            tglPause.setSelected(false);
-            panelXogo.setFocusable(true);
-            panelXogo.requestFocus();
-
             ReproducirBSO();
 
         } catch (IOException ex) {
