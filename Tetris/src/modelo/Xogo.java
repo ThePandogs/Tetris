@@ -36,7 +36,7 @@ private Ficha fichaSiguiente;
     public Xogo(VentanaPrincipal ventana) {
         ventanaPricipal = ventana;
         fichaSiguiente=xenerarNovaFicha();
-        fichaActual=xenerarNovaFicha();;
+        fichaActual=xenerarNovaFicha();
         pintarFichaActual();
     }
 
@@ -165,9 +165,9 @@ private void pintarFichaActual(){
         while (actual.hasNext()) {
             Cadrado cactual = actual.next();
             ventanaPricipal.pintarCadrado(cactual.getLblCadrado());
-
+   System.out.println("Fichaa: "+fichaActual.id + "fichas: "+fichaSiguiente.id);
         }
-        System.out.println("Fichaa: "+fichaActual.id + "fichas: "+fichaSiguiente.id);
+     
 }
     private int numeroRandom(int max) {
         return (int) Math.floor(Math.random() * max + 1);

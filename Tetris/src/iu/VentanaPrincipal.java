@@ -4,7 +4,6 @@
  */
 package iu;
 
-
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -50,12 +49,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public VentanaPrincipal() {
 
-      
-            initComponents();
-            gameJPanel.setVisible(false);
-            gameJPanel.requestFocus();
-            gameJPanel.requestFocusInWindow();
-        
+        initComponents();
+        gameJPanel.setVisible(false);
+        gameJPanel.requestFocus();
+        gameJPanel.requestFocusInWindow();
+
     }
 
     /**
@@ -623,21 +621,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void iniciarPartida() {
 
-        try {
-            inicializarContadores();
-            startRefreshScreen();
-            startCrono();
-            startSpeed();
-            cleanPanelXogo();
-            
-            xogo = new Xogo(this);
+        xogo = new Xogo(this);
+        inicializarContadores();
+        startRefreshScreen();
+        startCrono();
+        startSpeed();
+
 //            xogo.xenerarNovaFicha();
-            pause = false;
-            tglPause.setSelected(false);
-            panelXogo.setFocusable(true);
-            panelXogo.requestFocus();
+        pause = false;
+        tglPause.setSelected(false);
+        panelXogo.setFocusable(true);
+        panelXogo.requestFocus();
+        try {
             ReproducirBSO();
-            
+
         } catch (IOException ex) {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -647,12 +644,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelXogo.add(lblCadrado);
 
         iconarCadrado(lblCadrado);
-        
-lblCadrado.setOpaque(false);
-lblCadrado.setBorder(BorderFactory.createLineBorder(Color.BLACK,3));
+
+        lblCadrado.setOpaque(false);
+        lblCadrado.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
     }
 
-     private void iconarCadrado(JLabel lblCadrado) {
+    private void iconarCadrado(JLabel lblCadrado) {
 
         if (lblCadrado.getBackground() == Color.BLUE) {
             lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/azul.png")));
@@ -693,8 +690,8 @@ lblCadrado.setBorder(BorderFactory.createLineBorder(Color.BLACK,3));
         linesGameOver.setText(lblLine.getText());
         levelGameOver.setText(lblLevel.getText());
         tglPause.setVisible(false);
-clip.close();
-   effect2.close();
+        clip.close();
+        effect2.close();
     }
 
     public boolean isPause() {
@@ -736,7 +733,7 @@ clip.close();
         pausePanel.setVisible(false);
         gameOverPanel.setVisible(false);
         tglPause.setVisible(true);
-
+        cleanPanelXogo();
         iniciarPartida();
 
     }
@@ -821,7 +818,7 @@ clip.close();
 
         try {
             File prueba = new File("./src/resources/audio/shot2.wav");
-         
+
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(prueba);
             Clip effect = AudioSystem.getClip();
             effect.open(audioInputStream);
@@ -830,24 +827,26 @@ clip.close();
             System.out.println("Error al reproducir el sonido.");
         }
     }
-      public void ReproducirBSO() throws IOException {
+
+    public void ReproducirBSO() throws IOException {
 
         try {
             File prueba = new File("./src/resources/audio/bso.wav");
-         
+
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(prueba);
-             clip = AudioSystem.getClip();
+            clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.loop(ABORT);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             System.out.println("Error al reproducir el sonido.");
         }
     }
-      public void ReproducirSuelo() throws IOException {
+
+    public void ReproducirSuelo() throws IOException {
 
         try {
             File prueba = new File("./src/resources/audio/suelo.wav");
-         
+
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(prueba);
             Clip effect2 = AudioSystem.getClip();
             effect2.open(audioInputStream);
