@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  * @author a14carlosfd
  *
  */
-public class Xogo {
+public final class Xogo {
 
     private final int LADOCADRADO = 50;
     private final int MAXY = 850;
@@ -29,7 +29,7 @@ public class Xogo {
     private Ficha fichaActual;
     private List<Cadrado> cadradosChan = new ArrayList();
     private List<Cadrado> linea = new ArrayList();
-
+private Ficha fichaSiguiente;
     private int level = 0;
     private int LinasNextLevel = 0;
 
@@ -43,6 +43,9 @@ public class Xogo {
 
     public Xogo(VentanaPrincipal ventana) {
         ventanaPricipal = ventana;
+        fichaSiguiente=xenerarNovaFicha();
+        fichaActual=xenerarNovaFicha();
+        pintarFichaActual();
     }
 
     public int getNumeroLinas() {
@@ -144,53 +147,57 @@ public class Xogo {
 
     }
 
-    public void xenerarNovaFicha() {
-
+    public Ficha xenerarNovaFicha() {
+Ficha obj = null;
         switch (numeroRandom(30)) {
 
             case 1, 5, 6, 13, 30 -> {
 
-                fichaActual = new FichaBarra(this);
+                obj = new FichaBarra(this);
 
             }
 
             case 2, 9, 10, 14 -> {
 
-                fichaActual = new FichaT(this);
+                obj = new FichaT(this);
 
             }
             case 3, 7, 8, 28, 29 -> {
 
-                fichaActual = new FichaCadrada(this);
+                obj = new FichaCadrada(this);
 
             }
             case 4, 11, 12, 15 -> {
 
-                fichaActual = new FichaL(this);
+                obj = new FichaL(this);
 
             }
             case 19, 18, 17, 16 -> {
-                fichaActual = new FichaLReverse(this);
+                obj = new FichaLReverse(this);
 
             }
             case 20, 22, 24, 26 -> {
-                fichaActual = new FichaZ(this);
+                obj = new FichaZ(this);
 
             }
             case 21, 23, 25, 27 -> {
-                fichaActual = new FichaZReverse(this);
+                obj = new FichaZReverse(this);
 
             }
         }
+        return obj;
 
-        Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
+       
+    }
+private void pintarFichaActual(){
+ Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
         while (actual.hasNext()) {
             Cadrado cactual = actual.next();
             ventanaPricipal.pintarCadrado(cactual.getLblCadrado());
-
+   System.out.println("Fichaa: "+fichaActual.id + "fichas: "+fichaSiguiente.id);
         }
-    }
-
+     
+}
     private int numeroRandom(int max) {
         return (int) Math.floor(Math.random() * max + 1);
     }
@@ -314,14 +321,19 @@ public class Xogo {
         return perdio;
 
     }
-
+private void fichaStoFichaA(){
+fichaActual=fichaSiguiente;
+while(fichaSiguiente.id==fichaActual.id){
+fichaSiguiente=xenerarNovaFicha();
+}}
     private void engadeFichaBorraLinasCompletasXeneraNovaFicha() {
         try {
             engadirFichaAoChan();
             ventanaPricipal.ReproducirSuelo();
             if (!comprobarPerder()) {
                 borrarLinasCompletas();
-                xenerarNovaFicha();
+                fichaStoFichaA();
+                pintarFichaActual();
             }
         } catch (IOException ex) {
             Logger.getLogger(Xogo.class.getName()).log(Level.SEVERE, null, ex);

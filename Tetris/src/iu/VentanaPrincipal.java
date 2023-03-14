@@ -650,8 +650,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         startRefreshScreen();
         startCrono();
         startSpeed();
-        cleanPanelXogo();
-        xogo.xenerarNovaFicha();
         pause = false;
         tglPause.setSelected(false);
         panelXogo.setFocusable(true);
@@ -758,7 +756,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pausePanel.setVisible(false);
         gameOverPanel.setVisible(false);
         tglPause.setVisible(true);
-
+        cleanPanelXogo();
         iniciarPartida();
 
     }
