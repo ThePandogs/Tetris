@@ -14,6 +14,7 @@ import java.util.List;
  * @author a14carlosfd
  *
  */
+
 public class FichaBarra extends Ficha {
 
     public Cadrado c = new Cadrado(150, 50, yellow);

@@ -33,6 +33,14 @@ private Ficha fichaSiguiente;
     private int level = 0;
     private int LinasNextLevel = 0;
 
+    //LA DIFICULTAD AUMENTA CUANTO MENOS SEA EL VALOR YA QUE MODIFICA EL TIMER.
+  
+    private int dificultadInicioJuego;
+    private final int DIFICULTAD_MIN = 1000;
+    private final int DIFICULTAD_NIVEL = 40;
+    private final int DIFICULTAD_MAX = 200;
+    private final int LINEAS_NEXT_LEVEL = 5;
+
     public Xogo(VentanaPrincipal ventana) {
         ventanaPricipal = ventana;
         fichaSiguiente=xenerarNovaFicha();
@@ -68,8 +76,29 @@ private Ficha fichaSiguiente;
         return fichaActual;
     }
 
+    public int getDificultadInicioJuego() {
+        return dificultadInicioJuego;
+    }
+
+    public void setDificultadInicioJuego(int dificultadInicioJuego) {
+        this.dificultadInicioJuego = dificultadInicioJuego;
+    }
+
+    public int getDIFICULTAD_MIN() {
+        return DIFICULTAD_MIN;
+    }
+
+    public int getDIFICULTAD_NIVEL() {
+        return DIFICULTAD_NIVEL;
+    }
+
+
+    
+    
+
+   
     public void moverEsquerda() {
-        boolean flag = true;
+        boolean posicionValida = true;
         Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
         //Comprobar posicion siguiente de cada cuadrado actual
         while (actual.hasNext()) {
@@ -77,17 +106,17 @@ private Ficha fichaSiguiente;
             int x = ca.getX() - LADOCADRADO;
             int y = ca.getY();
             if (!ePosicionValida(x, y)) {
-                flag = false;
+                posicionValida = false;
             }
         }
         //Si todas las posiciones son validas
-        if (flag) {
+        if (posicionValida) {
             fichaActual.moverEsquerda();
         }
     }
 
     public void moverDereita() {
-        boolean flag = true;
+        boolean posicionValida = true;
         Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
         //Comprobar posicion siguiente de cada cuadrado actual
         while (actual.hasNext()) {
@@ -95,11 +124,11 @@ private Ficha fichaSiguiente;
             int x = ca.getX() + LADOCADRADO;
             int y = ca.getY();
             if (!ePosicionValida(x, y)) {
-                flag = false;
+                posicionValida = false;
             }
         }
-        //Si todas las posiciones son validas
-        if (flag) {
+
+        if (posicionValida) {
             fichaActual.moverDereita();
         }
     }
@@ -122,7 +151,7 @@ private Ficha fichaSiguiente;
 Ficha obj = null;
         switch (numeroRandom(30)) {
 
-            case 1, 5, 6, 13,30 -> {
+            case 1, 5, 6, 13, 30 -> {
 
                 obj = new FichaBarra(this);
 
@@ -133,7 +162,7 @@ Ficha obj = null;
                 obj = new FichaT(this);
 
             }
-            case 3, 7, 8,28,29 -> {
+            case 3, 7, 8, 28, 29 -> {
 
                 obj = new FichaCadrada(this);
 
@@ -186,7 +215,7 @@ private void pintarFichaActual(){
 
     public boolean chocaFichaCoChan() {
 
-        boolean flag = false;
+        boolean choca = false;
 
         Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
 
@@ -194,29 +223,29 @@ private void pintarFichaActual(){
             Cadrado cactual = actual.next();
 
             if (!ePosicionValida(cactual.getX(), cactual.getY() + LADOCADRADO)) {
-                flag = true;
+                choca = true;
             }
 
         }
 
-        return flag;
+        return choca;
     }
 
     public boolean ePosicionValida(int x, int y) {
-        boolean tag = true;
+        boolean posicionValida = true;
         if (x > MAXX || x < 0 || y > MAXY || y < -LADOCADRADO) {
-            tag = false;
+            posicionValida = false;
         }
         Iterator<Cadrado> chan = cadradosChan.iterator();
         while (chan.hasNext()) {
             Cadrado cchan = chan.next();
             if ((cchan.getX() == x && cchan.getY() == y)) {
-                tag = false;
+                posicionValida = false;
             }
 
         }
 
-        return tag;
+        return posicionValida;
     }
 
     public void borrarLinasCompletas() {
@@ -250,10 +279,10 @@ private void pintarFichaActual(){
             Iterator<Cadrado> blinea = linea.iterator();
             while (blinea.hasNext()) {
                 Cadrado este = blinea.next();
-                
+
                 ventanaPricipal.borrarCadrado(este.getLblCadrado());
                 cadradosChan.removeAll(linea);
-                
+
             }
             ventanaPricipal.ReproducirSonido();
         } catch (IOException ex) {
@@ -277,18 +306,19 @@ private void pintarFichaActual(){
     }
 
     public boolean comprobarPerder() {
-        boolean tag = false;
+        boolean perdio = false;
         Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
         while (actual.hasNext()) {
             Cadrado cactual = actual.next();
-            if (cactual.getY() < 100) {
+
+            if (cactual.getY() < LADOCADRADO * 2) {
 
                 ventanaPricipal.mostrarFinDoXogo();
-                
-                tag = true;
+
+                perdio = true;
             }
         }
-        return tag;
+        return perdio;
 
     }
 private void fichaStoFichaA(){
@@ -310,15 +340,15 @@ fichaSiguiente=xenerarNovaFicha();
         }
     }
 
-    public boolean aumentarNivel(int lineas, int delay) {
-        boolean tag = false;
-        if (lineas % 5 == 0 && delay > 100) {
-            ventanaPricipal.getTimer().setDelay(delay - 100);
+    public boolean aumentarNivel(int lineas, int delayActual) {
+        boolean aumentaNivel = false;
+        if (lineas % LINEAS_NEXT_LEVEL == 0 && delayActual > DIFICULTAD_MAX) {
+            ventanaPricipal.getTimer().setDelay(delayActual - DIFICULTAD_NIVEL);
             level++;
             LinasNextLevel = 0;
-            tag = true;
+            aumentaNivel = true;
         }
-        return tag;
+        return aumentaNivel;
 
     }
 
@@ -331,17 +361,17 @@ fichaSiguiente=xenerarNovaFicha();
             Cadrado siguiente = suelo.next();
             siguiente.actualizarCoordenada(siguiente.getX(), siguiente.getY() - 50);
         }
-        
+
         //Elige la posicion donde incluira un cuadrado y el numero de cuadrados que incluira 
         for (int i = 0; i < numeroRandom(9); i++) {
             int random = numeroRandom(9);
-            
+
             //Si la posicion escogida ya esta ocupada
             while (posiciones.contains(random)) {
                 random = numeroRandom(9);
 
             }
-            
+
             //Añade el cuadrado
             Cadrado c = new Cadrado(random * 50, MAXY, yellow);
             cadradosChan.add(c);
@@ -351,16 +381,3 @@ fichaSiguiente=xenerarNovaFicha();
         }
     }
 }
-
-   
-     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    

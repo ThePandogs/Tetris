@@ -82,6 +82,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         linesGameOver = new javax.swing.JLabel();
         restartGameOver = new javax.swing.JButton();
         mainMenuGameOver = new javax.swing.JButton();
+        MenuJPanel = new javax.swing.JPanel();
+        Playlbl = new javax.swing.JLabel();
+        Exitlbl = new javax.swing.JLabel();
+        levelJSlider = new javax.swing.JSlider();
+        levelLbl = new javax.swing.JLabel();
+        panelMainMenu = new javax.swing.JPanel();
+        backgroundMenu = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
         gameJPanel = new javax.swing.JPanel();
         panelXogo = new javax.swing.JPanel();
         lblBackgroundGame = new javax.swing.JLabel();
@@ -102,11 +110,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblTimeTitle = new javax.swing.JLabel();
         tglPause = new javax.swing.JToggleButton();
         backgroundProgram = new javax.swing.JLabel();
-        MenuJPanel = new javax.swing.JPanel();
-        Playlbl = new javax.swing.JLabel();
-        optionslbl = new javax.swing.JLabel();
-        Exitlbl = new javax.swing.JLabel();
-        background = new javax.swing.JLabel();
 
         extraFrame.setAlwaysOnTop(true);
         extraFrame.setBounds(new java.awt.Rectangle(450, 330, 0, 0));
@@ -241,6 +244,71 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(1100, 950));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        MenuJPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Playlbl.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 90)); // NOI18N
+        Playlbl.setForeground(new java.awt.Color(255, 255, 255));
+        Playlbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Playlbl.setText("Play");
+        Playlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Playlbl.setFocusable(false);
+        Playlbl.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        Playlbl.setNextFocusableComponent(panelXogo);
+        Playlbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PlaylblMouseClicked(evt);
+            }
+        });
+        MenuJPanel.add(Playlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 510, 190, 110));
+
+        Exitlbl.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 90)); // NOI18N
+        Exitlbl.setForeground(new java.awt.Color(255, 255, 255));
+        Exitlbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Exitlbl.setText("Exit");
+        Exitlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Exitlbl.setFocusable(false);
+        Exitlbl.setNextFocusableComponent(panelXogo);
+        Exitlbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ExitlblMouseClicked(evt);
+            }
+        });
+        MenuJPanel.add(Exitlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 810, 170, 70));
+
+        levelJSlider.setMaximum(20);
+        levelJSlider.setMinimum(1);
+        levelJSlider.setValue(1);
+        levelJSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                levelJSliderStateChanged(evt);
+            }
+        });
+        MenuJPanel.add(levelJSlider, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 710, -1, -1));
+
+        levelLbl.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        levelLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        levelLbl.setText("1");
+        MenuJPanel.add(levelLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 700, 30, 40));
+
+        panelMainMenu.setBackground(new java.awt.Color(204, 204, 255,200));
+        panelMainMenu.setBorder(new javax.swing.border.MatteBorder(null));
+        MenuJPanel.add(panelMainMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 290, 420));
+
+        backgroundMenu.setBackground(new java.awt.Color(204, 204, 255));
+        backgroundMenu.setForeground(new java.awt.Color(255, 255, 255));
+        MenuJPanel.add(backgroundMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 290, 400));
+
+        background.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/backgroundApp.jpg"))); // NOI18N
+        background.setText("jLabel1");
+        background.setFocusable(false);
+        background.setMaximumSize(new java.awt.Dimension(1100, 950));
+        background.setMinimumSize(new java.awt.Dimension(1100, 950));
+        background.setPreferredSize(new java.awt.Dimension(1100, 950));
+        MenuJPanel.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
+
+        getContentPane().add(MenuJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
 
         gameJPanel.setBackground(new java.awt.Color(102, 102, 102));
         gameJPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -409,57 +477,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(gameJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
 
-        MenuJPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        Playlbl.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 90)); // NOI18N
-        Playlbl.setForeground(new java.awt.Color(255, 255, 255));
-        Playlbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Playlbl.setText("Play");
-        Playlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Playlbl.setFocusable(false);
-        Playlbl.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        Playlbl.setNextFocusableComponent(panelXogo);
-        Playlbl.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PlaylblMouseClicked(evt);
-            }
-        });
-        MenuJPanel.add(Playlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, 170, 90));
-
-        optionslbl.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 90)); // NOI18N
-        optionslbl.setForeground(new java.awt.Color(255, 255, 255));
-        optionslbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        optionslbl.setText("Options");
-        optionslbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        optionslbl.setFocusable(false);
-        optionslbl.setNextFocusableComponent(panelXogo);
-        MenuJPanel.add(optionslbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 650, 280, 90));
-
-        Exitlbl.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 90)); // NOI18N
-        Exitlbl.setForeground(new java.awt.Color(255, 255, 255));
-        Exitlbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Exitlbl.setText("Exit");
-        Exitlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Exitlbl.setFocusable(false);
-        Exitlbl.setNextFocusableComponent(panelXogo);
-        Exitlbl.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ExitlblMouseClicked(evt);
-            }
-        });
-        MenuJPanel.add(Exitlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 810, 140, 60));
-
-        background.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/backgroundApp.jpg"))); // NOI18N
-        background.setText("jLabel1");
-        background.setFocusable(false);
-        background.setMaximumSize(new java.awt.Dimension(1100, 950));
-        background.setMinimumSize(new java.awt.Dimension(1100, 950));
-        background.setPreferredSize(new java.awt.Dimension(1100, 950));
-        MenuJPanel.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
-
-        getContentPane().add(MenuJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
-
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -517,6 +534,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         gameJPanel.setVisible(true);
         iniciarPartida();
 
+
     }//GEN-LAST:event_PlaylblMouseClicked
 
     private void mainMenuGameOverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuGameOverActionPerformed
@@ -538,6 +556,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void ExitlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitlblMouseClicked
         System.exit(0);
     }//GEN-LAST:event_ExitlblMouseClicked
+
+    private void levelJSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_levelJSliderStateChanged
+        levelLbl.setText(String.valueOf(levelJSlider.getValue()));
+    }//GEN-LAST:event_levelJSliderStateChanged
 
     /**
      * @param args the command line arguments
@@ -580,6 +602,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel Playlbl;
     private javax.swing.JLabel YouLoseTitle;
     private javax.swing.JLabel background;
+    private javax.swing.JLabel backgroundMenu;
     private javax.swing.JLabel backgroundProgram;
     private javax.swing.JFrame extraFrame;
     private javax.swing.JPanel gameJPanel;
@@ -595,14 +618,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblTime;
     private javax.swing.JLabel lblTimeTitle;
     private javax.swing.JLabel levelGameOver;
+    private javax.swing.JSlider levelJSlider;
+    private javax.swing.JLabel levelLbl;
     private javax.swing.JLabel levelTile;
     private javax.swing.JLabel linesGameOver;
     private javax.swing.JLabel linesTitle;
     private javax.swing.JButton mainMenuGameOver;
     private javax.swing.JButton mainMenuPause;
-    private javax.swing.JLabel optionslbl;
     private javax.swing.JPanel panelLevel;
     private javax.swing.JPanel panelLine;
+    private javax.swing.JPanel panelMainMenu;
     private javax.swing.JPanel panelNextFigure;
     private javax.swing.JPanel panelScore;
     private javax.swing.JPanel panelTime;
@@ -620,14 +645,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void iniciarPartida() {
-
         xogo = new Xogo(this);
         inicializarContadores();
         startRefreshScreen();
         startCrono();
         startSpeed();
-
-//            xogo.xenerarNovaFicha();
         pause = false;
         tglPause.setSelected(false);
         panelXogo.setFocusable(true);
@@ -702,6 +724,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pause = true;
         timerCrono.stop();
         timer.stop();
+        timerFPS.stop();
     }
 
     private void resume() {
@@ -742,7 +765,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         timeCooldown = 0;
         time = 0;
         score = 0;
-        speed = SPEEDEFAULT;
+        xogo.setDificultadInicioJuego(xogo.getDIFICULTAD_MIN() - (xogo.getDIFICULTAD_NIVEL() * levelJSlider.getValue()));
+        speed = xogo.getDificultadInicioJuego();
         progressLevel.setValue(0);
 
     }
@@ -848,7 +872,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             File prueba = new File("./src/resources/audio/suelo.wav");
 
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(prueba);
-            Clip effect2 = AudioSystem.getClip();
+            effect2 = AudioSystem.getClip();
             effect2.open(audioInputStream);
             effect2.start();
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
