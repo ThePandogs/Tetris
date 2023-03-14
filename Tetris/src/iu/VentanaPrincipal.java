@@ -87,7 +87,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Exitlbl = new javax.swing.JLabel();
         levelJSlider = new javax.swing.JSlider();
         levelLbl = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        panelMainMenu = new javax.swing.JPanel();
+        backgroundMenu = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
         gameJPanel = new javax.swing.JPanel();
         panelXogo = new javax.swing.JPanel();
@@ -259,7 +260,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 PlaylblMouseClicked(evt);
             }
         });
-        MenuJPanel.add(Playlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, 170, 90));
+        MenuJPanel.add(Playlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 510, 170, 90));
 
         Exitlbl.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 90)); // NOI18N
         Exitlbl.setForeground(new java.awt.Color(255, 255, 255));
@@ -273,7 +274,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 ExitlblMouseClicked(evt);
             }
         });
-        MenuJPanel.add(Exitlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 810, 140, 60));
+        MenuJPanel.add(Exitlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 810, 160, 62));
 
         levelJSlider.setMaximum(20);
         levelJSlider.setMinimum(1);
@@ -290,8 +291,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         levelLbl.setText("1");
         MenuJPanel.add(levelLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 700, 30, 40));
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
-        MenuJPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 290, 400));
+        panelMainMenu.setBackground(new java.awt.Color(204, 204, 255,200));
+        panelMainMenu.setBorder(new javax.swing.border.MatteBorder(null));
+        MenuJPanel.add(panelMainMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 290, 420));
+
+        backgroundMenu.setBackground(new java.awt.Color(204, 204, 255));
+        backgroundMenu.setForeground(new java.awt.Color(255, 255, 255));
+        MenuJPanel.add(backgroundMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 290, 400));
 
         background.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/backgroundApp.jpg"))); // NOI18N
@@ -596,11 +602,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel Playlbl;
     private javax.swing.JLabel YouLoseTitle;
     private javax.swing.JLabel background;
+    private javax.swing.JLabel backgroundMenu;
     private javax.swing.JLabel backgroundProgram;
     private javax.swing.JFrame extraFrame;
     private javax.swing.JPanel gameJPanel;
     private javax.swing.JPanel gameOverPanel;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblBackgroundGame;
     private javax.swing.JLabel lblLevel;
     private javax.swing.JLabel lblLevelTitle;
@@ -621,6 +627,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton mainMenuPause;
     private javax.swing.JPanel panelLevel;
     private javax.swing.JPanel panelLine;
+    private javax.swing.JPanel panelMainMenu;
     private javax.swing.JPanel panelNextFigure;
     private javax.swing.JPanel panelScore;
     private javax.swing.JPanel panelTime;

@@ -95,7 +95,7 @@ public class Xogo {
 
    
     public void moverEsquerda() {
-        boolean flag = true;
+        boolean posicionValida = true;
         Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
         //Comprobar posicion siguiente de cada cuadrado actual
         while (actual.hasNext()) {
@@ -103,11 +103,11 @@ public class Xogo {
             int x = ca.getX() - LADOCADRADO;
             int y = ca.getY();
             if (!ePosicionValida(x, y)) {
-                flag = false;
+                posicionValida = false;
             }
         }
         //Si todas las posiciones son validas
-        if (flag) {
+        if (posicionValida) {
             fichaActual.moverEsquerda();
         }
     }
@@ -208,7 +208,7 @@ public class Xogo {
 
     public boolean chocaFichaCoChan() {
 
-        boolean flag = false;
+        boolean choca = false;
 
         Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
 
@@ -216,29 +216,29 @@ public class Xogo {
             Cadrado cactual = actual.next();
 
             if (!ePosicionValida(cactual.getX(), cactual.getY() + LADOCADRADO)) {
-                flag = true;
+                choca = true;
             }
 
         }
 
-        return flag;
+        return choca;
     }
 
     public boolean ePosicionValida(int x, int y) {
-        boolean tag = true;
+        boolean posicionValida = true;
         if (x > MAXX || x < 0 || y > MAXY || y < -LADOCADRADO) {
-            tag = false;
+            posicionValida = false;
         }
         Iterator<Cadrado> chan = cadradosChan.iterator();
         while (chan.hasNext()) {
             Cadrado cchan = chan.next();
             if ((cchan.getX() == x && cchan.getY() == y)) {
-                tag = false;
+                posicionValida = false;
             }
 
         }
 
-        return tag;
+        return posicionValida;
     }
 
     public void borrarLinasCompletas() {
@@ -299,7 +299,7 @@ public class Xogo {
     }
 
     public boolean comprobarPerder() {
-        boolean tag = false;
+        boolean perdio = false;
         Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
         while (actual.hasNext()) {
             Cadrado cactual = actual.next();
@@ -308,10 +308,10 @@ public class Xogo {
 
                 ventanaPricipal.mostrarFinDoXogo();
 
-                tag = true;
+                perdio = true;
             }
         }
-        return tag;
+        return perdio;
 
     }
 
