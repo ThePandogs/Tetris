@@ -260,7 +260,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 PlaylblMouseClicked(evt);
             }
         });
-        MenuJPanel.add(Playlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 510, 170, 90));
+        MenuJPanel.add(Playlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 510, 190, 110));
 
         Exitlbl.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 90)); // NOI18N
         Exitlbl.setForeground(new java.awt.Color(255, 255, 255));
@@ -274,7 +274,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 ExitlblMouseClicked(evt);
             }
         });
-        MenuJPanel.add(Exitlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 810, 160, 62));
+        MenuJPanel.add(Exitlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 810, 170, 70));
 
         levelJSlider.setMaximum(20);
         levelJSlider.setMinimum(1);
