@@ -46,6 +46,7 @@ public final class Xogo {
         fichaSiguiente = xenerarNovaFicha();
         fichaActual = xenerarNovaFicha();
         pintarFichaActual();
+              ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
     }
 
     public int getNumeroLinas() {
@@ -333,6 +334,7 @@ public final class Xogo {
             borrarLinasCompletas();
             fichaStoFichaA();
             pintarFichaActual();
+            ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
         }
 
     }
