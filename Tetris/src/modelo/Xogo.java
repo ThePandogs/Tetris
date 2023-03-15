@@ -9,6 +9,7 @@ import iu.VentanaPrincipal;
 import static java.awt.Color.yellow;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,6 +34,14 @@ public final class Xogo {
     private Ficha fichaSiguiente;
     private int level = 0;
     private int LinasNextLevel = 0;
+List<Ficha> fichas = new ArrayList<>(Arrays.asList(
+                                new FichaT(this), 
+                             new FichaBarra(this),
+                             new FichaCadrada(this) ,
+                              new FichaL(this),
+                                 new FichaLReverse(this),
+                                  new FichaZ(this),
+                                   new FichaZReverse(this)));
 
     //LA DIFICULTAD AUMENTA CUANTO MENOS SEA EL VALOR YA QUE MODIFICA EL TIMER.
     private int dificultadInicioJuego;
@@ -306,10 +315,13 @@ public final class Xogo {
 
             if (cactual.getY() < SAFEZONE) {
 
-                ventanaPricipal.mostrarFinDoXogo();
+                
 
                 perdio = true;
             }
+        }
+        if(perdio){
+        ventanaPricipal.mostrarFinDoXogo();
         }
         return perdio;
 
