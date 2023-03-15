@@ -24,17 +24,17 @@ public final class Xogo {
     private final int LADOCADRADO = 50;
     private final int MAXY = 850;
     private final int MAXX = 450;
+    private final int SAFEZONE = LADOCADRADO * 2;
     private int numeroLinas = 0;
     private VentanaPrincipal ventanaPricipal;
     private Ficha fichaActual;
     private List<Cadrado> cadradosChan = new ArrayList();
     private List<Cadrado> linea = new ArrayList();
-private Ficha fichaSiguiente;
+    private Ficha fichaSiguiente;
     private int level = 0;
     private int LinasNextLevel = 0;
 
     //LA DIFICULTAD AUMENTA CUANTO MENOS SEA EL VALOR YA QUE MODIFICA EL TIMER.
-  
     private int dificultadInicioJuego;
     private final int DIFICULTAD_MIN = 1000;
     private final int DIFICULTAD_NIVEL = 40;
@@ -43,8 +43,8 @@ private Ficha fichaSiguiente;
 
     public Xogo(VentanaPrincipal ventana) {
         ventanaPricipal = ventana;
-        fichaSiguiente=xenerarNovaFicha();
-        fichaActual=xenerarNovaFicha();
+        fichaSiguiente = xenerarNovaFicha();
+        fichaActual = xenerarNovaFicha();
         pintarFichaActual();
     }
 
@@ -92,11 +92,6 @@ private Ficha fichaSiguiente;
         return DIFICULTAD_NIVEL;
     }
 
-
-    
-    
-
-   
     public void moverEsquerda() {
         boolean posicionValida = true;
         Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
@@ -144,11 +139,10 @@ private Ficha fichaSiguiente;
         } else {
             engadeFichaBorraLinasCompletasXeneraNovaFicha();
         }
-
     }
 
     public Ficha xenerarNovaFicha() {
-Ficha obj = null;
+        Ficha obj = null;
         switch (numeroRandom(30)) {
 
             case 1, 5, 6, 13, 30 -> {
@@ -186,18 +180,16 @@ Ficha obj = null;
             }
         }
         return obj;
-
-       
     }
-private void pintarFichaActual(){
- Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
+
+    private void pintarFichaActual() {
+        Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
         while (actual.hasNext()) {
             Cadrado cactual = actual.next();
             ventanaPricipal.pintarCadrado(cactual.getLblCadrado());
-   System.out.println("Fichaa: "+fichaActual.id + "fichas: "+fichaSiguiente.id);
         }
-     
-}
+    }
+
     private int numeroRandom(int max) {
         return (int) Math.floor(Math.random() * max + 1);
     }
@@ -304,14 +296,14 @@ private void pintarFichaActual(){
         }
 
     }
-
+    
     public boolean comprobarPerder() {
         boolean perdio = false;
         Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
         while (actual.hasNext()) {
             Cadrado cactual = actual.next();
 
-            if (cactual.getY() < LADOCADRADO * 2) {
+            if (cactual.getY() < SAFEZONE) {
 
                 ventanaPricipal.mostrarFinDoXogo();
 
@@ -321,23 +313,28 @@ private void pintarFichaActual(){
         return perdio;
 
     }
-private void fichaStoFichaA(){
-fichaActual=fichaSiguiente;
-while(fichaSiguiente.id==fichaActual.id){
-fichaSiguiente=xenerarNovaFicha();
-}}
+
+    private void fichaStoFichaA() {
+        fichaActual = fichaSiguiente;
+        while (fichaSiguiente.id == fichaActual.id) {
+            fichaSiguiente = xenerarNovaFicha();
+        }
+    }
+
     private void engadeFichaBorraLinasCompletasXeneraNovaFicha() {
+
+        engadirFichaAoChan();
         try {
-            engadirFichaAoChan();
             ventanaPricipal.ReproducirSuelo();
-            if (!comprobarPerder()) {
-                borrarLinasCompletas();
-                fichaStoFichaA();
-                pintarFichaActual();
-            }
         } catch (IOException ex) {
             Logger.getLogger(Xogo.class.getName()).log(Level.SEVERE, null, ex);
         }
+        if (!comprobarPerder()) {
+            borrarLinasCompletas();
+            fichaStoFichaA();
+            pintarFichaActual();
+        }
+
     }
 
     public boolean aumentarNivel(int lineas, int delayActual) {
@@ -349,7 +346,6 @@ fichaSiguiente=xenerarNovaFicha();
             aumentaNivel = true;
         }
         return aumentaNivel;
-
     }
 
     public void anadirCuadradosAleatorios() {
@@ -371,7 +367,6 @@ fichaSiguiente=xenerarNovaFicha();
                 random = numeroRandom(9);
 
             }
-
             //Añade el cuadrado
             Cadrado c = new Cadrado(random * 50, MAXY, yellow);
             cadradosChan.add(c);
