@@ -46,7 +46,7 @@ public final class Xogo {
         fichaSiguiente = xenerarNovaFicha();
         fichaActual = xenerarNovaFicha();
         pintarFichaActual();
-              ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
+        ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
     }
 
     public int getNumeroLinas() {
@@ -297,7 +297,7 @@ public final class Xogo {
         }
 
     }
-    
+
     public boolean comprobarPerder() {
         boolean perdio = false;
         Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
