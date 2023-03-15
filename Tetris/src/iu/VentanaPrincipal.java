@@ -42,8 +42,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private Timer timerCrono;
     private Timer timer;
     private Timer timerFPS;
-
-    private boolean pause;
     private Clip clip;
     private Clip effect2;
 
@@ -125,6 +123,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pausePanel.setAlignmentY(0.0F);
         pausePanel.setMaximumSize(new java.awt.Dimension(450, 330));
         pausePanel.setMinimumSize(new java.awt.Dimension(450, 330));
+        pausePanel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pausePanelKeyPressed(evt);
+            }
+        });
         pausePanel.setLayout(null);
         pausePanel.setVisible(false);
 
@@ -246,6 +249,74 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1100, 950));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+
+        MenuJPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Playlbl.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 90)); // NOI18N
+        Playlbl.setForeground(new java.awt.Color(255, 255, 255));
+        Playlbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Playlbl.setText("Play");
+        Playlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Playlbl.setFocusable(false);
+        Playlbl.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        Playlbl.setNextFocusableComponent(panelXogo);
+        Playlbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PlaylblMouseClicked(evt);
+            }
+        });
+        MenuJPanel.add(Playlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 510, 190, 110));
+
+        Exitlbl.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 90)); // NOI18N
+        Exitlbl.setForeground(new java.awt.Color(255, 255, 255));
+        Exitlbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Exitlbl.setText("Exit");
+        Exitlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Exitlbl.setFocusable(false);
+        Exitlbl.setNextFocusableComponent(panelXogo);
+        Exitlbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ExitlblMouseClicked(evt);
+            }
+        });
+        MenuJPanel.add(Exitlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 810, 170, 70));
+
+        levelJSlider.setMaximum(20);
+        levelJSlider.setMinimum(1);
+        levelJSlider.setValue(1);
+        levelJSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                levelJSliderStateChanged(evt);
+            }
+        });
+        MenuJPanel.add(levelJSlider, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 710, -1, -1));
+
+        levelLbl.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        levelLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        levelLbl.setText("1");
+        MenuJPanel.add(levelLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 700, 30, 40));
+
+        panelMainMenu.setBackground(new java.awt.Color(204, 204, 255,200));
+        panelMainMenu.setBorder(new javax.swing.border.MatteBorder(null));
+        MenuJPanel.add(panelMainMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 290, 420));
+
+        backgroundMenu.setBackground(new java.awt.Color(255, 153, 0));
+        backgroundMenu.setForeground(new java.awt.Color(255, 255, 255));
+        MenuJPanel.add(backgroundMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 290, 420));
+
+        background.setBackground(new java.awt.Color(204, 204, 255));
+        background.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/backgroundApp.jpg"))); // NOI18N
+        background.setText("jLabel1");
+        background.setFocusable(false);
+        background.setMaximumSize(new java.awt.Dimension(1100, 950));
+        background.setMinimumSize(new java.awt.Dimension(1100, 950));
+        background.setPreferredSize(new java.awt.Dimension(1100, 950));
+        MenuJPanel.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
+
+        getContentPane().add(MenuJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
+
+
         gameJPanel.setBackground(new java.awt.Color(102, 102, 102));
         gameJPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -259,9 +330,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelXogo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 panelXogoKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                panelXogoKeyTyped(evt);
             }
         });
         panelXogo.setLayout(null);
@@ -488,16 +556,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tglPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tglPauseActionPerformed
-        if (!pause) {
+        if (tglPause.isSelected()) {
             pauseMenu();
         } else {
             resumeMenu();
         }
     }//GEN-LAST:event_tglPauseActionPerformed
-
-    private void panelXogoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_panelXogoKeyTyped
-
-    }//GEN-LAST:event_panelXogoKeyTyped
 
     private void panelXogoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_panelXogoKeyPressed
 
@@ -513,11 +577,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 timer.restart();
             }
             case 80, 27 -> {
-                if (!pause) {
+                if (!tglPause.isSelected()) {
+                    tglPause.setSelected(true);
                     pauseMenu();
-                } else {
-                    resumeMenu();
-                }
+                } 
             }
 
             default -> {
@@ -549,6 +612,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         MenuJPanel.setVisible(true);
         gameJPanel.setVisible(false);
         extraFrame.setVisible(false);
+        closeActualGame();
     }//GEN-LAST:event_mainMenuGameOverActionPerformed
 
     private void mainMenuPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuPauseActionPerformed
@@ -557,6 +621,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         gameJPanel.setVisible(false);
         extraFrame.setVisible(false);
         closeActualGame();
+
     }//GEN-LAST:event_mainMenuPauseActionPerformed
 
     private void ExitlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitlblMouseClicked
@@ -566,6 +631,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void levelJSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_levelJSliderStateChanged
         levelLbl.setText(String.valueOf(levelJSlider.getValue()));
     }//GEN-LAST:event_levelJSliderStateChanged
+
+    private void pausePanelKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pausePanelKeyPressed
+           switch (evt.getKeyCode()) {
+           
+            case 80, 27 -> {
+                if (tglPause.isSelected()) {                
+                    tglPause.setSelected(false);
+                    resumeMenu();
+                }
+            }
+        }
+    }//GEN-LAST:event_pausePanelKeyPressed
 
     /**
      * @param args the command line arguments
@@ -657,7 +734,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         startRefreshScreen();
         startCrono();
         startSpeed();
-        pause = false;
         tglPause.setSelected(false);
         panelXogo.setFocusable(true);
         panelXogo.requestFocus();
@@ -720,14 +796,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelXogo.remove(lblCadrado);
     }
 
-    public void mostrarNumeroLinas() {
-        lblLineTitle.setText(String.valueOf(xogo.getNumeroLinas()));
-    }
-
     public void mostrarFinDoXogo() {
         timerCrono.stop();
         timer.stop();
-        pause = true;
+
         pausePanel.setVisible(false);
         gameOverPanel.setVisible(true);
         extraFrame.setVisible(true);
@@ -739,51 +811,44 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         tglPause.setVisible(false);
         clip.close();
         effect2.close();
-    }
 
-    public boolean isPause() {
-        return pause;
     }
 
     private void pause() {
-        pause = true;
+        timerFPS.stop();
         timerCrono.stop();
         timer.stop();
-        timerFPS.stop();
+        clip.stop();
     }
 
     private void resume() {
-        pause = false;
+        timerFPS.start();
         timerCrono.start();
         timer.start();
+        clip.start();
     }
 
     private void pauseMenu() {
         pause();
         pausePanel.setVisible(true);
+        pausePanel.requestFocus();
         extraFrame.setVisible(true);
-        clip.stop();
-
+        
     }
 
     private void resumeMenu() {
         resume();
         extraFrame.setVisible(false);
         pausePanel.setVisible(false);
-        clip.start();
     }
 
     private void restartGame() {
-
-        pause = false;
-
         extraFrame.setVisible(false);
         pausePanel.setVisible(false);
         gameOverPanel.setVisible(false);
         tglPause.setVisible(true);
         cleanPanelXogo();
         iniciarPartida();
-
     }
 
     private void inicializarContadores() {
@@ -793,7 +858,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         xogo.setDificultadInicioJuego(xogo.getDIFICULTAD_MIN() - (xogo.getDIFICULTAD_NIVEL() * levelJSlider.getValue()));
         speed = xogo.getDificultadInicioJuego();
         progressLevel.setValue(0);
-
     }
 
     private void startCrono() {
@@ -842,25 +906,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     private void closeActualGame() {
-
+        cleanPanelXogo();
         xogo = null;
-
-    }
-
-    public Timer getTimer() {
-        return timer;
-    }
-
-    public int getTimeCooldown() {
-        return timeCooldown;
-    }
-
-    public void setTimeCooldown(int timeCooldown) {
-        this.timeCooldown = timeCooldown;
-    }
-
-    public int getTime() {
-        return time;
     }
 
     public void ReproducirSonido() throws IOException {
@@ -879,9 +926,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public void ReproducirBSO() throws IOException {
 
+        File prueba = new File("./src/resources/audio/bso.wav");
         try {
-            File prueba = new File("./src/resources/audio/bso.wav");
-
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(prueba);
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
@@ -893,9 +939,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public void ReproducirSuelo() throws IOException {
 
+        File prueba = new File("./src/resources/audio/suelo.wav");
         try {
-            File prueba = new File("./src/resources/audio/suelo.wav");
-
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(prueba);
             effect2 = AudioSystem.getClip();
             effect2.open(audioInputStream);
@@ -903,5 +948,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             System.out.println("Error al reproducir el sonido.");
         }
+    }
+
+    public Timer getTimer() {
+        return timer;
+    }
+
+    public int getTimeCooldown() {
+        return timeCooldown;
+    }
+
+    public void setTimeCooldown(int timeCooldown) {
+        this.timeCooldown = timeCooldown;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    private void tglPauseActionPerformed() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
