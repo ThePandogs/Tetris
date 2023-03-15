@@ -29,7 +29,7 @@ public final class Xogo {
     private Ficha fichaActual;
     private List<Cadrado> cadradosChan = new ArrayList();
     private List<Cadrado> linea = new ArrayList();
-private Ficha fichaSiguiente;
+    private Ficha fichaSiguiente;
     private int level = 0;
     private int LinasNextLevel = 0;
 
@@ -46,6 +46,7 @@ private Ficha fichaSiguiente;
         fichaSiguiente=xenerarNovaFicha();
         fichaActual=xenerarNovaFicha();
         pintarFichaActual();
+        ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
     }
 
     public int getNumeroLinas() {
@@ -334,6 +335,7 @@ fichaSiguiente=xenerarNovaFicha();
                 borrarLinasCompletas();
                 fichaStoFichaA();
                 pintarFichaActual();
+                ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
             }
         } catch (IOException ex) {
             Logger.getLogger(Xogo.class.getName()).log(Level.SEVERE, null, ex);
