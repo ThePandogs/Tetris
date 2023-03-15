@@ -80,6 +80,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         linesGameOver = new javax.swing.JLabel();
         restartGameOver = new javax.swing.JButton();
         mainMenuGameOver = new javax.swing.JButton();
+        MenuJPanel = new javax.swing.JPanel();
+        Playlbl = new javax.swing.JLabel();
+        Exitlbl = new javax.swing.JLabel();
+        levelJSlider = new javax.swing.JSlider();
+        levelLbl = new javax.swing.JLabel();
+        panelMainMenu = new javax.swing.JPanel();
+        backgroundMenu = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
         gameJPanel = new javax.swing.JPanel();
         panelXogo = new javax.swing.JPanel();
         lblBackgroundGame = new javax.swing.JLabel();
@@ -88,7 +96,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblScore = new javax.swing.JLabel();
         panelNextFigure = new javax.swing.JPanel();
         lblNextTitle = new javax.swing.JLabel();
-        lblFichaSiguiente = new javax.swing.JLabel();
         panelLevel = new javax.swing.JPanel();
         lblLevelTitle = new javax.swing.JLabel();
         progressLevel = new style.CircleProgressBar();
@@ -101,14 +108,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblTimeTitle = new javax.swing.JLabel();
         tglPause = new javax.swing.JToggleButton();
         backgroundProgram = new javax.swing.JLabel();
-        MenuJPanel = new javax.swing.JPanel();
-        Playlbl = new javax.swing.JLabel();
-        Exitlbl = new javax.swing.JLabel();
-        levelJSlider = new javax.swing.JSlider();
-        levelLbl = new javax.swing.JLabel();
-        panelMainMenu = new javax.swing.JPanel();
-        backgroundMenu = new javax.swing.JLabel();
-        background = new javax.swing.JLabel();
 
         extraFrame.setAlwaysOnTop(true);
         extraFrame.setBounds(new java.awt.Rectangle(450, 330, 0, 0));
@@ -249,7 +248,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1100, 950));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-
         MenuJPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Playlbl.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 90)); // NOI18N
@@ -315,7 +313,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         MenuJPanel.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
 
         getContentPane().add(MenuJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
-
 
         gameJPanel.setBackground(new java.awt.Color(102, 102, 102));
         gameJPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -383,11 +380,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblNextTitle.setMinimumSize(new java.awt.Dimension(100, 40));
         lblNextTitle.setPreferredSize(new java.awt.Dimension(100, 40));
         panelNextFigure.add(lblNextTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 5, -1, -1));
-
-        lblFichaSiguiente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblFichaSiguiente.setToolTipText("");
-        lblFichaSiguiente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        panelNextFigure.add(lblFichaSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 200, 190));
 
         gameJPanel.add(panelNextFigure, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 30, 220, 280));
 
@@ -485,71 +477,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         gameJPanel.add(backgroundProgram, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
 
         getContentPane().add(gameJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
-
-        MenuJPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        Playlbl.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 90)); // NOI18N
-        Playlbl.setForeground(new java.awt.Color(255, 255, 255));
-        Playlbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Playlbl.setText("Play");
-        Playlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Playlbl.setFocusable(false);
-        Playlbl.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        Playlbl.setNextFocusableComponent(panelXogo);
-        Playlbl.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PlaylblMouseClicked(evt);
-            }
-        });
-        MenuJPanel.add(Playlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 510, 190, 110));
-
-        Exitlbl.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 90)); // NOI18N
-        Exitlbl.setForeground(new java.awt.Color(255, 255, 255));
-        Exitlbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Exitlbl.setText("Exit");
-        Exitlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Exitlbl.setFocusable(false);
-        Exitlbl.setNextFocusableComponent(panelXogo);
-        Exitlbl.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ExitlblMouseClicked(evt);
-            }
-        });
-        MenuJPanel.add(Exitlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 810, 170, 70));
-
-        levelJSlider.setMaximum(20);
-        levelJSlider.setMinimum(1);
-        levelJSlider.setValue(1);
-        levelJSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                levelJSliderStateChanged(evt);
-            }
-        });
-        MenuJPanel.add(levelJSlider, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 710, -1, -1));
-
-        levelLbl.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
-        levelLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        levelLbl.setText("1");
-        MenuJPanel.add(levelLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 700, 30, 40));
-
-        panelMainMenu.setBackground(new java.awt.Color(204, 204, 255,200));
-        panelMainMenu.setBorder(new javax.swing.border.MatteBorder(null));
-        MenuJPanel.add(panelMainMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 290, 420));
-
-        backgroundMenu.setBackground(new java.awt.Color(204, 204, 255));
-        backgroundMenu.setForeground(new java.awt.Color(255, 255, 255));
-        MenuJPanel.add(backgroundMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 290, 400));
-
-        background.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/backgroundApp.jpg"))); // NOI18N
-        background.setText("jLabel1");
-        background.setFocusable(false);
-        background.setMaximumSize(new java.awt.Dimension(1100, 950));
-        background.setMinimumSize(new java.awt.Dimension(1100, 950));
-        background.setPreferredSize(new java.awt.Dimension(1100, 950));
-        MenuJPanel.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
-
-        getContentPane().add(MenuJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
 
         pack();
         setLocationRelativeTo(null);
@@ -691,7 +618,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel gameJPanel;
     private javax.swing.JPanel gameOverPanel;
     private javax.swing.JLabel lblBackgroundGame;
-    private javax.swing.JLabel lblFichaSiguiente;
     private javax.swing.JLabel lblLevel;
     private javax.swing.JLabel lblLevelTitle;
     private javax.swing.JLabel lblLine;
@@ -773,25 +699,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
 
     }
- public void mostrarFichaSiguiente(JLabel lblCadrado) {
 
-        if (lblCadrado.getBackground() == Color.BLUE) {
-            lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cuadrado.png")));
-        } else if (lblCadrado.getBackground() == Color.RED) {
-             lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/zderecha.png")));
-        } else if (lblCadrado.getBackground() == Color.YELLOW) {
-             lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/barra.png")));
-        } else if (lblCadrado.getBackground() == Color.GREEN) {
-             lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lizquierda.png")));
-        } else if (lblCadrado.getBackground() == Color.WHITE) {
-             lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lderecha.png")));
-        } else if (lblCadrado.getBackground() == Color.MAGENTA) {
-             lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/zizquierda.png")));
-        } else if (lblCadrado.getBackground() == Color.ORANGE) {
-             lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/t.png")));
-        }
-
-    }
     public void borrarCadrado(JLabel lblCadrado) {
         panelXogo.remove(lblCadrado);
     }

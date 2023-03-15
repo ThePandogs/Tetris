@@ -46,7 +46,6 @@ public final class Xogo {
         fichaSiguiente = xenerarNovaFicha();
         fichaActual = xenerarNovaFicha();
         pintarFichaActual();
-        ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
     }
 
     public int getNumeroLinas() {
@@ -327,14 +326,6 @@ public final class Xogo {
         engadirFichaAoChan();
         try {
             ventanaPricipal.ReproducirSuelo();
-
-            if (!comprobarPerder()) {
-                borrarLinasCompletas();
-                fichaStoFichaA();
-                pintarFichaActual();
-                ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
-            }
-
         } catch (IOException ex) {
             Logger.getLogger(Xogo.class.getName()).log(Level.SEVERE, null, ex);
         }
