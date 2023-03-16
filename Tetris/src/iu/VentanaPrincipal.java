@@ -19,6 +19,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BorderFactory;
+import javax.swing.JSlider;
 
 /**
  *
@@ -897,6 +898,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public int getTime() {
         return time;
+    }
+
+    public JSlider getLevelJSlider() {
+        return levelJSlider;
     }
 
     private void tglPauseActionPerformed() {
