@@ -56,7 +56,9 @@ public final class Xogo {
         fichaActual = xenerarNovaFicha();
         pintarFichaActual();
         ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
+
         this.level=ventanaPricipal.getLevelJSlider().getValue();
+
     }
 
     public int getNumeroLinas() {

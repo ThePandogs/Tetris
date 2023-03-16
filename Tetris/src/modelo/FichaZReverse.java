@@ -12,7 +12,6 @@ import static java.awt.Color.RED;
  * @author a14carlosfd
  *
  */
-
 public class FichaZReverse extends Ficha {
 
     public Cadrado c = new Cadrado(300, 0, RED);

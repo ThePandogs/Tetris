@@ -13,7 +13,6 @@ import java.util.List;
  * @author a14carlosfd
  *
  */
-
 public class FichaT extends Ficha {
 
     public Cadrado c = new Cadrado(150, 50, orange);
@@ -27,7 +26,7 @@ public class FichaT extends Ficha {
         cadrados.add(c1);
         cadrados.add(c2);
         cadrados.add(c3);
-         id=5;
+        id = 5;
 
     }
 

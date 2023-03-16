@@ -513,7 +513,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 if (!tglPause.isSelected()) {
                     tglPause.setSelected(true);
                     pauseMenu();
-                } 
+                }
             }
 
             default -> {
@@ -566,10 +566,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_levelJSliderStateChanged
 
     private void pausePanelKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pausePanelKeyPressed
-           switch (evt.getKeyCode()) {
-           
+        switch (evt.getKeyCode()) {
+
             case 80, 27 -> {
-                if (tglPause.isSelected()) {                
+                if (tglPause.isSelected()) {
                     tglPause.setSelected(false);
                     resumeMenu();
                 }
@@ -707,32 +707,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     }
 
- public void mostrarFichaSiguiente(JLabel lblCadrado) {
+    public void mostrarFichaSiguiente(JLabel lblCadrado) {
 
         if (lblCadrado.getBackground() == Color.BLUE) {
             lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cuadrado.png")));
         } else if (lblCadrado.getBackground() == Color.RED) {
-             lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/zderecha.png")));
+            lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/zderecha.png")));
         } else if (lblCadrado.getBackground() == Color.YELLOW) {
-             lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/barra.png")));
+            lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/barra.png")));
         } else if (lblCadrado.getBackground() == Color.GREEN) {
-             lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lizquierda.png")));
+            lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lizquierda.png")));
         } else if (lblCadrado.getBackground() == Color.WHITE) {
-             lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lderecha.png")));
+            lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lderecha.png")));
         } else if (lblCadrado.getBackground() == Color.MAGENTA) {
-             lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/zizquierda.png")));
+            lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/zizquierda.png")));
         } else if (lblCadrado.getBackground() == Color.ORANGE) {
-             lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/t.png")));
+            lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/t.png")));
         }
 
     }
+
     public void borrarCadrado(JLabel lblCadrado) {
         panelXogo.remove(lblCadrado);
     }
 
     public void mostrarFinDoXogo() {
-        timerCrono.stop();
-        timer.stop();
+        pause();
 
         pausePanel.setVisible(false);
         gameOverPanel.setVisible(true);
@@ -767,7 +767,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pausePanel.setVisible(true);
         pausePanel.requestFocus();
         extraFrame.setVisible(true);
-        
+
     }
 
     private void resumeMenu() {

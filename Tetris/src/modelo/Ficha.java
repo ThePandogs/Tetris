@@ -14,13 +14,13 @@ import java.util.List;
  * @author a14carlosfd
  *
  */
-
 public abstract class Ficha {
 
     List<Cadrado> cadrados;
     int posicion = 0;
     public Xogo xogo;
-int id;
+    int id;
+
     public Ficha(Xogo x) {
         cadrados = new ArrayList<>();
         xogo = x;
