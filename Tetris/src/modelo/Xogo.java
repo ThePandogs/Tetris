@@ -57,7 +57,7 @@ public final class Xogo {
         pintarFichaActual();
         ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
 
-        this.level=ventanaPricipal.getLevelJSlider().getValue();
+        this.level = ventanaPricipal.getLevelJSlider().getValue();
 
     }
 
@@ -311,20 +311,16 @@ public final class Xogo {
     }
 
     public boolean comprobarPerder() {
-        boolean perdio = false;
         Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
         while (actual.hasNext()) {
             Cadrado cactual = actual.next();
 
             if (cactual.getY() < SAFEZONE) {
 
-                perdio = true;
+                return true;
             }
         }
-        if (perdio) {
-            ventanaPricipal.mostrarFinDoXogo();
-        }
-        return perdio;
+        return false;
 
     }
 
@@ -344,10 +340,14 @@ public final class Xogo {
             Logger.getLogger(Xogo.class.getName()).log(Level.SEVERE, null, ex);
         }
         if (!comprobarPerder()) {
+
             borrarLinasCompletas();
             fichaStoFichaA();
             pintarFichaActual();
             ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
+
+        } else {
+            ventanaPricipal.mostrarFinDoXogo();
         }
 
     }

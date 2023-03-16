@@ -734,7 +734,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public void mostrarFinDoXogo() {
         pause();
 
-        pausePanel.setVisible(false);
         gameOverPanel.setVisible(true);
         extraFrame.setVisible(true);
 
@@ -744,7 +743,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         levelGameOver.setText(lblLevel.getText());
         tglPause.setVisible(false);
         clip.close();
-        effect2.close();
+//        effect2.close();
 
     }
 
@@ -904,7 +903,5 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return levelJSlider;
     }
 
-    private void tglPauseActionPerformed() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+
 }
