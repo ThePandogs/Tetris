@@ -32,16 +32,16 @@ public final class Xogo {
     private List<Cadrado> cadradosChan = new ArrayList();
     private List<Cadrado> linea = new ArrayList();
     private Ficha fichaSiguiente;
-    private int level = 0;
+    private int level;
     private int LinasNextLevel = 0;
-List<Ficha> fichas = new ArrayList<>(Arrays.asList(
-                                new FichaT(this), 
-                             new FichaBarra(this),
-                             new FichaCadrada(this) ,
-                              new FichaL(this),
-                                 new FichaLReverse(this),
-                                  new FichaZ(this),
-                                   new FichaZReverse(this)));
+    List<Ficha> fichas = new ArrayList<>(Arrays.asList(
+            new FichaT(this),
+            new FichaBarra(this),
+            new FichaCadrada(this),
+            new FichaL(this),
+            new FichaLReverse(this),
+            new FichaZ(this),
+            new FichaZReverse(this)));
 
     //LA DIFICULTAD AUMENTA CUANTO MENOS SEA EL VALOR YA QUE MODIFICA EL TIMER.
     private int dificultadInicioJuego;
@@ -55,7 +55,8 @@ List<Ficha> fichas = new ArrayList<>(Arrays.asList(
         fichaSiguiente = xenerarNovaFicha();
         fichaActual = xenerarNovaFicha();
         pintarFichaActual();
-              ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
+        ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
+        this.level=ventanaPricipal.getLevelJSlider().getValue();
     }
 
     public int getNumeroLinas() {
@@ -306,7 +307,7 @@ List<Ficha> fichas = new ArrayList<>(Arrays.asList(
         }
 
     }
-    
+
     public boolean comprobarPerder() {
         boolean perdio = false;
         Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
@@ -315,13 +316,11 @@ List<Ficha> fichas = new ArrayList<>(Arrays.asList(
 
             if (cactual.getY() < SAFEZONE) {
 
-                
-
                 perdio = true;
             }
         }
-        if(perdio){
-        ventanaPricipal.mostrarFinDoXogo();
+        if (perdio) {
+            ventanaPricipal.mostrarFinDoXogo();
         }
         return perdio;
 
