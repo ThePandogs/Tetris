@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -20,6 +22,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BorderFactory;
 import javax.swing.JSlider;
+import modelo.Cadrado;
 
 /**
  *
@@ -532,7 +535,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void mainMenuGameOverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuGameOverActionPerformed
         pause();
         tglPause.setVisible(true);
-         gameOverPanel.setVisible(false);
+        gameOverPanel.setVisible(false);
         MenuJPanel.setVisible(true);
         gameJPanel.setVisible(false);
         closeActualGame();
@@ -677,23 +680,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     private void iconarCadrado(JLabel lblCadrado) {
+        HashMap<Color, String> myMap = new HashMap<Color, String>() {
+            {
+                put(Color.BLUE, "/azul.png");
+                put(Color.RED, "/rojo.png");
+                put(Color.YELLOW, "/amarillo.png");
+                put(Color.GREEN, "/verde.png");
+                put(Color.WHITE, "/blanco.png");
+                put(Color.MAGENTA, "/morado.png");
+                put(Color.ORANGE, "/naranja.png");
 
-        if (lblCadrado.getBackground() == Color.BLUE) {
-            lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/azul.png")));
-        } else if (lblCadrado.getBackground() == Color.RED) {
-            lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rojo.png")));
-        } else if (lblCadrado.getBackground() == Color.YELLOW) {
-            lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/amarillo.png")));
-        } else if (lblCadrado.getBackground() == Color.GREEN) {
-            lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/verde.png")));
-        } else if (lblCadrado.getBackground() == Color.WHITE) {
-            lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/blanco.png")));
-        } else if (lblCadrado.getBackground() == Color.MAGENTA) {
-            lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/morado.png")));
-        } else if (lblCadrado.getBackground() == Color.ORANGE) {
-            lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/naranja.png")));
-        }
-
+            }
+        };
+        lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource(myMap.get(lblCadrado.getBackground()))));
     }
 
     public void mostrarFichaSiguiente(JLabel lblCadrado) {
