@@ -334,13 +334,13 @@ public final class Xogo {
     private void engadeFichaBorraLinasCompletasXeneraNovaFicha() {
 
         engadirFichaAoChan();
-        try {
+      
+        if (!comprobarPerder()) {
+  try {
             ventanaPricipal.ReproducirSuelo();
         } catch (IOException ex) {
             Logger.getLogger(Xogo.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (!comprobarPerder()) {
-
             borrarLinasCompletas();
             fichaStoFichaA();
             pintarFichaActual();
