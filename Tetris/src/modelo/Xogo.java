@@ -209,13 +209,17 @@ public final class Xogo {
 
     public void engadirFichaAoChan() {
 
-        Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
-        while (actual.hasNext()) {
-            Cadrado c = actual.next();
-            cadradosChan.add(c);
-
+       
+            Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
+            while (actual.hasNext()) {
+                Cadrado c = actual.next();
+                cadradosChan.add(c);
+                
+            } try {
+            ventanaPricipal.getSonido().ReproducirSuelo();
+        } catch (IOException ex) {
+            Logger.getLogger(Xogo.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public boolean chocaFichaCoChan() {
@@ -280,16 +284,16 @@ public final class Xogo {
     }
 
     public void borrarLinas() {
-        try {
+        
             Iterator<Cadrado> blinea = linea.iterator();
             while (blinea.hasNext()) {
                 Cadrado este = blinea.next();
-
+                
                 ventanaPricipal.borrarCadrado(este.getLblCadrado());
                 cadradosChan.removeAll(linea);
-
-            }
-            ventanaPricipal.ReproducirSonido();
+                
+            }try {
+            ventanaPricipal.getSonido().ReproducirSonidoLinea();
         } catch (IOException ex) {
             Logger.getLogger(Xogo.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -337,19 +341,15 @@ public final class Xogo {
 
     private void engadeFichaBorraLinasCompletasXeneraNovaFicha() {
 
-        engadirFichaAoChan();
-        try {
-            ventanaPricipal.ReproducirSuelo();
-        } catch (IOException ex) {
-            Logger.getLogger(Xogo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if (!comprobarPerder()) {
-            borrarLinasCompletas();
-            fichaStoFichaA();
-            pintarFichaActual();
-            ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
-        }
-
+    
+            engadirFichaAoChan();
+       
+            if (!comprobarPerder()) {
+                borrarLinasCompletas();
+                fichaStoFichaA();
+                pintarFichaActual();
+                ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
+            }   
     }
 
     public boolean aumentarNivel(int lineas, int delayActual) {
