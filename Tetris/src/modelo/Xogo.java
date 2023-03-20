@@ -339,13 +339,13 @@ public final class Xogo {
 
 
         engadirFichaAoChan();
-      
-        if (!comprobarPerder()) {
-  try {
+        try {
             ventanaPricipal.ReproducirSuelo();
         } catch (IOException ex) {
             Logger.getLogger(Xogo.class.getName()).log(Level.SEVERE, null, ex);
         }
+        if (!comprobarPerder()) {
+
             borrarLinasCompletas();
             fichaStoFichaA();
             pintarFichaActual();
