@@ -289,7 +289,7 @@ public final class Xogo {
                 cadradosChan.removeAll(linea);
 
             }
-            ventanaPricipal.ReproducirSonido();
+            ventanaPricipal.getSonido().ReproducirSonidoLinea();
         } catch (IOException ex) {
             Logger.getLogger(Xogo.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -335,7 +335,7 @@ public final class Xogo {
 
         engadirFichaAoChan();
         try {
-            ventanaPricipal.ReproducirSuelo();
+            ventanaPricipal.getSonido().ReproducirSuelo();
         } catch (IOException ex) {
             Logger.getLogger(Xogo.class.getName()).log(Level.SEVERE, null, ex);
         }
