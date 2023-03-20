@@ -335,7 +335,8 @@ public final class Xogo {
 
         engadirFichaAoChan();
         try {
-            ventanaPricipal.getSonido().ReproducirSuelo();
+             if (!ventanaPricipal.getXogo().comprobarPerder()) {
+            ventanaPricipal.getSonido().ReproducirSuelo();}
         } catch (IOException ex) {
             Logger.getLogger(Xogo.class.getName()).log(Level.SEVERE, null, ex);
         }

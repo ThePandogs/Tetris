@@ -64,7 +64,7 @@ public class Sound {
     }
 
     public void ReproducirSuelo() throws IOException {
-        if (!ventanaPricipal.getXogo().comprobarPerder()) {
+      
             try {
                 sueloAudio = AudioSystem.getAudioInputStream(sueloFile);
                 sonidoSuelo = AudioSystem.getClip();
@@ -73,7 +73,7 @@ public class Sound {
             } catch (UnsupportedAudioFileException | LineUnavailableException ex) {
                 Logger.getLogger(Sound.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        
     }
 
     public void ReproducirSonidoLinea() throws IOException {
