@@ -8,7 +8,6 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -16,7 +15,6 @@ import javax.swing.Timer;
 import modelo.Xogo;
 import javax.swing.BorderFactory;
 import javax.swing.JSlider;
-import modelo.Cadrado;
 
 /**
  *
@@ -41,6 +39,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private Timer timer;
     private Timer timerFPS;
 
+    private Sound sonido;
 
     public VentanaPrincipal() {
         sonido = new Sound(this);
@@ -502,8 +501,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 }
             }
 
-            default -> {
-            }
         }
 
     }//GEN-LAST:event_panelXogoKeyPressed
@@ -649,22 +646,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void iniciarPartida() {
 
-        xogo = new Xogo(this);
-        inicializarContadores();
-        startRefreshScreen();
-        startCrono();
-        startSpeed();
-        tglPause.setSelected(false);
-        panelXogo.setFocusable(true);
-        panelXogo.requestFocus();
         try {
+            xogo = new Xogo(this);
+            inicializarContadores();
+            startRefreshScreen();
+            startCrono();
+            startSpeed();
+            tglPause.setSelected(false);
+            panelXogo.setFocusable(true);
+            panelXogo.requestFocus();
 
             sonido.ReproducirBSO();
-
-            
         } catch (IOException ex) {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     public void pintarCadrado(JLabel lblCadrado) {
@@ -722,7 +718,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         gameOverPanel.setVisible(true);
 
-
         scoreGameOver.setText(lblScore.getText());
         timeGameOver.setText(lblTime.getText());
         linesGameOver.setText(lblLine.getText());
@@ -730,11 +725,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         tglPause.setVisible(false);
         sonido.STOP();
 
-
     }
 
     private void pause() {
-
 
         timerFPS.stop();
         timerCrono.stop();
@@ -744,6 +737,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     private void resume() {
@@ -751,6 +745,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         timerFPS.start();
         timerCrono.start();
         timer.start();
+
         try {
             sonido.ReproducirBSO();
         } catch (IOException ex) {
@@ -839,7 +834,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         xogo = null;
     }
 
-
     public Timer getTimer() {
         return timer;
     }
@@ -858,6 +852,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public JSlider getLevelJSlider() {
         return levelJSlider;
+    }
+
+    public Xogo getXogo() {
+        return xogo;
+    }
+
+    public Sound getSonido() {
+        return sonido;
     }
 
 }
