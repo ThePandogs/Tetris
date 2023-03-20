@@ -57,7 +57,7 @@ public final class Xogo {
         pintarFichaActual();
         ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
 
-        this.level = ventanaPricipal.getLevelJSlider().getValue();
+        this.level=ventanaPricipal.getLevelJSlider().getValue();
 
     }
 
@@ -311,16 +311,20 @@ public final class Xogo {
     }
 
     public boolean comprobarPerder() {
+        boolean perdio = false;
         Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
         while (actual.hasNext()) {
             Cadrado cactual = actual.next();
 
             if (cactual.getY() < SAFEZONE) {
 
-                return true;
+                perdio = true;
             }
         }
-        return false;
+        if (perdio) {
+            ventanaPricipal.mostrarFinDoXogo();
+        }
+        return perdio;
 
     }
 
@@ -332,6 +336,7 @@ public final class Xogo {
     }
 
     private void engadeFichaBorraLinasCompletasXeneraNovaFicha() {
+
 
         engadirFichaAoChan();
       

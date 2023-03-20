@@ -64,6 +64,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        extraFrame = new javax.swing.JFrame();
         pausePanel = new javax.swing.JPanel();
         pauseTitle = new javax.swing.JLabel();
         restartPause = new javax.swing.JButton();
@@ -110,12 +111,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         backgroundMenu = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1100, 950));
-        setUndecorated(true);
-        setResizable(false);
-        setSize(new java.awt.Dimension(1100, 950));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        extraFrame.setAlwaysOnTop(true);
+        extraFrame.setBounds(new java.awt.Rectangle(450, 330, 0, 0));
+        extraFrame.setLocation(new java.awt.Point(0, 0));
+        extraFrame.setMinimumSize(new java.awt.Dimension(460, 340));
+        extraFrame.setUndecorated(true);
+        extraFrame.setSize(new java.awt.Dimension(450, 330));
+        extraFrame.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        extraFrame.setLocationRelativeTo(panelXogo);
 
         pausePanel.setAlignmentX(0.0F);
         pausePanel.setAlignmentY(0.0F);
@@ -157,7 +160,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pausePanel.add(mainMenuPause);
         mainMenuPause.setBounds(150, 250, 150, 40);
 
-        getContentPane().add(pausePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 340, 450, 330));
+        extraFrame.getContentPane().add(pausePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 330));
 
         gameOverPanel.setMaximumSize(new java.awt.Dimension(450, 330));
         gameOverPanel.setMinimumSize(new java.awt.Dimension(450, 330));
@@ -238,7 +241,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         gameOverPanel.add(mainMenuGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 150, 40));
 
-        getContentPane().add(gameOverPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 340, 450, 330));
+        extraFrame.getContentPane().add(gameOverPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 320));
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1100, 950));
+        setUndecorated(true);
+        setResizable(false);
+        setSize(new java.awt.Dimension(1100, 950));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         gameJPanel.setBackground(new java.awt.Color(102, 102, 102));
         gameJPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -532,17 +542,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void mainMenuGameOverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuGameOverActionPerformed
         pause();
         tglPause.setVisible(true);
-         gameOverPanel.setVisible(false);
         MenuJPanel.setVisible(true);
         gameJPanel.setVisible(false);
+        extraFrame.setVisible(false);
         closeActualGame();
     }//GEN-LAST:event_mainMenuGameOverActionPerformed
 
     private void mainMenuPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuPauseActionPerformed
         pause();
         MenuJPanel.setVisible(true);
-        pausePanel.setVisible(false);
         gameJPanel.setVisible(false);
+        extraFrame.setVisible(false);
         closeActualGame();
 
     }//GEN-LAST:event_mainMenuPauseActionPerformed
@@ -610,6 +620,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel background;
     private javax.swing.JLabel backgroundMenu;
     private javax.swing.JLabel backgroundProgram;
+    private javax.swing.JFrame extraFrame;
     private javax.swing.JPanel gameJPanel;
     private javax.swing.JPanel gameOverPanel;
     private javax.swing.JLabel lblBackgroundGame;
@@ -721,6 +732,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     public void mostrarFinDoXogo() {
+
         pause();
 
         gameOverPanel.setVisible(true);
@@ -753,16 +765,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pause();
         pausePanel.setVisible(true);
         pausePanel.requestFocus();
+        extraFrame.setVisible(true);
 
     }
 
     private void resumeMenu() {
         resume();
-
+        extraFrame.setVisible(false);
         pausePanel.setVisible(false);
     }
 
     private void restartGame() {
+        extraFrame.setVisible(false);
         pausePanel.setVisible(false);
         gameOverPanel.setVisible(false);
         tglPause.setVisible(true);
@@ -887,6 +901,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public JSlider getLevelJSlider() {
         return levelJSlider;
+    }
+
+
+    public Sound getSonido() {
+        return sonido;
+    }
+
+    public Xogo getXogo() {
+        return xogo;
+    }
+
+    private void tglPauseActionPerformed() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
