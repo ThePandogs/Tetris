@@ -209,17 +209,13 @@ public final class Xogo {
 
     public void engadirFichaAoChan() {
 
-       
-            Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
-            while (actual.hasNext()) {
-                Cadrado c = actual.next();
-                cadradosChan.add(c);
-                
-            } try {
-            ventanaPricipal.getSonido().ReproducirSuelo();
-        } catch (IOException ex) {
-            Logger.getLogger(Xogo.class.getName()).log(Level.SEVERE, null, ex);
+        Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
+        while (actual.hasNext()) {
+            Cadrado c = actual.next();
+            cadradosChan.add(c);
+
         }
+
     }
 
     public boolean chocaFichaCoChan() {
@@ -284,16 +280,16 @@ public final class Xogo {
     }
 
     public void borrarLinas() {
-        
+        try {
             Iterator<Cadrado> blinea = linea.iterator();
             while (blinea.hasNext()) {
                 Cadrado este = blinea.next();
-                
+
                 ventanaPricipal.borrarCadrado(este.getLblCadrado());
                 cadradosChan.removeAll(linea);
-                
-            }try {
-            ventanaPricipal.getSonido().ReproducirSonidoLinea();
+
+            }
+            ventanaPricipal.ReproducirSonido();
         } catch (IOException ex) {
             Logger.getLogger(Xogo.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -341,15 +337,24 @@ public final class Xogo {
 
     private void engadeFichaBorraLinasCompletasXeneraNovaFicha() {
 
-    
-            engadirFichaAoChan();
-       
-            if (!comprobarPerder()) {
-                borrarLinasCompletas();
-                fichaStoFichaA();
-                pintarFichaActual();
-                ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
-            }   
+
+        engadirFichaAoChan();
+      
+        if (!comprobarPerder()) {
+  try {
+            ventanaPricipal.ReproducirSuelo();
+        } catch (IOException ex) {
+            Logger.getLogger(Xogo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            borrarLinasCompletas();
+            fichaStoFichaA();
+            pintarFichaActual();
+            ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
+
+        } else {
+            ventanaPricipal.mostrarFinDoXogo();
+        }
+
     }
 
     public boolean aumentarNivel(int lineas, int delayActual) {
