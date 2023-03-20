@@ -732,6 +732,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     public void mostrarFinDoXogo() {
+
         pause();
 
         gameOverPanel.setVisible(true);
@@ -903,5 +904,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return levelJSlider;
     }
 
+
+    public Sound getSonido() {
+        return sonido;
+    }
+
+    public Xogo getXogo() {
+        return xogo;
+    }
+
+    private void tglPauseActionPerformed() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 }
