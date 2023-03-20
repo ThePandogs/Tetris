@@ -6,18 +6,12 @@ package iu;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
-import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 import modelo.Xogo;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BorderFactory;
 import javax.swing.JSlider;
 import modelo.Sound;
@@ -45,9 +39,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private Timer timer;
     private Timer timerFPS;
 
-
     public VentanaPrincipal() {
-
+        sonido = new Sound(this);
         initComponents();
         gameJPanel.setVisible(false);
         gameJPanel.requestFocus();
@@ -546,6 +539,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         gameJPanel.setVisible(false);
         extraFrame.setVisible(false);
         closeActualGame();
+
     }//GEN-LAST:event_mainMenuGameOverActionPerformed
 
     private void mainMenuPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuPauseActionPerformed
@@ -662,16 +656,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void iniciarPartida() {
-            sonido= new Sound(this);
-            xogo = new Xogo(this);
-            inicializarContadores();
-            startRefreshScreen();
-            startCrono();
-            startSpeed();
-            tglPause.setSelected(false);
-            panelXogo.setFocusable(true);
-            panelXogo.requestFocus();
-               try {
+
+        xogo = new Xogo(this);
+        inicializarContadores();
+        startRefreshScreen();
+        startCrono();
+        startSpeed();
+        tglPause.setSelected(false);
+        panelXogo.setFocusable(true);
+        panelXogo.requestFocus();
+        try {
             sonido.ReproducirBSO();
         } catch (IOException ex) {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -732,28 +726,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     public void mostrarFinDoXogo() {
-     
-            pause();
-            
-            pausePanel.setVisible(false);
-            gameOverPanel.setVisible(true);
-            extraFrame.setVisible(true);
-            
-            scoreGameOver.setText(lblScore.getText());
-            timeGameOver.setText(lblTime.getText());
-            linesGameOver.setText(lblLine.getText());
-            levelGameOver.setText(lblLevel.getText());
-            tglPause.setVisible(false);
-            sonido.STOP();
+
+        pause();
+
+        pausePanel.setVisible(false);
+        gameOverPanel.setVisible(true);
+        extraFrame.setVisible(true);
+
+        scoreGameOver.setText(lblScore.getText());
+        timeGameOver.setText(lblTime.getText());
+        linesGameOver.setText(lblLine.getText());
+        levelGameOver.setText(lblLevel.getText());
+        tglPause.setVisible(false);
+        sonido.STOP();
 
     }
 
     private void pause() {
-      
-            timerFPS.stop();
-            timerCrono.stop();
-            timer.stop();
-              try {
+
+        timerFPS.stop();
+        timerCrono.stop();
+        timer.stop();
+        try {
             sonido.PararBSO();
         } catch (IOException ex) {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -761,11 +755,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     private void resume() {
-     
-            timerFPS.start();
-            timerCrono.start();
-            timer.start();
-               try {
+
+        timerFPS.start();
+        timerCrono.start();
+        timer.start();
+        try {
             sonido.ReproducirBSO();
         } catch (IOException ex) {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -853,11 +847,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         cleanPanelXogo();
         xogo = null;
     }
-
-   
-
-
-    
 
     public Timer getTimer() {
         return timer;
