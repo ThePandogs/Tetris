@@ -6,8 +6,10 @@ package modelo;
 
 import java.util.Iterator;
 import iu.VentanaPrincipal;
+import java.awt.Color;
 import static java.awt.Color.yellow;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -47,15 +49,18 @@ public final class Xogo {
 
     private List<Integer> idFichas = new ArrayList();
 
+    HashMap<Integer, Ficha> listaFichas;
+
     public Xogo(VentanaPrincipal ventana) {
 
         ventanaPricipal = ventana;
-        escogerFicha();
+        comprobarRepeticionFicha();
         fichaStoFichaA();
         ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
 
         this.level = ventanaPricipal.getLevelJSlider().getValue();
         gameOver = false;
+
     }
 
     public boolean isGameOver() {
@@ -155,59 +160,33 @@ public final class Xogo {
         }
     }
 
-    private Ficha xenerarNovaFicha() {
-        Ficha obj = null;
-        switch (numeroRandom(7)) {
+    private void xenerarNovaFicha() {
 
-            case 1 -> {
-
-                obj = new FichaBarra(this);
-
+        listaFichas = new HashMap<Integer, Ficha>() {
+            {
+                put(1, new FichaBarra(Xogo.this));
+                put(2, new FichaT(Xogo.this));
+                put(3, new FichaCadrada(Xogo.this));
+                put(4, new FichaL(Xogo.this));
+                put(5, new FichaLReverse(Xogo.this));
+                put(6, new FichaZ(Xogo.this));
+                put(7, new FichaZReverse(Xogo.this));
             }
+        };
 
-            case 2 -> {
+        fichaSiguiente = listaFichas.get(numeroRandom(7));
 
-                obj = new FichaT(this);
-
-            }
-            case 3 -> {
-
-                obj = new FichaCadrada(this);
-
-            }
-            case 4 -> {
-
-                obj = new FichaL(this);
-
-            }
-            case 5 -> {
-                obj = new FichaLReverse(this);
-
-            }
-            case 6 -> {
-                obj = new FichaZ(this);
-
-            }
-            case 7 -> {
-                obj = new FichaZReverse(this);
-
-            }
-        }
-        return obj;
     }
 
-    private void escogerFicha() {
-        Ficha moment = xenerarNovaFicha();
-        while (idFichas.contains(moment.getId()) && idFichas.size() < 7) {
-            moment = xenerarNovaFicha();
-
+    private void comprobarRepeticionFicha() {
+        xenerarNovaFicha();
+        while (idFichas.contains(fichaSiguiente.getId())) {
+            xenerarNovaFicha();
         }
+        idFichas.add(fichaSiguiente.id);
         if (idFichas.size() == 7) {
             idFichas.removeAll(idFichas);
-
         }
-        fichaSiguiente = moment;
-        idFichas.add(moment.id);
 
     }
 
@@ -319,9 +298,7 @@ public final class Xogo {
                 c.actualizarCoordenada(c.getX(), c.getY() + LADOCADRADO);
 
             }
-
         }
-
     }
 
     private boolean comprobarPerder() {
@@ -340,7 +317,7 @@ public final class Xogo {
 
     private void fichaStoFichaA() {
         fichaActual = fichaSiguiente;
-        escogerFicha();
+        comprobarRepeticionFicha();
     }
 
     private void engadeFichaBorraLinasCompletasXeneraNovaFicha() {
@@ -394,9 +371,9 @@ public final class Xogo {
 
             }
             //Añade el cuadrado
-            Cadrado c = new Cadrado(random * 50, MAXY, yellow);
-            cadradosChan.add(c);
-            ventanaPricipal.pintarCadrado(c.getLblCadrado());
+            Cadrado cadradoPenalty = new Cadrado(random * LADOCADRADO, MAXY, yellow);
+            cadradosChan.add(cadradoPenalty);
+            ventanaPricipal.pintarCadrado(cadradoPenalty.getLblCadrado());
             posiciones.add(random);
 
         }
