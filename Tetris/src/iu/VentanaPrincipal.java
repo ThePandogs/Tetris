@@ -246,6 +246,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         gameOverPanel.setBounds(325, 340, 450, 330);
 
         gameJPanel.setBackground(new java.awt.Color(102, 102, 102));
+        gameJPanel.setMaximumSize(new java.awt.Dimension(1100, 950));
+        gameJPanel.setMinimumSize(new java.awt.Dimension(1100, 950));
+        gameJPanel.setPreferredSize(new java.awt.Dimension(1100, 950));
+        gameJPanel.setRequestFocusEnabled(false);
         gameJPanel.setLayout(null);
 
         panelXogo.setBackground(new java.awt.Color(204, 204, 255));
@@ -437,6 +441,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         gameJPanel.setBounds(0, 0, 1100, 950);
         gameJPanel.setVisible(false);
 
+        MenuJPanel.setMaximumSize(new java.awt.Dimension(1100, 950));
+        MenuJPanel.setMinimumSize(new java.awt.Dimension(1100, 950));
+        MenuJPanel.setPreferredSize(new java.awt.Dimension(1100, 950));
         MenuJPanel.setLayout(null);
 
         Playlbl.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 90)); // NOI18N
@@ -526,23 +533,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void panelXogoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_panelXogoKeyPressed
 
-        switch (evt.getKeyCode()) {
-            case 37, 65 ->  // caracter A || FLECHA IZQUIERDA
-                xogo.moverEsquerda();
-            case 38, 87 -> // caracter W || FLECHA ARRIBA
-                xogo.rotarFicha();
-            case 39, 68 -> // caracter D || FLECHA DERECHA
-                xogo.moverDereita();
-            case 40, 83 -> // caracter S || FLECHA ABAJO
-            {
-                xogo.moverFichaAbaixo();
-                timer.restart();
-            }
-            case 80, 27 ->// caracter P || ESCAPE
-            {
-                if (!gameOverPanel.isVisible()) {
-                    tglPause.setSelected(true);
-                    pauseMenu();
+        if (!xogo.isGameOver()) {
+            switch (evt.getKeyCode()) {
+                case 37, 65 ->  // caracter A || FLECHA IZQUIERDA
+                    xogo.moverEsquerda();
+                case 38, 87 -> // caracter W || FLECHA ARRIBA
+                    xogo.rotarFicha();
+                case 39, 68 -> // caracter D || FLECHA DERECHA
+                    xogo.moverDereita();
+                case 40, 83 -> // caracter S || FLECHA ABAJO
+                {
+                    xogo.moverFichaAbaixo();
+                    timer.restart();
+                }
+                case 80, 27 ->// caracter P || ESCAPE
+                {
+                    if (!gameOverPanel.isVisible()) {
+                        tglPause.setSelected(true);
+                        pauseMenu();
+                    }
                 }
             }
         }
@@ -735,7 +744,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         levelGameOver.setText(lblLevel.getText());
         tglPause.setVisible(false);
         sonido.STOP();
-
+        
     }
 
     private void pause() {

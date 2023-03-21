@@ -8,6 +8,8 @@ import Log.LogExcepcion;
 import static java.awt.image.ImageObserver.ABORT;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -34,16 +36,8 @@ public class Sound {
 
     public Sound(VentanaPrincipal ventanaPricipal) {
 
-        try {
-            this.ventanaPricipal = ventanaPricipal;
-            logExcepcion = ventanaPricipal.getLogExcepcion();
-            BSOAudio = AudioSystem.getAudioInputStream(BSOFile);
-            BSO = AudioSystem.getClip();
-            BSO.open(BSOAudio);
-
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
-            logExcepcion.anadirExcepcionLog(ex);
-        }
+        this.ventanaPricipal = ventanaPricipal;
+        logExcepcion = ventanaPricipal.getLogExcepcion();
 
     }
 
@@ -60,7 +54,15 @@ public class Sound {
     }
 
     public void ReproducirBSO() {
-        BSO.loop(ABORT);
+
+        try {
+            BSO = AudioSystem.getClip();
+            BSO.open(AudioSystem.getAudioInputStream(BSOFile));
+            BSO.loop(ABORT);
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
+            Logger.getLogger(Sound.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     public void ReproducirSuelo() {
@@ -94,7 +96,7 @@ public class Sound {
 
     public void PararSonidoSuelo() {
 
-        sonidoSuelo.close();
+        sonidoSuelo.stop();
     }
 
     public void PararBSO() {
@@ -103,7 +105,7 @@ public class Sound {
     }
 
     public void STOP() {
-        BSO.close();
+        BSO.stop();
 
     }
 }

@@ -8,7 +8,6 @@ import java.util.Iterator;
 import iu.VentanaPrincipal;
 import static java.awt.Color.yellow;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -44,25 +43,23 @@ public final class Xogo {
     private int numeroLinas = 0;
     private int LinasNextLevel = 0;
 
-    List<Ficha> fichas = new ArrayList<>(Arrays.asList(
-            new FichaT(this),
-            new FichaBarra(this),
-            new FichaCadrada(this),
-            new FichaL(this),
-            new FichaLReverse(this),
-            new FichaZ(this),
-            new FichaZReverse(this)));
+    private boolean gameOver;
+
+    private List<Integer> idFichas = new ArrayList();
 
     public Xogo(VentanaPrincipal ventana) {
 
         ventanaPricipal = ventana;
-        fichaSiguiente = xenerarNovaFicha();
-        fichaActual = xenerarNovaFicha();
-
+        escogerFicha();
+        fichaStoFichaA();
         ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
 
         this.level = ventanaPricipal.getLevelJSlider().getValue();
+        gameOver = false;
+    }
 
+    public boolean isGameOver() {
+        return gameOver;
     }
 
     public int getNumeroLinas() {
@@ -112,7 +109,7 @@ public final class Xogo {
     public void moverEsquerda() {
         boolean posicionValida = true;
         Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
-        //Comprobar posicion siguiente de cada cuadrado actual
+
         while (actual.hasNext()) {
             Cadrado ca = actual.next();
             int x = ca.getX() - LADOCADRADO;
@@ -121,7 +118,7 @@ public final class Xogo {
                 posicionValida = false;
             }
         }
-        //Si todas las posiciones son validas
+
         if (posicionValida) {
             fichaActual.moverEsquerda();
         }
@@ -130,7 +127,7 @@ public final class Xogo {
     public void moverDereita() {
         boolean posicionValida = true;
         Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
-        //Comprobar posicion siguiente de cada cuadrado actual
+
         while (actual.hasNext()) {
             Cadrado ca = actual.next();
             int x = ca.getX() + LADOCADRADO;
@@ -158,45 +155,60 @@ public final class Xogo {
         }
     }
 
-    public Ficha xenerarNovaFicha() {
+    private Ficha xenerarNovaFicha() {
         Ficha obj = null;
-        switch (numeroRandom(30)) {
+        switch (numeroRandom(7)) {
 
-            case 1, 5, 6, 13, 30 -> {
+            case 1 -> {
 
                 obj = new FichaBarra(this);
 
             }
 
-            case 2, 9, 10, 14 -> {
+            case 2 -> {
 
                 obj = new FichaT(this);
 
             }
-            case 3, 7, 8, 28, 29 -> {
+            case 3 -> {
 
                 obj = new FichaCadrada(this);
 
             }
-            case 4, 11, 12, 15 -> {
+            case 4 -> {
 
                 obj = new FichaL(this);
 
             }
-            case 19, 18, 17, 16 -> {
+            case 5 -> {
                 obj = new FichaLReverse(this);
 
             }
-            case 20, 22, 24, 26 -> {
+            case 6 -> {
                 obj = new FichaZ(this);
 
             }
-            case 21, 23, 25, 27 -> {
+            case 7 -> {
                 obj = new FichaZReverse(this);
 
             }
         }
         return obj;
+    }
+
+    private void escogerFicha() {
+        Ficha moment = xenerarNovaFicha();
+        while (idFichas.contains(moment.getId()) && idFichas.size() < 7) {
+            moment = xenerarNovaFicha();
+
+        }
+        if (idFichas.size() == 7) {
+            idFichas.removeAll(idFichas);
+
+        }
+        fichaSiguiente = moment;
+        idFichas.add(moment.id);
+
     }
 
     public void pintarFichaActual() {
@@ -328,9 +340,7 @@ public final class Xogo {
 
     private void fichaStoFichaA() {
         fichaActual = fichaSiguiente;
-        while (fichaSiguiente.id == fichaActual.id) {
-            fichaSiguiente = xenerarNovaFicha();
-        }
+        escogerFicha();
     }
 
     private void engadeFichaBorraLinasCompletasXeneraNovaFicha() {
@@ -348,6 +358,7 @@ public final class Xogo {
 
         } else {
             ventanaPricipal.mostrarFinDoXogo();
+            gameOver = true;
         }
 
     }

@@ -31,6 +31,10 @@ public abstract class Ficha {
         return cadrados;
     }
 
+    public int getId() {
+        return id;
+    }
+    
     public void setCadrados(List<Cadrado> cadrados) {
         this.cadrados = cadrados;
     }
