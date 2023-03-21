@@ -25,7 +25,7 @@ public class Sound {
     private Clip BSO;
     private Clip sonidoSuelo;
     private Clip sonidoLinea;
-    private final File sueloFile = new File("./src/resources/audio/suelo3.wav");
+    private final File sueloFile = new File("./src/resources/audio/suelo.wav");
     private final File lineaFile = new File("./src/resources/audio/shot2.wav");
     AudioInputStream sueloAudio;
     AudioInputStream BSOAudio;

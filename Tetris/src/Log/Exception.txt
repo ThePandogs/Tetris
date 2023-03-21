@@ -168,3 +168,58 @@ Fecha:  2023-03-21
 Hora:   21:35
 Motivo: .\src\resources\audio\suelo3.wav (El sistema no puede encontrar el archivo especificado)
 
+Excepción: class java.io.FileNotFoundException
+Fecha:  2023-03-21
+Hora:   21:42:18
+Motivo: .\src\resources\audio\suelo3.wav (El sistema no puede encontrar el archivo especificado)
+
+Excepción: class java.io.FileNotFoundException
+Fecha:  2023-03-21
+Hora:   21:42:19
+Motivo: .\src\resources\audio\suelo3.wav (El sistema no puede encontrar el archivo especificado)
+
+Excepción: class java.io.FileNotFoundException
+Fecha:  2023-03-21
+Hora:   21:42:22
+Motivo: .\src\resources\audio\suelo3.wav (El sistema no puede encontrar el archivo especificado)
+
+Excepción: class java.io.FileNotFoundException
+Fecha:  2023-03-21
+Hora:   21:42:24
+Motivo: .\src\resources\audio\suelo3.wav (El sistema no puede encontrar el archivo especificado)
+
+Excepción: class java.io.FileNotFoundException
+Fecha:  2023-03-21
+Hora:   21:42:27
+Motivo: .\src\resources\audio\suelo3.wav (El sistema no puede encontrar el archivo especificado)
+
+Excepción: class java.io.FileNotFoundException
+Fecha:  2023-03-21
+Hora:   21:42:30
+Motivo: .\src\resources\audio\suelo3.wav (El sistema no puede encontrar el archivo especificado)
+
+Excepción: class java.io.FileNotFoundException
+Fecha:  2023-03-21
+Hora:   21:42:33
+Motivo: .\src\resources\audio\suelo3.wav (El sistema no puede encontrar el archivo especificado)
+
+Excepción: class java.io.FileNotFoundException
+Fecha:  2023-03-21
+Hora:   21:42:34
+Motivo: .\src\resources\audio\suelo3.wav (El sistema no puede encontrar el archivo especificado)
+
+Excepción: class java.io.FileNotFoundException
+Fecha:  2023-03-21
+Hora:   21:42:36
+Motivo: .\src\resources\audio\suelo3.wav (El sistema no puede encontrar el archivo especificado)
+
+Excepción: class java.io.FileNotFoundException
+Fecha:  2023-03-21
+Hora:   21:42:38
+Motivo: .\src\resources\audio\suelo3.wav (El sistema no puede encontrar el archivo especificado)
+
+Excepción: class java.io.FileNotFoundException
+Fecha:  2023-03-21
+Hora:   21:42:42
+Motivo: .\src\resources\audio\suelo3.wav (El sistema no puede encontrar el archivo especificado)
+
