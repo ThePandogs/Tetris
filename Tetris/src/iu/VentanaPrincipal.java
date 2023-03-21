@@ -107,7 +107,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         setSize(new java.awt.Dimension(1100, 950));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
         pausePanel.setAlignmentX(0.0F);
         pausePanel.setAlignmentY(0.0F);
@@ -149,66 +149,76 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pausePanel.add(mainMenuPause);
         mainMenuPause.setBounds(150, 250, 150, 40);
 
-        getContentPane().add(pausePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 340, 450, 330));
+        getContentPane().add(pausePanel);
+        pausePanel.setBounds(325, 340, 450, 330);
 
         gameOverPanel.setMaximumSize(new java.awt.Dimension(450, 330));
         gameOverPanel.setMinimumSize(new java.awt.Dimension(450, 330));
         gameOverPanel.setPreferredSize(new java.awt.Dimension(450, 330));
-        gameOverPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        gameOverPanel.setLayout(null);
         gameOverPanel.setVisible(false);
 
         YouLoseTitle.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         YouLoseTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         YouLoseTitle.setText("Game Over");
-        gameOverPanel.add(YouLoseTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 10, 200, -1));
+        gameOverPanel.add(YouLoseTitle);
+        YouLoseTitle.setBounds(125, 10, 200, 48);
 
         levelTile.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         levelTile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         levelTile.setText("Level");
-        gameOverPanel.add(levelTile, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 59, 30));
+        gameOverPanel.add(levelTile);
+        levelTile.setBounds(150, 90, 59, 30);
 
         timeTitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         timeTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         timeTitle.setText("Time");
-        gameOverPanel.add(timeTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 59, 30));
+        gameOverPanel.add(timeTitle);
+        timeTitle.setBounds(360, 90, 59, 30);
 
         scoreTitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         scoreTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         scoreTitle.setText("Score");
-        gameOverPanel.add(scoreTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 59, 30));
+        gameOverPanel.add(scoreTitle);
+        scoreTitle.setBounds(40, 90, 59, 30);
 
         scoreGameOver.setBackground(new java.awt.Color(102, 0, 102));
         scoreGameOver.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         scoreGameOver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         scoreGameOver.setText("0");
         scoreGameOver.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        gameOverPanel.add(scoreGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 90, 25));
+        gameOverPanel.add(scoreGameOver);
+        scoreGameOver.setBounds(20, 130, 90, 25);
 
         timeGameOver.setBackground(new java.awt.Color(102, 0, 102));
         timeGameOver.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         timeGameOver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         timeGameOver.setText("0");
         timeGameOver.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        gameOverPanel.add(timeGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, 90, 25));
+        gameOverPanel.add(timeGameOver);
+        timeGameOver.setBounds(350, 130, 90, 25);
 
         levelGameOver.setBackground(new java.awt.Color(102, 0, 102));
         levelGameOver.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         levelGameOver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         levelGameOver.setText("0");
         levelGameOver.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        gameOverPanel.add(levelGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 90, 25));
+        gameOverPanel.add(levelGameOver);
+        levelGameOver.setBounds(130, 130, 90, 25);
 
         linesTitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         linesTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         linesTitle.setText("Lines");
-        gameOverPanel.add(linesTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 59, 30));
+        gameOverPanel.add(linesTitle);
+        linesTitle.setBounds(260, 90, 59, 30);
 
         linesGameOver.setBackground(new java.awt.Color(102, 0, 102));
         linesGameOver.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         linesGameOver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         linesGameOver.setText("0");
         linesGameOver.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        gameOverPanel.add(linesGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 90, 25));
+        gameOverPanel.add(linesGameOver);
+        linesGameOver.setBounds(240, 130, 90, 25);
 
         restartGameOver.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         restartGameOver.setText("Restart");
@@ -218,7 +228,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 restartGameOverActionPerformed(evt);
             }
         });
-        gameOverPanel.add(restartGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 150, 40));
+        gameOverPanel.add(restartGameOver);
+        restartGameOver.setBounds(150, 200, 150, 40);
 
         mainMenuGameOver.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         mainMenuGameOver.setText("MainMenu");
@@ -228,12 +239,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 mainMenuGameOverActionPerformed(evt);
             }
         });
-        gameOverPanel.add(mainMenuGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 150, 40));
+        gameOverPanel.add(mainMenuGameOver);
+        mainMenuGameOver.setBounds(150, 250, 150, 40);
 
-        getContentPane().add(gameOverPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 340, 450, 330));
+        getContentPane().add(gameOverPanel);
+        gameOverPanel.setBounds(325, 340, 450, 330);
 
         gameJPanel.setBackground(new java.awt.Color(102, 102, 102));
-        gameJPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        gameJPanel.setLayout(null);
 
         panelXogo.setBackground(new java.awt.Color(204, 204, 255));
         panelXogo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -248,7 +261,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         panelXogo.setLayout(null);
-        gameJPanel.add(panelXogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 500, 900));
+        gameJPanel.add(panelXogo);
+        panelXogo.setBounds(300, 30, 500, 900);
 
         lblBackgroundGame.setBackground(new java.awt.Color(153, 153, 153));
         lblBackgroundGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondos/10x18backgroundGameSafeZone.png"))); // NOI18N
@@ -257,14 +271,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblBackgroundGame.setMinimumSize(new java.awt.Dimension(500, 900));
         lblBackgroundGame.setOpaque(true);
         lblBackgroundGame.setPreferredSize(new java.awt.Dimension(500, 900));
-        gameJPanel.add(lblBackgroundGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 500, 900));
+        gameJPanel.add(lblBackgroundGame);
+        lblBackgroundGame.setBounds(300, 30, 500, 900);
         lblBackgroundGame.getAccessibleContext().setAccessibleParent(gameJPanel);
 
         panelScore.setBackground(new java.awt.Color(231, 231, 231));
         panelScore.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         panelScore.setMinimumSize(new java.awt.Dimension(53, 53));
         panelScore.setPreferredSize(new java.awt.Dimension(110, 110));
-        panelScore.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelScore.setLayout(null);
 
         lblScoreTitle.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         lblScoreTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -272,7 +287,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblScoreTitle.setMaximumSize(new java.awt.Dimension(100, 40));
         lblScoreTitle.setMinimumSize(new java.awt.Dimension(100, 40));
         lblScoreTitle.setPreferredSize(new java.awt.Dimension(100, 40));
-        panelScore.add(lblScoreTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 5, -1, -1));
+        panelScore.add(lblScoreTitle);
+        lblScoreTitle.setBounds(60, 5, 100, 40);
 
         lblScore.setBackground(new java.awt.Color(102, 0, 102));
         lblScore.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
@@ -282,16 +298,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblScore.setMaximumSize(new java.awt.Dimension(100, 40));
         lblScore.setMinimumSize(new java.awt.Dimension(100, 40));
         lblScore.setPreferredSize(new java.awt.Dimension(100, 40));
-        panelScore.add(lblScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 180, -1));
+        panelScore.add(lblScore);
+        lblScore.setBounds(20, 70, 180, 40);
 
-        gameJPanel.add(panelScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 220, 130));
+        gameJPanel.add(panelScore);
+        panelScore.setBounds(40, 30, 220, 130);
 
         panelNextFigure.setBackground(new java.awt.Color(231, 231, 231));
         panelNextFigure.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         panelNextFigure.setMaximumSize(new java.awt.Dimension(220, 260));
         panelNextFigure.setMinimumSize(new java.awt.Dimension(220, 260));
         panelNextFigure.setPreferredSize(new java.awt.Dimension(220, 260));
-        panelNextFigure.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelNextFigure.setLayout(null);
 
         lblNextTitle.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         lblNextTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -299,27 +317,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblNextTitle.setMaximumSize(new java.awt.Dimension(100, 40));
         lblNextTitle.setMinimumSize(new java.awt.Dimension(100, 40));
         lblNextTitle.setPreferredSize(new java.awt.Dimension(100, 40));
-        panelNextFigure.add(lblNextTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 5, -1, -1));
+        panelNextFigure.add(lblNextTitle);
+        lblNextTitle.setBounds(60, 5, 100, 40);
 
         lblFichaSiguiente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFichaSiguiente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        panelNextFigure.add(lblFichaSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 200, 150));
+        panelNextFigure.add(lblFichaSiguiente);
+        lblFichaSiguiente.setBounds(10, 90, 200, 150);
 
-        gameJPanel.add(panelNextFigure, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 30, 220, 280));
+        gameJPanel.add(panelNextFigure);
+        panelNextFigure.setBounds(840, 30, 220, 280);
 
         panelLevel.setBackground(new java.awt.Color(231, 231, 231));
         panelLevel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         panelLevel.setPreferredSize(new java.awt.Dimension(220, 220));
-        panelLevel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelLevel.setLayout(null);
 
         lblLevelTitle.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         lblLevelTitle.setText("Level");
-        panelLevel.add(lblLevelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
+        panelLevel.add(lblLevelTitle);
+        lblLevelTitle.setBounds(70, 10, 81, 48);
 
         progressLevel.setMaximum(5);
         progressLevel.setToolTipText("");
         progressLevel.setFocusable(false);
-        panelLevel.add(progressLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 120, 110));
+        panelLevel.add(progressLevel);
+        progressLevel.setBounds(50, 120, 120, 110);
 
         lblLevel.setBackground(new java.awt.Color(102, 0, 102));
         lblLevel.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
@@ -329,13 +352,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblLevel.setMaximumSize(new java.awt.Dimension(100, 40));
         lblLevel.setMinimumSize(new java.awt.Dimension(100, 40));
         lblLevel.setPreferredSize(new java.awt.Dimension(100, 40));
-        panelLevel.add(lblLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 180, -1));
+        panelLevel.add(lblLevel);
+        lblLevel.setBounds(20, 70, 180, 40);
 
-        gameJPanel.add(panelLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 690, 220, 240));
+        gameJPanel.add(panelLevel);
+        panelLevel.setBounds(40, 690, 220, 240);
 
         panelLine.setBackground(new java.awt.Color(231, 231, 231));
         panelLine.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        panelLine.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelLine.setLayout(null);
 
         lblLineTitle.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         lblLineTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -343,7 +368,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblLineTitle.setMaximumSize(new java.awt.Dimension(100, 40));
         lblLineTitle.setMinimumSize(new java.awt.Dimension(100, 40));
         lblLineTitle.setPreferredSize(new java.awt.Dimension(100, 40));
-        panelLine.add(lblLineTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 5, -1, -1));
+        panelLine.add(lblLineTitle);
+        lblLineTitle.setBounds(60, 5, 100, 40);
 
         lblLine.setBackground(new java.awt.Color(102, 0, 102));
         lblLine.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
@@ -353,16 +379,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblLine.setMaximumSize(new java.awt.Dimension(100, 40));
         lblLine.setMinimumSize(new java.awt.Dimension(100, 40));
         lblLine.setPreferredSize(new java.awt.Dimension(100, 40));
-        panelLine.add(lblLine, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 180, -1));
+        panelLine.add(lblLine);
+        lblLine.setBounds(20, 70, 180, 40);
 
-        gameJPanel.add(panelLine, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 220, 130));
+        gameJPanel.add(panelLine);
+        panelLine.setBounds(40, 180, 220, 130);
 
         panelTime.setBackground(new java.awt.Color(231, 231, 231));
         panelTime.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         panelTime.setMaximumSize(new java.awt.Dimension(220, 130));
         panelTime.setMinimumSize(new java.awt.Dimension(220, 130));
         panelTime.setPreferredSize(new java.awt.Dimension(220, 130));
-        panelTime.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelTime.setLayout(null);
 
         lblTime.setBackground(new java.awt.Color(102, 0, 102));
         lblTime.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
@@ -372,7 +400,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblTime.setMaximumSize(new java.awt.Dimension(100, 40));
         lblTime.setMinimumSize(new java.awt.Dimension(100, 40));
         lblTime.setPreferredSize(new java.awt.Dimension(100, 40));
-        panelTime.add(lblTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 180, -1));
+        panelTime.add(lblTime);
+        lblTime.setBounds(20, 70, 180, 40);
 
         lblTimeTitle.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         lblTimeTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -380,9 +409,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblTimeTitle.setMaximumSize(new java.awt.Dimension(100, 40));
         lblTimeTitle.setMinimumSize(new java.awt.Dimension(100, 40));
         lblTimeTitle.setPreferredSize(new java.awt.Dimension(100, 40));
-        panelTime.add(lblTimeTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 5, 100, 40));
+        panelTime.add(lblTimeTitle);
+        lblTimeTitle.setBounds(60, 5, 100, 40);
 
-        gameJPanel.add(panelTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 380, 220, 130));
+        gameJPanel.add(panelTime);
+        panelTime.setBounds(840, 380, 220, 130);
 
         tglPause.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         tglPause.setText("Pause");
@@ -392,18 +423,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 tglPauseActionPerformed(evt);
             }
         });
-        gameJPanel.add(tglPause, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 730, 150, 40));
+        gameJPanel.add(tglPause);
+        tglPause.setBounds(870, 730, 150, 40);
 
         backgroundProgram.setBackground(new java.awt.Color(204, 204, 204));
         backgroundProgram.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         backgroundProgram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondos/backgroundApp.jpg"))); // NOI18N
         backgroundProgram.setText("backgroundProgram");
-        gameJPanel.add(backgroundProgram, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
+        gameJPanel.add(backgroundProgram);
+        backgroundProgram.setBounds(0, 0, 1100, 950);
 
-        getContentPane().add(gameJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
+        getContentPane().add(gameJPanel);
+        gameJPanel.setBounds(0, 0, 1100, 950);
         gameJPanel.setVisible(false);
 
-        MenuJPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        MenuJPanel.setLayout(null);
 
         Playlbl.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 90)); // NOI18N
         Playlbl.setForeground(new java.awt.Color(255, 255, 255));
@@ -418,7 +452,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 PlaylblMouseClicked(evt);
             }
         });
-        MenuJPanel.add(Playlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 510, 190, 110));
+        MenuJPanel.add(Playlbl);
+        Playlbl.setBounds(90, 510, 190, 110);
 
         Exitlbl.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 90)); // NOI18N
         Exitlbl.setForeground(new java.awt.Color(255, 255, 255));
@@ -432,7 +467,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 ExitlblMouseClicked(evt);
             }
         });
-        MenuJPanel.add(Exitlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 810, 170, 70));
+        MenuJPanel.add(Exitlbl);
+        Exitlbl.setBounds(95, 810, 170, 70);
 
         levelJSlider.setMaximum(20);
         levelJSlider.setMinimum(1);
@@ -442,20 +478,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 levelJSliderStateChanged(evt);
             }
         });
-        MenuJPanel.add(levelJSlider, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 710, -1, -1));
+        MenuJPanel.add(levelJSlider);
+        levelJSlider.setBounds(70, 710, 200, 20);
 
         levelLbl.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         levelLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         levelLbl.setText("1");
-        MenuJPanel.add(levelLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 700, 30, 40));
+        MenuJPanel.add(levelLbl);
+        levelLbl.setBounds(270, 700, 30, 40);
 
         panelMainMenu.setBackground(new java.awt.Color(204, 204, 255,200));
         panelMainMenu.setBorder(new javax.swing.border.MatteBorder(null));
-        MenuJPanel.add(panelMainMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 290, 420));
+        panelMainMenu.setLayout(null);
+        MenuJPanel.add(panelMainMenu);
+        panelMainMenu.setBounds(30, 490, 290, 420);
 
         backgroundMenu.setBackground(new java.awt.Color(255, 153, 0));
         backgroundMenu.setForeground(new java.awt.Color(255, 255, 255));
-        MenuJPanel.add(backgroundMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 290, 420));
+        MenuJPanel.add(backgroundMenu);
+        backgroundMenu.setBounds(30, 490, 290, 420);
 
         background.setBackground(new java.awt.Color(204, 204, 255));
         background.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -465,9 +506,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         background.setMaximumSize(new java.awt.Dimension(1100, 950));
         background.setMinimumSize(new java.awt.Dimension(1100, 950));
         background.setPreferredSize(new java.awt.Dimension(1100, 950));
-        MenuJPanel.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
+        MenuJPanel.add(background);
+        background.setBounds(0, 0, 1100, 950);
 
-        getContentPane().add(MenuJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
+        getContentPane().add(MenuJPanel);
+        MenuJPanel.setBounds(0, 0, 1100, 950);
 
         pack();
         setLocationRelativeTo(null);
@@ -657,22 +700,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         startSpeed();
 
         sonido.ReproducirBSO();
-xogo.pintarFichaActual();
+        xogo.pintarFichaActual();
     }
 
     public void pintarCadrado(JLabel lblCadrado) {
         panelXogo.add(lblCadrado);
 
         iconarCadrado(lblCadrado);
-        lblCadrado.setSize(xogo.getLADOCADRADO(),xogo.getLADOCADRADO());
+        lblCadrado.setSize(xogo.getLADOCADRADO(), xogo.getLADOCADRADO());
         lblCadrado.setOpaque(false);
         lblCadrado.setBorder(BorderFactory.createLineBorder(Color.black, 3));
     }
 
     private void iconarCadrado(JLabel lblCadrado) {
 
-        
-        
         lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource(gestorRutasImagenes.getImagenesCadrados().get(lblCadrado.getBackground()))));
     }
 
@@ -731,8 +772,8 @@ xogo.pintarFichaActual();
         pausePanel.setVisible(false);
         gameOverPanel.setVisible(false);
         tglPause.setVisible(true);
-         tglPause.setSelected(false);
-                 cleanPanelXogo();
+        tglPause.setSelected(false);
+        cleanPanelXogo();
         iniciarPartida();
     }
 
