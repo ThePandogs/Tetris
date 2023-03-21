@@ -13,14 +13,12 @@ import java.util.HashMap;
  */
 public class GestorRutasImagenes {
 
-    //RUTAS_RECURSOS
     private HashMap<Color, String> imagenesFichas;
-
     private HashMap<Color, String> imagenesCadrados;
 
     public GestorRutasImagenes() {
-        imagenesFichas = cargarImagenesCadrados();
-        imagenesCadrados = cargarImagenesFichas();
+        imagenesFichas = cargarImagenesFichas();
+        imagenesCadrados = cargarImagenesCadrados();
     }
 
     public HashMap<Color, String> getImagenesFichas() {
@@ -31,9 +29,6 @@ public class GestorRutasImagenes {
         return imagenesCadrados;
     }
 
-
-
-    
     private HashMap cargarImagenesCadrados() {
 
         HashMap RutasImagenesCadrados = new HashMap<Color, String>() {
@@ -47,7 +42,7 @@ public class GestorRutasImagenes {
                 put(Color.ORANGE, "/resources/imagenes/naranja.png");
             }
         };
-        return imagenesCadrados;
+        return RutasImagenesCadrados;
 
     }
 
@@ -67,7 +62,5 @@ public class GestorRutasImagenes {
 
         return RutasImagenesFichas;
     }
-
-
 
 }

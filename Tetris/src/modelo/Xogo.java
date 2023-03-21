@@ -58,8 +58,8 @@ public final class Xogo {
         ventanaPricipal = ventana;
         fichaSiguiente = xenerarNovaFicha();
         fichaActual = xenerarNovaFicha();
-        pintarFichaActual();
-       // ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
+
+        ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
 
         this.level = ventanaPricipal.getLevelJSlider().getValue();
 
@@ -199,7 +199,7 @@ public final class Xogo {
         return obj;
     }
 
-    private void pintarFichaActual() {
+    public void pintarFichaActual() {
         Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
         while (actual.hasNext()) {
             Cadrado cactual = actual.next();

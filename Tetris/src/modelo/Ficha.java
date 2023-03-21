@@ -16,10 +16,10 @@ import java.util.List;
  */
 public abstract class Ficha {
 
-    List<Cadrado> cadrados;
-    int posicion = 0;
-    public Xogo xogo;
-    int id;
+    protected List<Cadrado> cadrados;
+    protected int posicion = 0;
+    protected Xogo xogo;
+    protected int id;
 
     public Ficha(Xogo x) {
         cadrados = new ArrayList<>();

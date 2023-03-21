@@ -32,8 +32,8 @@ public class FichaLReverse extends Ficha {
     public boolean rotar() {
         boolean move = true;
         //Rotacion de L
-        int y = xogo.getFichaActual().getCadrados().get(1).lblCadrado.getY();
-        int x = xogo.getFichaActual().getCadrados().get(1).lblCadrado.getX();
+        int y = xogo.getFichaActual().getCadrados().get(1).getLblCadrado().getY();
+        int x = xogo.getFichaActual().getCadrados().get(1).getLblCadrado().getX();
 
         switch (posicion) {
             case 0 -> {

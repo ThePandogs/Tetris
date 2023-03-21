@@ -5,7 +5,6 @@
 package modelo;
 
 import static java.awt.Color.orange;
-import java.util.List;
 
 /**
  *
@@ -30,52 +29,12 @@ public class FichaT extends Ficha {
 
     }
 
-    public Cadrado getC() {
-        return c;
-    }
-
-    public Cadrado getC1() {
-        return c1;
-    }
-
-    public Cadrado getC2() {
-        return c2;
-    }
-
-    public Cadrado getC3() {
-        return c3;
-    }
-
-    public List<Cadrado> getCadrados() {
-        return cadrados;
-    }
-
-    public void setC(Cadrado c) {
-        this.c = c;
-    }
-
-    public void setC1(Cadrado c1) {
-        this.c1 = c1;
-    }
-
-    public void setC2(Cadrado c2) {
-        this.c2 = c2;
-    }
-
-    public void setC3(Cadrado c3) {
-        this.c3 = c3;
-    }
-
-    public void setCadrados(List<Cadrado> cadrados) {
-        this.cadrados = cadrados;
-    }
-
     @Override
     public boolean rotar() {
         boolean move = true;
         //Rotacion de T
-        int y = xogo.getFichaActual().getCadrados().get(1).lblCadrado.getY();
-        int x = xogo.getFichaActual().getCadrados().get(1).lblCadrado.getX();
+        int y = xogo.getFichaActual().getCadrados().get(1).getLblCadrado().getY();
+        int x = xogo.getFichaActual().getCadrados().get(1).getLblCadrado().getX();
 
         switch (posicion) {
 //El case 0 corresponde con la posicion 3 del diagrama,siguiendo el orden 3,0,1,2

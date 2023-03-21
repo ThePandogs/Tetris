@@ -250,10 +250,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelXogo.setLayout(null);
         gameJPanel.add(panelXogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 500, 900));
 
-        lblBackgroundGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/10x18backgroundGameSafeZone.png"))); // NOI18N
+        lblBackgroundGame.setBackground(new java.awt.Color(153, 153, 153));
+        lblBackgroundGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondos/10x18backgroundGameSafeZone.png"))); // NOI18N
         lblBackgroundGame.setText("lblBackgroundGame");
         lblBackgroundGame.setMaximumSize(new java.awt.Dimension(500, 900));
         lblBackgroundGame.setMinimumSize(new java.awt.Dimension(500, 900));
+        lblBackgroundGame.setOpaque(true);
         lblBackgroundGame.setPreferredSize(new java.awt.Dimension(500, 900));
         gameJPanel.add(lblBackgroundGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 500, 900));
         lblBackgroundGame.getAccessibleContext().setAccessibleParent(gameJPanel);
@@ -394,7 +396,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         backgroundProgram.setBackground(new java.awt.Color(204, 204, 204));
         backgroundProgram.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        backgroundProgram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/backgroundApp.jpg"))); // NOI18N
+        backgroundProgram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondos/backgroundApp.jpg"))); // NOI18N
         backgroundProgram.setText("backgroundProgram");
         gameJPanel.add(backgroundProgram, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
 
@@ -457,7 +459,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         background.setBackground(new java.awt.Color(204, 204, 255));
         background.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/backgroundApp.jpg"))); // NOI18N
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondos/backgroundApp.jpg"))); // NOI18N
         background.setText("jLabel1");
         background.setFocusable(false);
         background.setMaximumSize(new java.awt.Dimension(1100, 950));
@@ -655,27 +657,27 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         startSpeed();
 
         sonido.ReproducirBSO();
-
+xogo.pintarFichaActual();
     }
 
     public void pintarCadrado(JLabel lblCadrado) {
         panelXogo.add(lblCadrado);
 
         iconarCadrado(lblCadrado);
-
+        lblCadrado.setSize(xogo.getLADOCADRADO(),xogo.getLADOCADRADO());
         lblCadrado.setOpaque(false);
-        lblCadrado.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        lblCadrado.setBorder(BorderFactory.createLineBorder(Color.black, 3));
     }
 
     private void iconarCadrado(JLabel lblCadrado) {
 
+        
+        
         lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource(gestorRutasImagenes.getImagenesCadrados().get(lblCadrado.getBackground()))));
     }
 
     public void mostrarFichaSiguiente(JLabel lblCadrado) {
-
         lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource(gestorRutasImagenes.getImagenesFichas().get(lblCadrado.getBackground()))));
-
     }
 
     public void borrarCadrado(JLabel lblCadrado) {
@@ -729,7 +731,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pausePanel.setVisible(false);
         gameOverPanel.setVisible(false);
         tglPause.setVisible(true);
-        cleanPanelXogo();
+         tglPause.setSelected(false);
+                 cleanPanelXogo();
         iniciarPartida();
     }
 

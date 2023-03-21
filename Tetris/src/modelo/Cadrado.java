@@ -15,21 +15,18 @@ import javax.swing.JLabel;
  */
 public class Cadrado {
 
-    int x;
-    int y;
-    public Color cor;
-    public JLabel lblCadrado = new JLabel();
+    private int x;
+    private int y;
+    private Color cor;
+    private JLabel lblCadrado = new JLabel();
 
     public Cadrado(int x, int y, Color cor) {
         this.x = x;
         this.y = y;
 
         lblCadrado.setBackground(cor);
-        lblCadrado.setOpaque(true);
-        lblCadrado.setBounds(x, y, 53, 53);
-        lblCadrado.setVisible(true);
-        lblCadrado.updateUI();
-
+        lblCadrado.setLocation(x, y);
+     
     }
 
     public int getX() {
@@ -41,7 +38,7 @@ public class Cadrado {
     }
 
     public Color getCorR() {
-        return cor;
+        return getCor();
     }
 
     public JLabel getLblCadrado() {
@@ -57,7 +54,7 @@ public class Cadrado {
     }
 
     public void setCorR(Color corR) {
-        this.cor = corR;
+        this.setCor(corR);
     }
 
     public void setLblCadrado(JLabel lblCadrado) {
@@ -70,7 +67,7 @@ public class Cadrado {
 
     public String getCoordenadas() {
 
-        String cor = "x= " + x + " : " + "y=" + y;
+        String cor = "x= " + getX() + " : " + "y=" + getY();
 
         return cor;
 
@@ -78,9 +75,16 @@ public class Cadrado {
 
     public void actualizarCoordenada(int x, int y) {
 
-        this.x = x;
-        this.y = y;
-        lblCadrado.setLocation(x, y);
+        this.setX(x);
+        this.setY(y);
+        getLblCadrado().setLocation(x, y);
 
+    }
+
+    /**
+     * @return the cor
+     */
+    public Color getCor() {
+        return cor;
     }
 }

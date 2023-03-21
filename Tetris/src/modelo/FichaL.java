@@ -32,8 +32,8 @@ public class FichaL extends Ficha {
     public boolean rotar() {
         boolean move = true;
         //Rotacion de L
-        int y = xogo.getFichaActual().getCadrados().get(1).lblCadrado.getY();
-        int x = xogo.getFichaActual().getCadrados().get(1).lblCadrado.getX();
+        int y = xogo.getFichaActual().getCadrados().get(1).getLblCadrado().getY();
+        int x = xogo.getFichaActual().getCadrados().get(1).getLblCadrado().getX();
 
         switch (posicion) {
 //El case 0 corresponde con la posicion 1 del diagrama y el orden es 1,2,3,0

@@ -386,8 +386,11 @@
         </Container>
         <Component class="javax.swing.JLabel" name="lblBackgroundGame">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="99" green="99" red="99" type="rgb"/>
+            </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagenes/10x18backgroundGameSafeZone.png"/>
+              <Image iconType="3" name="/imagenes/fondos/10x18backgroundGameSafeZone.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="lblBackgroundGame"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -396,6 +399,7 @@
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[500, 900]"/>
             </Property>
+            <Property name="opaque" type="boolean" value="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[500, 900]"/>
             </Property>
@@ -829,7 +833,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagenes/backgroundApp.jpg"/>
+              <Image iconType="3" name="/imagenes/fondos/backgroundApp.jpg"/>
             </Property>
             <Property name="text" type="java.lang.String" value="backgroundProgram"/>
           </Properties>
@@ -977,7 +981,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/resources/backgroundApp.jpg"/>
+              <Image iconType="3" name="/imagenes/fondos/backgroundApp.jpg"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel1"/>
             <Property name="focusable" type="boolean" value="false"/>
