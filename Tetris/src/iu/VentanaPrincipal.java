@@ -4,12 +4,10 @@
  */
 package iu;
 
+import Log.LogExcepcion;
+import imagenes.GestorRutasImagenes;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 import modelo.Xogo;
@@ -24,30 +22,29 @@ import javax.swing.JSlider;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaPrincipal
-     */
-    private int time;
-    private int score;
-    private int timeCooldown = 0;
-    private int speed;
-    private final int SPEEDEFAULT = 900;
-
-    private Xogo xogo;
-
+    //TIMER
     private Timer timerCrono;
     private Timer timer;
     private Timer timerFPS;
 
+    //CONTROLADOR_SONIDO
     private Sound sonido;
+    //GESTOR_IMAGENES
+    private GestorRutasImagenes gestorRutasImagenes;
+
+    //LOGGER
+    private LogExcepcion logExcepcion;
+
+    private int cronoTime;
+    private int score;
+    private int speedGameDelay;
+    private Xogo xogo;
 
     public VentanaPrincipal() {
-        sonido = new Sound(this);
         initComponents();
-        gameJPanel.setVisible(false);
-        gameJPanel.requestFocus();
-        gameJPanel.requestFocusInWindow();
-
+        logExcepcion = new LogExcepcion();
+        sonido = new Sound(this);
+        gestorRutasImagenes = new GestorRutasImagenes();
     }
 
     /**
@@ -253,7 +250,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelXogo.setLayout(null);
         gameJPanel.add(panelXogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 500, 900));
 
-        lblBackgroundGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/10x18backgroundGameSafeZone.png"))); // NOI18N
+        lblBackgroundGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/10x18backgroundGameSafeZone.png"))); // NOI18N
         lblBackgroundGame.setText("lblBackgroundGame");
         lblBackgroundGame.setMaximumSize(new java.awt.Dimension(500, 900));
         lblBackgroundGame.setMinimumSize(new java.awt.Dimension(500, 900));
@@ -397,11 +394,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         backgroundProgram.setBackground(new java.awt.Color(204, 204, 204));
         backgroundProgram.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        backgroundProgram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/backgroundApp.jpg"))); // NOI18N
+        backgroundProgram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/backgroundApp.jpg"))); // NOI18N
         backgroundProgram.setText("backgroundProgram");
         gameJPanel.add(backgroundProgram, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
 
         getContentPane().add(gameJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 950));
+        gameJPanel.setVisible(false);
 
         MenuJPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -484,25 +482,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void panelXogoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_panelXogoKeyPressed
 
         switch (evt.getKeyCode()) {
-            case 37, 65 ->
+            case 37, 65 ->  // caracter A || FLECHA IZQUIERDA
                 xogo.moverEsquerda();
-            case 38, 87 ->
+            case 38, 87 -> // caracter W || FLECHA ARRIBA
                 xogo.rotarFicha();
-            case 39, 68 ->
+            case 39, 68 -> // caracter D || FLECHA DERECHA
                 xogo.moverDereita();
-            case 40, 83 -> {
+            case 40, 83 -> // caracter S || FLECHA ABAJO
+            {
                 xogo.moverFichaAbaixo();
                 timer.restart();
             }
-            case 80, 27 -> {
-                if (!tglPause.isSelected()) {
+            case 80, 27 ->// caracter P || ESCAPE
+            {
+                if (!gameOverPanel.isVisible()) {
                     tglPause.setSelected(true);
                     pauseMenu();
                 }
             }
-
         }
-
     }//GEN-LAST:event_panelXogoKeyPressed
 
     private void restartGameOverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restartGameOverActionPerformed
@@ -534,10 +532,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void mainMenuPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuPauseActionPerformed
         pause();
-        MenuJPanel.setVisible(true);
+        tglPause.setSelected(false);
         pausePanel.setVisible(false);
+        MenuJPanel.setVisible(true);
         gameJPanel.setVisible(false);
         closeActualGame();
+
 
     }//GEN-LAST:event_mainMenuPauseActionPerformed
 
@@ -646,20 +646,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void iniciarPartida() {
 
-        try {
-            xogo = new Xogo(this);
-            inicializarContadores();
-            startRefreshScreen();
-            startCrono();
-            startSpeed();
-            tglPause.setSelected(false);
-            panelXogo.setFocusable(true);
-            panelXogo.requestFocus();
+        xogo = new Xogo(this);
+        inicializarContadores();
+        startRefreshScreen();
+        startCrono();
+        panelXogo.setFocusable(true);
+        panelXogo.requestFocus();
+        startSpeed();
 
-            sonido.ReproducirBSO();
-        } catch (IOException ex) {
-            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        sonido.ReproducirBSO();
 
     }
 
@@ -673,38 +668,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     private void iconarCadrado(JLabel lblCadrado) {
-        HashMap<Color, String> myMap = new HashMap<Color, String>() {
-            {
-                put(Color.BLUE, "/azul.png");
-                put(Color.RED, "/rojo.png");
-                put(Color.YELLOW, "/amarillo.png");
-                put(Color.GREEN, "/verde.png");
-                put(Color.WHITE, "/blanco.png");
-                put(Color.MAGENTA, "/morado.png");
-                put(Color.ORANGE, "/naranja.png");
 
-            }
-        };
-        lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource(myMap.get(lblCadrado.getBackground()))));
+        lblCadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource(gestorRutasImagenes.getImagenesCadrados().get(lblCadrado.getBackground()))));
     }
 
     public void mostrarFichaSiguiente(JLabel lblCadrado) {
 
-        if (lblCadrado.getBackground() == Color.BLUE) {
-            lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cuadrado.png")));
-        } else if (lblCadrado.getBackground() == Color.RED) {
-            lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/zderecha.png")));
-        } else if (lblCadrado.getBackground() == Color.YELLOW) {
-            lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/barra.png")));
-        } else if (lblCadrado.getBackground() == Color.GREEN) {
-            lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lizquierda.png")));
-        } else if (lblCadrado.getBackground() == Color.WHITE) {
-            lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lderecha.png")));
-        } else if (lblCadrado.getBackground() == Color.MAGENTA) {
-            lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/zizquierda.png")));
-        } else if (lblCadrado.getBackground() == Color.ORANGE) {
-            lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/t.png")));
-        }
+        lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource(gestorRutasImagenes.getImagenesFichas().get(lblCadrado.getBackground()))));
 
     }
 
@@ -715,9 +685,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public void mostrarFinDoXogo() {
 
         pause();
-
         gameOverPanel.setVisible(true);
-
         scoreGameOver.setText(lblScore.getText());
         timeGameOver.setText(lblTime.getText());
         linesGameOver.setText(lblLine.getText());
@@ -728,15 +696,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     private void pause() {
-
+        timer.stop();
         timerFPS.stop();
         timerCrono.stop();
-        timer.stop();
-        try {
-            sonido.PararBSO();
-        } catch (IOException ex) {
-            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        sonido.PararBSO();
 
     }
 
@@ -745,12 +708,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         timerFPS.start();
         timerCrono.start();
         timer.start();
-
-        try {
-            sonido.ReproducirBSO();
-        } catch (IOException ex) {
-            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        sonido.ReproducirBSO();
 
     }
 
@@ -776,11 +734,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     private void inicializarContadores() {
-        timeCooldown = 0;
-        time = 0;
+
+        cronoTime = 0;
         score = 0;
         xogo.setDificultadInicioJuego(xogo.getDIFICULTAD_MIN() - (xogo.getDIFICULTAD_NIVEL() * levelJSlider.getValue()));
-        speed = xogo.getDificultadInicioJuego();
+        speedGameDelay = xogo.getDificultadInicioJuego();
         progressLevel.setValue(0);
     }
 
@@ -788,10 +746,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         timerCrono = new Timer(1000, (ActionEvent e) -> {
 
-            time++;
-            score = score + 1 * speed / 100;
+            cronoTime++;
+            score = score + 1 * speedGameDelay / 100;
 
-            if (xogo.getLevel() > 3 && time % 20 == 0) {
+            if (xogo.getLevel() > 3 && cronoTime % 20 == 0) {
                 xogo.anadirCuadradosAleatorios();
             }
         });
@@ -800,11 +758,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void startSpeed() {
 
-        timer = new Timer(speed, (ActionEvent e) -> {
+        timer = new Timer(speedGameDelay, (ActionEvent e) -> {
 
             xogo.moverFichaAbaixo();
 
         });
+
         timer.start();
     }
 
@@ -815,10 +774,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             lblLine.setText(String.valueOf(xogo.getNumeroLinas()));
             lblLevel.setText(String.valueOf(xogo.getLevel()));
             progressLevel.setValue(xogo.getLinasNextLevel());
-            if (time < 10) {
-                lblTime.setText(String.valueOf("0" + time));
+            if (cronoTime < 10) {
+                lblTime.setText(String.valueOf("0" + cronoTime));
             } else {
-                lblTime.setText(String.valueOf(time));
+                lblTime.setText(String.valueOf(cronoTime));
             }
             gameJPanel.updateUI();
         });
@@ -831,6 +790,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void closeActualGame() {
         cleanPanelXogo();
+        timerCrono = null;
+        timer = null;
+        timerFPS = null;
         xogo = null;
     }
 
@@ -838,16 +800,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return timer;
     }
 
-    public int getTimeCooldown() {
-        return timeCooldown;
-    }
-
-    public void setTimeCooldown(int timeCooldown) {
-        this.timeCooldown = timeCooldown;
-    }
-
-    public int getTime() {
-        return time;
+    public int getCronoTime() {
+        return cronoTime;
     }
 
     public JSlider getLevelJSlider() {
@@ -860,6 +814,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public Sound getSonido() {
         return sonido;
+    }
+
+    public LogExcepcion getLogExcepcion() {
+        return logExcepcion;
     }
 
 }

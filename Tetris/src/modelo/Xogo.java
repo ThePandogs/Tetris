@@ -7,12 +7,9 @@ package modelo;
 import java.util.Iterator;
 import iu.VentanaPrincipal;
 import static java.awt.Color.yellow;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -22,18 +19,31 @@ import java.util.logging.Logger;
  */
 public final class Xogo {
 
+    //REFERENCIA MAPA JUEGO
     private final int LADOCADRADO = 50;
     private final int MAXY = 850;
     private final int MAXX = 450;
     private final int SAFEZONE = LADOCADRADO * 2;
-    private int numeroLinas = 0;
+
+    //REFERENCIA UI
     private VentanaPrincipal ventanaPricipal;
-    private Ficha fichaActual;
+
+    //REFERENCIA DIFICULTAD
+    //CUANDO MENOS VALOR + RAPIDO EL JUEGO.
+    private int dificultadInicioJuego;
+    private final int DIFICULTAD_MIN = 1000;
+    private final int DIFICULTAD_NIVEL = 40;
+    private final int DIFICULTAD_MAX = 200;
+    private final int LINEAS_NEXT_LEVEL = 5;
+
     private List<Cadrado> cadradosChan = new ArrayList();
     private List<Cadrado> linea = new ArrayList();
+    private Ficha fichaActual;
     private Ficha fichaSiguiente;
     private int level;
+    private int numeroLinas = 0;
     private int LinasNextLevel = 0;
+
     List<Ficha> fichas = new ArrayList<>(Arrays.asList(
             new FichaT(this),
             new FichaBarra(this),
@@ -43,19 +53,13 @@ public final class Xogo {
             new FichaZ(this),
             new FichaZReverse(this)));
 
-    //LA DIFICULTAD AUMENTA CUANTO MENOS SEA EL VALOR YA QUE MODIFICA EL TIMER.
-    private int dificultadInicioJuego;
-    private final int DIFICULTAD_MIN = 1000;
-    private final int DIFICULTAD_NIVEL = 40;
-    private final int DIFICULTAD_MAX = 200;
-    private final int LINEAS_NEXT_LEVEL = 5;
-
     public Xogo(VentanaPrincipal ventana) {
+
         ventanaPricipal = ventana;
         fichaSiguiente = xenerarNovaFicha();
         fichaActual = xenerarNovaFicha();
         pintarFichaActual();
-        ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
+       // ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
 
         this.level = ventanaPricipal.getLevelJSlider().getValue();
 
@@ -280,19 +284,17 @@ public final class Xogo {
     }
 
     public void borrarLinas() {
-        try {
-            Iterator<Cadrado> blinea = linea.iterator();
-            while (blinea.hasNext()) {
-                Cadrado este = blinea.next();
 
-                ventanaPricipal.borrarCadrado(este.getLblCadrado());
-                cadradosChan.removeAll(linea);
+        Iterator<Cadrado> blinea = linea.iterator();
+        while (blinea.hasNext()) {
+            Cadrado este = blinea.next();
 
-            }
-            ventanaPricipal.getSonido().ReproducirSonidoLinea();
-        } catch (IOException ex) {
-            Logger.getLogger(Xogo.class.getName()).log(Level.SEVERE, null, ex);
+            ventanaPricipal.borrarCadrado(este.getLblCadrado());
+            cadradosChan.removeAll(linea);
+
         }
+        ventanaPricipal.getSonido().ReproducirSonidoLinea();
+
     }
 
     public void actualizarBloques() {
@@ -310,7 +312,7 @@ public final class Xogo {
 
     }
 
-    public boolean comprobarPerder() {
+    private boolean comprobarPerder() {
         Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
         while (actual.hasNext()) {
             Cadrado cactual = actual.next();
@@ -334,11 +336,9 @@ public final class Xogo {
     private void engadeFichaBorraLinasCompletasXeneraNovaFicha() {
 
         engadirFichaAoChan();
-        try {
-            ventanaPricipal.getSonido().ReproducirSuelo();
-        } catch (IOException ex) {
-            Logger.getLogger(Xogo.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+        ventanaPricipal.getSonido().ReproducirSuelo();
+
         if (!comprobarPerder()) {
 
             borrarLinasCompletas();

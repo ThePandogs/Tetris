@@ -4,6 +4,7 @@
  */
 package iu;
 
+import Log.LogExcepcion;
 import static java.awt.image.ImageObserver.ABORT;
 import java.io.File;
 import java.io.IOException;
@@ -26,22 +27,24 @@ public class Sound {
     private Clip BSO;
     private Clip sonidoSuelo;
     private Clip sonidoLinea;
-    private final File sueloFile = new File("./src/resources/audio/suelo.wav");
+    private final File sueloFile = new File("./src/resources/audio/suelo3.wav");
     private final File lineaFile = new File("./src/resources/audio/shot2.wav");
     AudioInputStream sueloAudio;
     AudioInputStream BSOAudio;
     AudioInputStream lineaAudio;
+    LogExcepcion logExcepcion;
 
-    public Sound(VentanaPrincipal ventana) {
+    public Sound(VentanaPrincipal ventanaPricipal) {
 
         try {
-            ventanaPricipal = ventana;
+            this.ventanaPricipal = ventanaPricipal;
+            logExcepcion = ventanaPricipal.getLogExcepcion();
             BSOAudio = AudioSystem.getAudioInputStream(BSOFile);
             BSO = AudioSystem.getClip();
             BSO.open(BSOAudio);
 
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
-            Logger.getLogger(Sound.class.getName()).log(Level.SEVERE, null, ex);
+            logExcepcion.anadirExcepcionLog(ex);
         }
 
     }
@@ -58,47 +61,45 @@ public class Sound {
         return sonidoLinea;
     }
 
-    public void ReproducirBSO() throws IOException {
-
+    public void ReproducirBSO() {
         BSO.loop(ABORT);
     }
 
-    public void ReproducirSuelo() throws IOException {
-        if (!ventanaPricipal.getXogo().comprobarPerder()) {
-            try {
-                sueloAudio = AudioSystem.getAudioInputStream(sueloFile);
-                sonidoSuelo = AudioSystem.getClip();
-                sonidoSuelo.open(sueloAudio);
-                sonidoSuelo.start();
-            } catch (UnsupportedAudioFileException | LineUnavailableException ex) {
-                Logger.getLogger(Sound.class.getName()).log(Level.SEVERE, null, ex);
-            }
+    public void ReproducirSuelo() {
+
+        try {
+            sueloAudio = AudioSystem.getAudioInputStream(sueloFile);
+            sonidoSuelo = AudioSystem.getClip();
+            sonidoSuelo.open(sueloAudio);
+            sonidoSuelo.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+            logExcepcion.anadirExcepcionLog(ex);
         }
     }
 
-    public void ReproducirSonidoLinea() throws IOException {
+    public void ReproducirSonidoLinea() {
         try {
             lineaAudio = AudioSystem.getAudioInputStream(lineaFile);
             sonidoLinea = AudioSystem.getClip();
             sonidoLinea.open(lineaAudio);
             sonidoLinea.start();
-        } catch (UnsupportedAudioFileException | LineUnavailableException ex) {
-            Logger.getLogger(Sound.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+            logExcepcion.anadirExcepcionLog(ex);
         }
     }
 
-    public void PararSonidoLinea() throws IOException {
+    public void PararSonidoLinea() {
 
         sonidoLinea.stop();
 
     }
 
-    public void PararSonidoSuelo() throws IOException {
+    public void PararSonidoSuelo() {
 
         sonidoSuelo.close();
     }
 
-    public void PararBSO() throws IOException {
+    public void PararBSO() {
 
         BSO.stop();
     }

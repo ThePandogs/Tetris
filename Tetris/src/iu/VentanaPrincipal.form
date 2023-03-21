@@ -335,6 +335,9 @@
           <Color blue="66" green="66" red="66" type="rgb"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="gameJPanel.setVisible(false);"/>
+      </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="0" y="0" width="1100" height="950"/>
@@ -384,7 +387,7 @@
         <Component class="javax.swing.JLabel" name="lblBackgroundGame">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/resources/10x18backgroundGameSafeZone.png"/>
+              <Image iconType="3" name="/imagenes/10x18backgroundGameSafeZone.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="lblBackgroundGame"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -826,7 +829,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/resources/backgroundApp.jpg"/>
+              <Image iconType="3" name="/imagenes/backgroundApp.jpg"/>
             </Property>
             <Property name="text" type="java.lang.String" value="backgroundProgram"/>
           </Properties>
