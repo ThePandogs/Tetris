@@ -36,8 +36,6 @@ public final class Xogo {
     private final int DIFICULTAD_NIVEL = 40;
     private final int DIFICULTAD_MAX = 200;
     private final int LINEAS_NEXT_LEVEL = 5;
-    
-    
 
     private List<Cadrado> cadradosChan = new ArrayList();
     private List<Cadrado> linea = new ArrayList();
@@ -46,7 +44,7 @@ public final class Xogo {
     private int level;
     private int numeroLinas = 0;
     private int LinasNextLevel = 0;
-    
+
     private boolean gameOver;
 
     private List<Integer> idFichas = new ArrayList();
@@ -163,16 +161,16 @@ public final class Xogo {
     }
 
     private void xenerarNovaFicha() {
-
+        Xogo xogoActual = this;
         listaFichas = new HashMap<Integer, Ficha>() {
             {
-                put(1, new FichaBarra(Xogo.this));
-                put(2, new FichaT(Xogo.this));
-                put(3, new FichaCadrada(Xogo.this));
-                put(4, new FichaL(Xogo.this));
-                put(5, new FichaLReverse(Xogo.this));
-                put(6, new FichaZ(Xogo.this));
-                put(7, new FichaZReverse(Xogo.this));
+                put(1, new FichaBarra(xogoActual));
+                put(2, new FichaT(xogoActual));
+                put(3, new FichaCadrada(xogoActual));
+                put(4, new FichaL(xogoActual));
+                put(5, new FichaLReverse(xogoActual));
+                put(6, new FichaZ(xogoActual));
+                put(7, new FichaZReverse(xogoActual));
             }
         };
 
@@ -325,12 +323,9 @@ public final class Xogo {
 
     private void engadeFichaBorraLinasCompletasXeneraNovaFicha() {
 
-        engadirFichaAoChan();
-
-        ventanaPricipal.getSonido().ReproducirSuelo();
-
         if (!comprobarPerder()) {
-
+            engadirFichaAoChan();
+            ventanaPricipal.getSonido().ReproducirSuelo();
             borrarLinasCompletas();
             fichaStoFichaA();
             pintarFichaActual();
