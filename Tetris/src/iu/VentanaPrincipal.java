@@ -4,6 +4,7 @@
  */
 package iu;
 
+import audio.Sound;
 import Log.LogExcepcion;
 import imagenes.GestorRutasImagenes;
 import java.awt.Color;
@@ -991,7 +992,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     }
 
-    /**Aumenta el score por linea*/
+    /**
+     * Aumenta el score por linea
+     */
     public void scoreLineaCompleta() {
 
         puntuacionPendienteSumar += scoreLinea;

@@ -14,21 +14,21 @@ import static java.awt.Color.blue;
  */
 public class FichaCadrada extends Ficha {
 
-   
+    Cadrado firstCadrado = new Cadrado(xogo.getMAXX() / 2 - xogo.getLADOCADRADO(), 0, blue);
 
     public FichaCadrada(Xogo x) {
         super(x);
-        cadrados.add(new Cadrado( xogo.getLADOCADRADO()*4, 0, blue));
-        cadrados.add(new Cadrado( xogo.getLADOCADRADO()*5, 0, blue));
-        cadrados.add(new Cadrado( xogo.getLADOCADRADO()*4,  xogo.getLADOCADRADO(), blue));
-        cadrados.add(new Cadrado( xogo.getLADOCADRADO()*5,  xogo.getLADOCADRADO(), blue));
+        cadrados.add(firstCadrado);
+        cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY(), blue));
+        cadrados.add(new Cadrado(firstCadrado.getX(), firstCadrado.getY() + xogo.getLADOCADRADO(), blue));
+        cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY() + xogo.getLADOCADRADO(), blue));
         id = 2;
     }
 
     @Override
 
     public boolean rotar() {
-      
+
         return true;
 
     }

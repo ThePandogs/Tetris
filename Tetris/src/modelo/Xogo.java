@@ -23,7 +23,7 @@ public final class Xogo {
     //REFERENCIA MAPA JUEGO
     private final int LADOCADRADO = 50;
     private final int MAXY = 850;
-    private final int MAXX = 450;
+    private final int MAXX = 500;
     private final int SAFEZONE = LADOCADRADO * 2;
 
     //REFERENCIA UI
@@ -192,7 +192,7 @@ public final class Xogo {
             xenerarNovaFicha();
         }
         idFichas.add(fichaSiguiente.id);
-        if (idFichas.size() == listaFichas.size() ) {
+        if (idFichas.size() == listaFichas.size()) {
             idFichas.removeAll(idFichas);
         }
 
@@ -241,7 +241,7 @@ public final class Xogo {
 
     public boolean ePosicionValida(int x, int y) {
         boolean posicionValida = true;
-        if (x > MAXX || x < 0 || y > MAXY || y < -LADOCADRADO) {
+        if (x > MAXX -  LADOCADRADO|| x < 0 || y > MAXY || y < -LADOCADRADO) {
             posicionValida = false;
         }
         Iterator<Cadrado> chan = cadradosChan.iterator();
@@ -257,7 +257,7 @@ public final class Xogo {
     }
 
     public void borrarLinasCompletas() {
-         int lineaCompleta=10;
+        int lineaCompleta = 10;
         Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
         while (actual.hasNext()) {
             Cadrado cactual = actual.next();
@@ -369,12 +369,12 @@ public final class Xogo {
         }
 
         //Elige la posicion donde incluira un cuadrado y el numero de cuadrados que incluira 
-        for (int i = 0; i < numeroRandom(MAXX/LADOCADRADO); i++) {
-            int random = numeroRandom(MAXX/LADOCADRADO);
+        for (int i = 0; i < numeroRandom((MAXX -LADOCADRADO)/ LADOCADRADO); i++) {
+            int random = numeroRandom((MAXX -LADOCADRADO)/ LADOCADRADO);
 
             //Si la posicion escogida ya esta ocupada
             while (posiciones.contains(random)) {
-                random = numeroRandom(MAXX/LADOCADRADO);
+                random = numeroRandom((MAXX -LADOCADRADO) / LADOCADRADO);
 
             }
             //Añade el cuadrado

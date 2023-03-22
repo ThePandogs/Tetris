@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package iu;
+package audio;
 
 import Log.LogExcepcion;
+import iu.VentanaPrincipal;
 import static java.awt.image.ImageObserver.ABORT;
 import java.io.File;
 import java.io.IOException;
