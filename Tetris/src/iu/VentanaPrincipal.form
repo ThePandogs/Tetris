@@ -507,6 +507,7 @@
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="gameJPanel.setVisible(false);"/>
+        <AuxValue name="JavaCodeGenerator_DeclarationPost" type="java.lang.String" value="private javax.swing.JLabel backgroundPause;"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -543,6 +544,7 @@
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel()"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="backgroundPause = new javax.swing.JLabel();&#xa;backgroundPause.setBackground(new java.awt.Color(70, 70, 70,200));&#xa;backgroundPause.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);&#xa;backgroundPause.setOpaque(true);&#xa;backgroundPause.setVisible(false);&#xa;gameJPanel.add(backgroundPause);&#xa;backgroundPause.setBounds(0, 0, 1100, 950);"/>
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

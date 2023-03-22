@@ -43,7 +43,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private int cronoTime;
     private int score;
-    private int scoreLinea = 20;
+    private final int SCORELINEA = 20;
     private int puntuacionPendienteSumar = 0;
     private int speedGameDelay;
 
@@ -89,6 +89,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelMainMenu = new javax.swing.JPanel();
         background = new javax.swing.JLabel();
         gameJPanel = new javax.swing.JPanel();
+        backgroundPause = new javax.swing.JLabel();
+        backgroundPause.setBackground(new java.awt.Color(70, 70, 70,200));
+        backgroundPause.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        backgroundPause.setOpaque(true);
+        backgroundPause.setVisible(false);
+        gameJPanel.add(backgroundPause);
+        backgroundPause.setBounds(0, 0, 1100, 950);
         panelXogo = new javax.swing.JPanel();
         lblBackgroundGame = new javax.swing.JLabel();
         panelScore = new javax.swing.JPanel();
@@ -609,6 +616,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void mainMenuGameOverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuGameOverActionPerformed
         pause();
+        backgroundPause.setVisible(false);
         tglPause.setVisible(true);
         gameOverPanel.setVisible(false);
         MenuJPanel.setVisible(true);
@@ -619,6 +627,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void mainMenuPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuPauseActionPerformed
         pause();
+        backgroundPause.setVisible(false);
         tglPause.setSelected(false);
         pausePanel.setVisible(false);
         MenuJPanel.setVisible(true);
@@ -714,6 +723,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel background;
     private javax.swing.JLabel backgroundProgram;
     private javax.swing.JPanel gameJPanel;
+    private javax.swing.JLabel backgroundPause;
     private javax.swing.JPanel gameOverPanel;
     private javax.swing.JLabel lblBackgroundGame;
     private javax.swing.JLabel lblFichaSiguiente;
@@ -763,6 +773,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         inicializarContadores();
         startRefreshScreen();
         startCrono();
+
         panelXogo.setFocusable(true);
         panelXogo.requestFocus();
         startSpeed();
@@ -815,6 +826,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public void mostrarFinDoXogo() {
 
         pause();
+        backgroundPause.setVisible(true);
         gameOverPanel.setVisible(true);
         scoreGameOver.setText(lblScore.getText());
         timeGameOver.setText(lblTime.getText());
@@ -853,6 +865,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     private void pauseMenu() {
         pause();
+        backgroundPause.setVisible(true);
         pausePanel.setVisible(true);
         pausePanel.requestFocus();
 
@@ -863,7 +876,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     private void resumeMenu() {
         resume();
-
+        backgroundPause.setVisible(false);
         pausePanel.setVisible(false);
     }
 
@@ -872,6 +885,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     private void restartGame() {
         pausePanel.setVisible(false);
+        backgroundPause.setVisible(false);
         gameOverPanel.setVisible(false);
         tglPause.setVisible(true);
         tglPause.setSelected(false);
@@ -997,7 +1011,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     public void scoreLineaCompleta() {
 
-        puntuacionPendienteSumar += scoreLinea;
+        puntuacionPendienteSumar += SCORELINEA;
 
     }
 }
