@@ -113,6 +113,14 @@ public final class Xogo {
         return DIFICULTAD_NIVEL;
     }
 
+    public int getMAXY() {
+        return MAXY;
+    }
+
+    public int getMAXX() {
+        return MAXX;
+    }
+
     public void moverEsquerda() {
         boolean posicionValida = true;
         Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
@@ -186,7 +194,7 @@ public final class Xogo {
             xenerarNovaFicha();
         }
         idFichas.add(fichaSiguiente.id);
-        if (idFichas.size() == 7) {
+        if (idFichas.size() == listaFichas.size() ) {
             idFichas.removeAll(idFichas);
         }
 
@@ -251,6 +259,7 @@ public final class Xogo {
     }
 
     public void borrarLinasCompletas() {
+         int lineaCompleta=10;
         Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
         while (actual.hasNext()) {
             Cadrado cactual = actual.next();
@@ -262,7 +271,7 @@ public final class Xogo {
                     linea.add(cchan);
                 }
             }
-            if (linea.size() == 10) {
+            if (linea.size() == lineaCompleta) {
 
                 borrarLinas();
                 numeroLinas++;
@@ -361,16 +370,16 @@ public final class Xogo {
         Iterator<Cadrado> suelo = cadradosChan.iterator();
         while (suelo.hasNext()) {
             Cadrado siguiente = suelo.next();
-            siguiente.actualizarCoordenada(siguiente.getX(), siguiente.getY() - 50);
+            siguiente.actualizarCoordenada(siguiente.getX(), siguiente.getY() - LADOCADRADO);
         }
 
         //Elige la posicion donde incluira un cuadrado y el numero de cuadrados que incluira 
-        for (int i = 0; i < numeroRandom(9); i++) {
-            int random = numeroRandom(9);
+        for (int i = 0; i < numeroRandom(MAXX/LADOCADRADO); i++) {
+            int random = numeroRandom(MAXX/LADOCADRADO);
 
             //Si la posicion escogida ya esta ocupada
             while (posiciones.contains(random)) {
-                random = numeroRandom(9);
+                random = numeroRandom(MAXX/LADOCADRADO);
 
             }
             //Añade el cuadrado

@@ -17,7 +17,7 @@ import java.util.List;
 public abstract class Ficha {
 
     protected List<Cadrado> cadrados;
-    protected int posicion = 0;
+    protected int posicion ;
     protected Xogo xogo;
     protected int id;
 
