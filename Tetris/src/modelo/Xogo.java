@@ -36,6 +36,8 @@ public final class Xogo {
     private final int DIFICULTAD_NIVEL = 40;
     private final int DIFICULTAD_MAX = 200;
     private final int LINEAS_NEXT_LEVEL = 5;
+    
+    
 
     private List<Cadrado> cadradosChan = new ArrayList();
     private List<Cadrado> linea = new ArrayList();
@@ -44,7 +46,7 @@ public final class Xogo {
     private int level;
     private int numeroLinas = 0;
     private int LinasNextLevel = 0;
-
+    
     private boolean gameOver;
 
     private List<Integer> idFichas = new ArrayList();
@@ -264,6 +266,7 @@ public final class Xogo {
 
                 borrarLinas();
                 numeroLinas++;
+                ventanaPricipal.scoreLineaCompleta();
                 LinasNextLevel++;
                 aumentarNivel(numeroLinas, ventanaPricipal.getTimer().getDelay());
                 actualizarBloques();

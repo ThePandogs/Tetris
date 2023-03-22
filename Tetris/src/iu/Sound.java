@@ -22,7 +22,6 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  */
 public class Sound {
 
-    private VentanaPrincipal ventanaPricipal;
     private final File BSOFile = new File("./src/resources/audio/bso.wav");
     private Clip BSO;
     private Clip sonidoSuelo;
@@ -30,17 +29,14 @@ public class Sound {
     private final File sueloFile = new File("./src/resources/audio/suelo.wav");
     private final File lineaFile = new File("./src/resources/audio/shot2.wav");
     AudioInputStream sueloAudio;
-    AudioInputStream BSOAudio;
     AudioInputStream lineaAudio;
     LogExcepcion logExcepcion;
 
     public Sound(VentanaPrincipal ventanaPricipal) {
-
-        this.ventanaPricipal = ventanaPricipal;
         logExcepcion = ventanaPricipal.getLogExcepcion();
-
     }
 
+    // <editor-fold defaultstate="collapsed" desc="GettersAndSetters">  
     public Clip getBSO() {
         return BSO;
     }
@@ -52,6 +48,7 @@ public class Sound {
     public Clip getSonidoLinea() {
         return sonidoLinea;
     }
+// </editor-fold>  
 
     public void ReproducirBSO() {
 
@@ -60,9 +57,8 @@ public class Sound {
             BSO.open(AudioSystem.getAudioInputStream(BSOFile));
             BSO.loop(ABORT);
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
-            Logger.getLogger(Sound.class.getName()).log(Level.SEVERE, null, ex);
+            logExcepcion.anadirExcepcionLog(ex);
         }
-
     }
 
     public void ReproducirSuelo() {
@@ -89,23 +85,15 @@ public class Sound {
     }
 
     public void PararSonidoLinea() {
-
         sonidoLinea.stop();
-
     }
 
     public void PararSonidoSuelo() {
-
         sonidoSuelo.stop();
     }
 
     public void PararBSO() {
-
         BSO.stop();
     }
 
-    public void STOP() {
-        BSO.stop();
-
-    }
 }

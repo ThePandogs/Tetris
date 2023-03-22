@@ -29,6 +29,10 @@ public class LogExcepcion {
         archivoExcepciones = new File("src/Log/Exception.txt");
     }
 
+    /**
+     * Añade una exception con respectiva Nombre-Fecha-Hora-Motivo al File
+     * archivoExcepciones
+     */
     public void anadirExcepcionLog(Exception e) {
         data = LocalDateTime.now();
         time = LocalTime.now();
