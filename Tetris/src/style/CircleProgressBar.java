@@ -10,7 +10,7 @@ import javax.swing.JProgressBar;
 /**
  *
  * @author a14carlosfd
- * 
+ *
  */
 public class CircleProgressBar extends JProgressBar {
 

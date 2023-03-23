@@ -9,8 +9,6 @@ import iu.VentanaPrincipal;
 import static java.awt.image.ImageObserver.ABORT;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -95,6 +93,10 @@ public class Sound {
 
     public void PararBSO() {
         BSO.stop();
+    }
+
+    public void renaudarBSO() {
+        BSO.start();
     }
 
 }

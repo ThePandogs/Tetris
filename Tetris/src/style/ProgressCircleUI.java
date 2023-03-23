@@ -4,13 +4,10 @@ package style;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 /**
  *
  * @author a14carlosfd
  */
-
-
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;

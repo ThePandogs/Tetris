@@ -26,7 +26,7 @@ public class Cadrado {
 
         lblCadrado.setBackground(cor);
         lblCadrado.setLocation(x, y);
-     
+
     }
 
     public int getX() {
@@ -67,9 +67,9 @@ public class Cadrado {
 
     public String getCoordenadas() {
 
-        String cor = "x= " + getX() + " : " + "y=" + getY();
+        String cordenadas = "x= " + getX() + " : " + "y=" + getY();
 
-        return cor;
+        return cordenadas;
 
     }
 

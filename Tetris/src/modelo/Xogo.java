@@ -6,7 +6,6 @@ package modelo;
 
 import java.util.Iterator;
 import iu.VentanaPrincipal;
-import java.awt.Color;
 import static java.awt.Color.yellow;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -241,7 +240,7 @@ public final class Xogo {
 
     public boolean ePosicionValida(int x, int y) {
         boolean posicionValida = true;
-        if (x > MAXX -  LADOCADRADO|| x < 0 || y > MAXY || y < -LADOCADRADO) {
+        if (x > MAXX - LADOCADRADO || x < 0 || y > MAXY || y < -LADOCADRADO) {
             posicionValida = false;
         }
         Iterator<Cadrado> chan = cadradosChan.iterator();
@@ -273,9 +272,11 @@ public final class Xogo {
 
                 borrarLinas();
                 numeroLinas++;
-                ventanaPricipal.scoreLineaCompleta();
+                ventanaPricipal.AumentarPuntuacionPendiente(ventanaPricipal.getSCORELINEA());
                 LinasNextLevel++;
+
                 aumentarNivel(numeroLinas, ventanaPricipal.getTimer().getDelay());
+
                 actualizarBloques();
             }
 
@@ -335,6 +336,7 @@ public final class Xogo {
         if (!comprobarPerder()) {
             engadirFichaAoChan();
             ventanaPricipal.getSonido().ReproducirSuelo();
+            ventanaPricipal.AumentarPuntuacionPendiente(ventanaPricipal.getSCORECHOCACHAN());
             borrarLinasCompletas();
             fichaStoFichaA();
             pintarFichaActual();
@@ -352,6 +354,7 @@ public final class Xogo {
         if (lineas % LINEAS_NEXT_LEVEL == 0 && delayActual > DIFICULTAD_MAX) {
             ventanaPricipal.getTimer().setDelay(delayActual - DIFICULTAD_NIVEL);
             level++;
+            ventanaPricipal.AumentarPuntuacionPendiente(ventanaPricipal.getSCORECHOCACHAN());
             LinasNextLevel = 0;
             aumentaNivel = true;
         }
@@ -369,12 +372,12 @@ public final class Xogo {
         }
 
         //Elige la posicion donde incluira un cuadrado y el numero de cuadrados que incluira 
-        for (int i = 0; i < numeroRandom((MAXX -LADOCADRADO)/ LADOCADRADO); i++) {
-            int random = numeroRandom((MAXX -LADOCADRADO)/ LADOCADRADO);
+        for (int i = 0; i < numeroRandom((MAXX - LADOCADRADO) / LADOCADRADO); i++) {
+            int random = numeroRandom((MAXX - LADOCADRADO) / LADOCADRADO);
 
             //Si la posicion escogida ya esta ocupada
             while (posiciones.contains(random)) {
-                random = numeroRandom((MAXX -LADOCADRADO) / LADOCADRADO);
+                random = numeroRandom((MAXX - LADOCADRADO) / LADOCADRADO);
 
             }
             //Añade el cuadrado

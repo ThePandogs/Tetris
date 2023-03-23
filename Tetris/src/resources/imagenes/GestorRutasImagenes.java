@@ -29,7 +29,9 @@ public class GestorRutasImagenes {
         return imagenesCadrados;
     }
 
-    /**Devuelve un HashMap con las rutas de imagenes de cuadrados*/
+    /**
+     * Devuelve un HashMap con las rutas de imagenes de cuadrados
+     */
     private HashMap cargarImagenesCadrados() {
 
         HashMap RutasImagenesCadrados = new HashMap<Color, String>() {
@@ -46,7 +48,10 @@ public class GestorRutasImagenes {
         return RutasImagenesCadrados;
 
     }
-/**Devuelve un HashMap con las rutas de imagenes de las fichas*/
+
+    /**
+     * Devuelve un HashMap con las rutas de imagenes de las fichas
+     */
     private HashMap cargarImagenesFichas() {
 
         HashMap RutasImagenesFichas = new HashMap<Color, String>() {

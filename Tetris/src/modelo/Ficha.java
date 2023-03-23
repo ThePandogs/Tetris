@@ -17,7 +17,7 @@ import java.util.List;
 public abstract class Ficha {
 
     protected List<Cadrado> cadrados;
-    protected int posicion ;
+    protected int posicion;
     protected Xogo xogo;
     protected int id;
 
@@ -34,7 +34,7 @@ public abstract class Ficha {
     public int getId() {
         return id;
     }
-    
+
     public void setCadrados(List<Cadrado> cadrados) {
         this.cadrados = cadrados;
     }

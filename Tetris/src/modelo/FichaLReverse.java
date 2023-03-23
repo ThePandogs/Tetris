@@ -4,7 +4,6 @@
  */
 package modelo;
 
-import static java.awt.Color.GREEN;
 import static java.awt.Color.white;
 
 /**
@@ -19,10 +18,10 @@ public class FichaLReverse extends Ficha {
 
     public FichaLReverse(Xogo x) {
         super(x);
-          cadrados.add(firstCadrado);
+        cadrados.add(firstCadrado);
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY(), white));
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO() * 2, firstCadrado.getY(), white));
-        cadrados.add(new Cadrado(firstCadrado.getX() , firstCadrado.getY() - xogo.getLADOCADRADO(), white));
+        cadrados.add(new Cadrado(firstCadrado.getX(), firstCadrado.getY() - xogo.getLADOCADRADO(), white));
         id = 4;
     }
 
