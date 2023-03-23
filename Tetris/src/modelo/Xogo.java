@@ -21,7 +21,7 @@ public final class Xogo {
 
     //REFERENCIA MAPA JUEGO
     private final int LADOCADRADO = 50;
-    private final int MAXY = 850;
+    private final int MAXY = 900;
     private final int MAXX = 500;
     private final int SAFEZONE = LADOCADRADO * 2;
 
@@ -240,7 +240,7 @@ public final class Xogo {
 
     public boolean ePosicionValida(int x, int y) {
         boolean posicionValida = true;
-        if (x > MAXX - LADOCADRADO || x < 0 || y > MAXY || y < -LADOCADRADO) {
+        if (x > MAXX - LADOCADRADO || x < 0 || y > MAXY - LADOCADRADO || y < -LADOCADRADO) {
             posicionValida = false;
         }
         Iterator<Cadrado> chan = cadradosChan.iterator();
@@ -381,7 +381,7 @@ public final class Xogo {
 
             }
             //Añade el cuadrado
-            Cadrado cadradoPenalty = new Cadrado(random * LADOCADRADO, MAXY, yellow);
+            Cadrado cadradoPenalty = new Cadrado(random * LADOCADRADO, MAXY - LADOCADRADO, yellow);
             cadradosChan.add(cadradoPenalty);
             ventanaPricipal.pintarCadrado(cadradoPenalty.getLblCadrado());
             posiciones.add(random);
