@@ -8,8 +8,7 @@ import static java.awt.Color.*;
 
 /**
  *
- * @author a22danielas
- * @author a14carlosfd
+ * @author ThePandogs
  *
  */
 public class FichaBarra extends Ficha {
@@ -23,7 +22,7 @@ public class FichaBarra extends Ficha {
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY(), yellow));
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO() * 2, firstCadrado.getY(), yellow));
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO() * 3, firstCadrado.getY(), yellow));
-        id = 1;
+     
     }
 
     /**

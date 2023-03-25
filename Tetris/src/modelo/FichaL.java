@@ -8,8 +8,7 @@ import static java.awt.Color.GREEN;
 
 /**
  *
- * @author a22danielas
- * @author a14carlosfd
+ * @author ThePandogs
  *
  */
 public class FichaL extends Ficha {
@@ -22,7 +21,7 @@ public class FichaL extends Ficha {
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY(), GREEN));
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO() * 2, firstCadrado.getY(), GREEN));
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO() * 2, firstCadrado.getY() - xogo.getLADOCADRADO(), GREEN));
-        id = 3;
+
     }
 
     @Override
@@ -33,10 +32,9 @@ public class FichaL extends Ficha {
         int x = xogo.getFichaActual().getCadrados().get(1).getLblCadrado().getX();
 
         switch (posicion) {
-//El case 0 corresponde con la posicion 1 del diagrama y el orden es 1,2,3,0
+
             case 0 -> {
 
-                //Comprobacion antes de pasar 
                 if (xogo.ePosicionValida(x - xogo.getLADOCADRADO(), y - xogo.getLADOCADRADO()) && xogo.ePosicionValida(x, y - xogo.getLADOCADRADO()) && xogo.ePosicionValida(x, y + xogo.getLADOCADRADO())) {
                     xogo.getFichaActual().getCadrados().get(0).actualizarCoordenada(x, y + xogo.getLADOCADRADO());
                     xogo.getFichaActual().getCadrados().get(2).actualizarCoordenada(x, y - xogo.getLADOCADRADO());

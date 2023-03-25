@@ -8,8 +8,7 @@ import static java.awt.Color.orange;
 
 /**
  *
- * @author a22danielas
- * @author a14carlosfd
+ * @author ThePandogs
  *
  */
 public class FichaT extends Ficha {
@@ -22,8 +21,7 @@ public class FichaT extends Ficha {
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY(), orange));
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO() * 2, firstCadrado.getY(), orange));
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY() - xogo.getLADOCADRADO(), orange));
-        id = 5;
-
+     
     }
 
     @Override

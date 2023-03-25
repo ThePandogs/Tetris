@@ -10,8 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author a22danielas
- * @author a14carlosfd
+ * @author ThePandogs
  *
  */
 public abstract class Ficha {
@@ -19,7 +18,6 @@ public abstract class Ficha {
     protected List<Cadrado> cadrados;
     protected int posicion;
     protected Xogo xogo;
-    protected int id;
 
     public Ficha(Xogo x) {
         cadrados = new ArrayList<>();
@@ -29,10 +27,6 @@ public abstract class Ficha {
 
     public List<Cadrado> getCadrados() {
         return cadrados;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public void setCadrados(List<Cadrado> cadrados) {

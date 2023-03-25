@@ -8,8 +8,7 @@ import static java.awt.Color.blue;
 
 /**
  *
- * @author a22danielas
- * @author a14carlosfd
+ * @author ThePandogs
  *
  */
 public class FichaCadrada extends Ficha {
@@ -22,7 +21,7 @@ public class FichaCadrada extends Ficha {
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY(), blue));
         cadrados.add(new Cadrado(firstCadrado.getX(), firstCadrado.getY() + xogo.getLADOCADRADO(), blue));
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY() + xogo.getLADOCADRADO(), blue));
-        id = 2;
+      
     }
 
     @Override

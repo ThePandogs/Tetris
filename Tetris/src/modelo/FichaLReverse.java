@@ -8,8 +8,7 @@ import static java.awt.Color.white;
 
 /**
  *
- * @author a22danielas
- * @author a14carlosfd
+ * @author ThePandogs
  *
  */
 public class FichaLReverse extends Ficha {
@@ -22,7 +21,7 @@ public class FichaLReverse extends Ficha {
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY(), white));
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO() * 2, firstCadrado.getY(), white));
         cadrados.add(new Cadrado(firstCadrado.getX(), firstCadrado.getY() - xogo.getLADOCADRADO(), white));
-        id = 4;
+      
     }
 
     @Override

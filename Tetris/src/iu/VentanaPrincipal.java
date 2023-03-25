@@ -17,8 +17,7 @@ import javax.swing.JSlider;
 
 /**
  *
- * @author a22danielas
- * @author a14carlosfd
+ * @author ThePandogs
  *
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
@@ -69,15 +68,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        menuJPanel = new javax.swing.JPanel();
-        panelMainMenu = new javax.swing.JPanel();
-        Playlbl = new javax.swing.JLabel();
-        Exitlbl = new javax.swing.JLabel();
-        levelJSlider = new javax.swing.JSlider();
-        levelLbl = new javax.swing.JLabel();
-        levlLblTitle = new javax.swing.JLabel();
-        panelMainMenuBorder = new javax.swing.JLabel();
-        background = new javax.swing.JLabel();
+        pausePanel = new javax.swing.JPanel();
+        pauseTitle = new javax.swing.JLabel();
+        restartPause = new javax.swing.JButton();
+        mainMenuPause = new javax.swing.JButton();
         gameOverPanel = new javax.swing.JPanel();
         youLoseTitle = new javax.swing.JLabel();
         levelTile = new javax.swing.JLabel();
@@ -91,10 +85,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         borderlbl = new javax.swing.JLabel();
         restartGameOver = new javax.swing.JButton();
         mainMenuGameOver = new javax.swing.JButton();
-        pausePanel = new javax.swing.JPanel();
-        pauseTitle = new javax.swing.JLabel();
-        restartPause = new javax.swing.JButton();
-        mainMenuPause = new javax.swing.JButton();
         gameJPanel = new javax.swing.JPanel();
         tglPause = new javax.swing.JToggleButton();
         panelXogo = new javax.swing.JPanel();
@@ -116,6 +106,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblTime = new javax.swing.JLabel();
         lblTimeTitle = new javax.swing.JLabel();
         backgroundProgram = new javax.swing.JLabel();
+        menuJPanel = new javax.swing.JPanel();
+        panelMainMenu = new javax.swing.JPanel();
+        Playlbl = new javax.swing.JLabel();
+        Exitlbl = new javax.swing.JLabel();
+        levelJSlider = new javax.swing.JSlider();
+        levelLbl = new javax.swing.JLabel();
+        levlLblTitle = new javax.swing.JLabel();
+        panelMainMenuBorder = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1100, 950));
@@ -124,133 +123,56 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1100, 950));
         getContentPane().setLayout(null);
 
-        menuJPanel.setMaximumSize(new java.awt.Dimension(1100, 950));
-        menuJPanel.setMinimumSize(new java.awt.Dimension(1100, 950));
-        menuJPanel.setPreferredSize(new java.awt.Dimension(1100, 950));
-        menuJPanel.setLayout(null);
-
-        panelMainMenu.setBackground(new java.awt.Color(255, 255, 255,0));
-        panelMainMenu.setBorder(new javax.swing.border.MatteBorder(null));
-        panelMainMenu.setForeground(new java.awt.Color(255, 255, 255));
-        panelMainMenu.setOpaque(false);
-        panelMainMenu.setLayout(null);
-
-        Playlbl.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 70)); // NOI18N
-        Playlbl.setForeground(new java.awt.Color(255, 255, 255));
-        Playlbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Playlbl.setText("Play");
-        Playlbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        Playlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Playlbl.setFocusable(false);
-        Playlbl.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        Playlbl.setNextFocusableComponent(panelXogo);
-        Playlbl.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                PlaylblMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                PlaylblMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                PlaylblMousePressed(evt);
+        pausePanel.setBackground(new java.awt.Color(51, 51, 51));
+        pausePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pausePanel.setForeground(new java.awt.Color(255, 255, 255));
+        pausePanel.setAlignmentX(0.0F);
+        pausePanel.setAlignmentY(0.0F);
+        pausePanel.setMaximumSize(new java.awt.Dimension(450, 330));
+        pausePanel.setMinimumSize(new java.awt.Dimension(450, 330));
+        pausePanel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pausePanelKeyPressed(evt);
             }
         });
-        panelMainMenu.add(Playlbl);
-        Playlbl.setBounds(50, 50, 310, 100);
+        pausePanel.setLayout(null);
+        pausePanel.setVisible(false);
 
-        Exitlbl.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 70)); // NOI18N
-        Exitlbl.setForeground(new java.awt.Color(255, 255, 255));
-        Exitlbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Exitlbl.setText("Exit");
-        Exitlbl.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        Exitlbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        Exitlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Exitlbl.setFocusable(false);
-        Exitlbl.setNextFocusableComponent(panelXogo);
-        Exitlbl.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                ExitlblMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                ExitlblMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                ExitlblMousePressed(evt);
+        pauseTitle.setFont(new java.awt.Font("Segoe UI", 1, 65)); // NOI18N
+        pauseTitle.setForeground(new java.awt.Color(255, 255, 255));
+        pauseTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pauseTitle.setText("Pause");
+        pausePanel.add(pauseTitle);
+        pauseTitle.setBounds(30, 20, 390, 80);
+
+        restartPause.setBackground(new java.awt.Color(30, 30, 30));
+        restartPause.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        restartPause.setForeground(new java.awt.Color(255, 255, 255));
+        restartPause.setText("Restart");
+        restartPause.setFocusable(false);
+        restartPause.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restartPauseActionPerformed(evt);
             }
         });
-        panelMainMenu.add(Exitlbl);
-        Exitlbl.setBounds(50, 450, 310, 100);
+        pausePanel.add(restartPause);
+        restartPause.setBounds(110, 200, 230, 40);
 
-        levelJSlider.setMaximum(20);
-        levelJSlider.setMinimum(1);
-        levelJSlider.setValue(1);
-        levelJSlider.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        levelJSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                levelJSliderStateChanged(evt);
+        mainMenuPause.setBackground(new java.awt.Color(30, 30, 30));
+        mainMenuPause.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        mainMenuPause.setForeground(new java.awt.Color(255, 255, 255));
+        mainMenuPause.setText("MainMenu");
+        mainMenuPause.setFocusable(false);
+        mainMenuPause.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainMenuPauseActionPerformed(evt);
             }
         });
-        levelJSlider.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                levelJSliderMouseDragged(evt);
-            }
-        });
-        levelJSlider.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                levelJSliderMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                levelJSliderMouseExited(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                levelJSliderMouseReleased(evt);
-            }
-        });
-        panelMainMenu.add(levelJSlider);
-        levelJSlider.setBounds(80, 320, 200, 30);
+        pausePanel.add(mainMenuPause);
+        mainMenuPause.setBounds(110, 260, 230, 40);
 
-        levelLbl.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
-        levelLbl.setForeground(new java.awt.Color(255, 255, 255));
-        levelLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        levelLbl.setText("1");
-        levelLbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        panelMainMenu.add(levelLbl);
-        levelLbl.setBounds(290, 310, 40, 40);
-
-        levlLblTitle.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 60)); // NOI18N
-        levlLblTitle.setForeground(new java.awt.Color(255, 255, 255));
-        levlLblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        levlLblTitle.setText("Level");
-        levlLblTitle.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        levlLblTitle.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        levlLblTitle.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        levlLblTitle.setFocusable(false);
-        levlLblTitle.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        levlLblTitle.setNextFocusableComponent(panelXogo);
-        panelMainMenu.add(levlLblTitle);
-        levlLblTitle.setBounds(50, 230, 310, 140);
-
-        menuJPanel.add(panelMainMenu);
-        panelMainMenu.setBounds(50, 160, 400, 620);
-
-        panelMainMenuBorder.setForeground(new java.awt.Color(255, 204, 153));
-        panelMainMenuBorder.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        menuJPanel.add(panelMainMenuBorder);
-        panelMainMenuBorder.setBounds(50, 160, 400, 620);
-
-        background.setBackground(new java.awt.Color(204, 204, 255));
-        background.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondos/backgroundAPP.jpg"))); // NOI18N
-        background.setText("jLabel1");
-        background.setFocusable(false);
-        background.setMaximumSize(new java.awt.Dimension(1100, 950));
-        background.setMinimumSize(new java.awt.Dimension(1100, 950));
-        background.setPreferredSize(new java.awt.Dimension(1100, 950));
-        menuJPanel.add(background);
-        background.setBounds(0, 0, 1100, 950);
-
-        getContentPane().add(menuJPanel);
-        menuJPanel.setBounds(0, 0, 1100, 950);
+        getContentPane().add(pausePanel);
+        pausePanel.setBounds(325, 340, 450, 330);
 
         gameOverPanel.setBackground(new java.awt.Color(51, 51, 51));
         gameOverPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -373,57 +295,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(gameOverPanel);
         gameOverPanel.setBounds(325, 340, 450, 330);
-
-        pausePanel.setBackground(new java.awt.Color(51, 51, 51));
-        pausePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        pausePanel.setForeground(new java.awt.Color(255, 255, 255));
-        pausePanel.setAlignmentX(0.0F);
-        pausePanel.setAlignmentY(0.0F);
-        pausePanel.setMaximumSize(new java.awt.Dimension(450, 330));
-        pausePanel.setMinimumSize(new java.awt.Dimension(450, 330));
-        pausePanel.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                pausePanelKeyPressed(evt);
-            }
-        });
-        pausePanel.setLayout(null);
-        pausePanel.setVisible(false);
-
-        pauseTitle.setFont(new java.awt.Font("Segoe UI", 1, 65)); // NOI18N
-        pauseTitle.setForeground(new java.awt.Color(255, 255, 255));
-        pauseTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        pauseTitle.setText("Pause");
-        pausePanel.add(pauseTitle);
-        pauseTitle.setBounds(30, 20, 390, 80);
-
-        restartPause.setBackground(new java.awt.Color(30, 30, 30));
-        restartPause.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        restartPause.setForeground(new java.awt.Color(255, 255, 255));
-        restartPause.setText("Restart");
-        restartPause.setFocusable(false);
-        restartPause.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                restartPauseActionPerformed(evt);
-            }
-        });
-        pausePanel.add(restartPause);
-        restartPause.setBounds(110, 200, 230, 40);
-
-        mainMenuPause.setBackground(new java.awt.Color(30, 30, 30));
-        mainMenuPause.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        mainMenuPause.setForeground(new java.awt.Color(255, 255, 255));
-        mainMenuPause.setText("MainMenu");
-        mainMenuPause.setFocusable(false);
-        mainMenuPause.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mainMenuPauseActionPerformed(evt);
-            }
-        });
-        pausePanel.add(mainMenuPause);
-        mainMenuPause.setBounds(110, 260, 230, 40);
-
-        getContentPane().add(pausePanel);
-        pausePanel.setBounds(325, 340, 450, 330);
 
         gameJPanel.setBackground(new java.awt.Color(102, 102, 102));
         gameJPanel.setMaximumSize(new java.awt.Dimension(1100, 950));
@@ -643,6 +514,134 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().add(gameJPanel);
         gameJPanel.setBounds(0, 0, 1100, 950);
         gameJPanel.setVisible(false);
+
+        menuJPanel.setMaximumSize(new java.awt.Dimension(1100, 950));
+        menuJPanel.setMinimumSize(new java.awt.Dimension(1100, 950));
+        menuJPanel.setPreferredSize(new java.awt.Dimension(1100, 950));
+        menuJPanel.setLayout(null);
+
+        panelMainMenu.setBackground(new java.awt.Color(255, 255, 255,0));
+        panelMainMenu.setBorder(new javax.swing.border.MatteBorder(null));
+        panelMainMenu.setForeground(new java.awt.Color(255, 255, 255));
+        panelMainMenu.setOpaque(false);
+        panelMainMenu.setLayout(null);
+
+        Playlbl.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 70)); // NOI18N
+        Playlbl.setForeground(new java.awt.Color(255, 255, 255));
+        Playlbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Playlbl.setText("Play");
+        Playlbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Playlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Playlbl.setFocusable(false);
+        Playlbl.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        Playlbl.setNextFocusableComponent(panelXogo);
+        Playlbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                PlaylblMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                PlaylblMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                PlaylblMousePressed(evt);
+            }
+        });
+        panelMainMenu.add(Playlbl);
+        Playlbl.setBounds(50, 50, 310, 100);
+
+        Exitlbl.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 70)); // NOI18N
+        Exitlbl.setForeground(new java.awt.Color(255, 255, 255));
+        Exitlbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Exitlbl.setText("Exit");
+        Exitlbl.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        Exitlbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Exitlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Exitlbl.setFocusable(false);
+        Exitlbl.setNextFocusableComponent(panelXogo);
+        Exitlbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ExitlblMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ExitlblMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ExitlblMousePressed(evt);
+            }
+        });
+        panelMainMenu.add(Exitlbl);
+        Exitlbl.setBounds(50, 450, 310, 100);
+
+        levelJSlider.setMaximum(20);
+        levelJSlider.setMinimum(1);
+        levelJSlider.setValue(1);
+        levelJSlider.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        levelJSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                levelJSliderStateChanged(evt);
+            }
+        });
+        levelJSlider.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                levelJSliderMouseDragged(evt);
+            }
+        });
+        levelJSlider.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                levelJSliderMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                levelJSliderMouseExited(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                levelJSliderMouseReleased(evt);
+            }
+        });
+        panelMainMenu.add(levelJSlider);
+        levelJSlider.setBounds(80, 320, 200, 30);
+
+        levelLbl.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        levelLbl.setForeground(new java.awt.Color(255, 255, 255));
+        levelLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        levelLbl.setText("1");
+        levelLbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        panelMainMenu.add(levelLbl);
+        levelLbl.setBounds(290, 310, 40, 40);
+
+        levlLblTitle.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 60)); // NOI18N
+        levlLblTitle.setForeground(new java.awt.Color(255, 255, 255));
+        levlLblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        levlLblTitle.setText("Level");
+        levlLblTitle.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        levlLblTitle.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        levlLblTitle.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        levlLblTitle.setFocusable(false);
+        levlLblTitle.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        levlLblTitle.setNextFocusableComponent(panelXogo);
+        panelMainMenu.add(levlLblTitle);
+        levlLblTitle.setBounds(50, 230, 310, 140);
+
+        menuJPanel.add(panelMainMenu);
+        panelMainMenu.setBounds(50, 160, 400, 620);
+
+        panelMainMenuBorder.setForeground(new java.awt.Color(255, 204, 153));
+        panelMainMenuBorder.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        menuJPanel.add(panelMainMenuBorder);
+        panelMainMenuBorder.setBounds(50, 160, 400, 620);
+
+        background.setBackground(new java.awt.Color(204, 204, 255));
+        background.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondos/backgroundAPP.jpg"))); // NOI18N
+        background.setText("jLabel1");
+        background.setFocusable(false);
+        background.setMaximumSize(new java.awt.Dimension(1100, 950));
+        background.setMinimumSize(new java.awt.Dimension(1100, 950));
+        background.setPreferredSize(new java.awt.Dimension(1100, 950));
+        menuJPanel.add(background);
+        background.setBounds(0, 0, 1100, 950);
+
+        getContentPane().add(menuJPanel);
+        menuJPanel.setBounds(0, 0, 1100, 950);
 
         pack();
         setLocationRelativeTo(null);
