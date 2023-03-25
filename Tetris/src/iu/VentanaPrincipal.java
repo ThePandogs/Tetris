@@ -1108,7 +1108,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             lblScore.setText(String.valueOf(score));
             lblLine.setText(String.valueOf(xogo.getNumeroLinas()));
             lblLevel.setText(String.valueOf(xogo.getLevel()));
-            progressLevel.setValue(xogo.getLinasNextLevel());
+            progressLevel.setValue(xogo.getLinesNextLevel());
             if (cronoTime < 10) {
                 lblTime.setText(String.valueOf("0" + cronoTime));
             } else {

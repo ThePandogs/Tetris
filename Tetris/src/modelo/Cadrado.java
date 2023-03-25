@@ -29,6 +29,7 @@ public class Cadrado {
 
     }
 
+    // <editor-fold defaultstate="collapsed" desc="GettersAndSetters">      
     public int getX() {
         return x;
     }
@@ -64,7 +65,9 @@ public class Cadrado {
     public void setCor(Color cor) {
         this.cor = cor;
     }
+//</editor-fold>
 
+    
     public String getCoordenadas() {
 
         String cordenadas = "x= " + getX() + " : " + "y=" + getY();

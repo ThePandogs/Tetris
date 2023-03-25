@@ -1,0 +1,10 @@
+Excepción: class java.lang.IllegalArgumentException
+Fecha:  2023-03-25
+Hora:   23:47:39
+Motivo: wrong number of arguments: 0 expected: 1
+
+Excepción: class java.lang.IllegalArgumentException
+Fecha:  2023-03-25
+Hora:   23:47:39
+Motivo: wrong number of arguments: 0 expected: 1
+

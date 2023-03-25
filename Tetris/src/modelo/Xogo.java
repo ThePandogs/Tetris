@@ -7,9 +7,13 @@ package modelo;
 import java.util.Iterator;
 import iu.VentanaPrincipal;
 import static java.awt.Color.yellow;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -26,7 +30,7 @@ public final class Xogo {
     private final int SAFEZONE = LADOCADRADO * 2;
 
     //REFERENCIA UI
-    private VentanaPrincipal ventanaPricipal;
+    private VentanaPrincipal ventanaPrincipal;
 
     //REFERENCIA DIFICULTAD
     //CUANDO MENOS VALOR + RAPIDO EL JUEGO.
@@ -36,32 +40,48 @@ public final class Xogo {
     private final int DIFICULTAD_MAX = 200;
     private final int LINEAS_NEXT_LEVEL = 5;
 
+    //Fichas
+    private Ficha fichaActual;
+    private Ficha fichaFantasma;
+    private Ficha fichaSiguiente;
+    private int contador = 0;
+
     private List<Cadrado> cadradosChan = new ArrayList();
     private List<Cadrado> linea = new ArrayList();
-    private Ficha fichaActual;
-    private Ficha fichaSiguiente;
+
     private int level;
     private int numeroLinas = 0;
-    private int LinasNextLevel = 0;
+    private int LinesNextLevel = 0;
 
     private boolean gameOver;
 
     private List<Integer> idFichas = new ArrayList();
 
-    HashMap<Integer, Ficha> listaFichas;
+    List<Class<? extends Ficha>> listaFichas = Arrays.asList(
+            FichaBarra.class,
+            FichaCadrada.class,
+            FichaL.class,
+            FichaLReverse.class,
+            FichaT.class,
+            FichaZ.class,
+            FichaZReverse.class
+    );
+    List<Class<? extends Ficha>> listaFichasRE;
 
     public Xogo(VentanaPrincipal ventana) {
 
-        ventanaPricipal = ventana;
-        comprobarRepeticionFicha();
-        fichaStoFichaA();
-        ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
+        ventanaPrincipal = ventana;
 
-        this.level = ventanaPricipal.getLevelJSlider().getValue();
+        fichaSiguiente = xenerarNovaFicha();
+        fichaStoFichaA();
+        ventanaPrincipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
+
+        this.level = ventanaPrincipal.getLevelJSlider().getValue();
         gameOver = false;
 
     }
 
+    // <editor-fold defaultstate="collapsed" desc="GettersAndSetters">      
     public boolean isGameOver() {
         return gameOver;
     }
@@ -70,8 +90,8 @@ public final class Xogo {
         return numeroLinas;
     }
 
-    public int getLinasNextLevel() {
-        return LinasNextLevel;
+    public int getLinesNextLevel() {
+        return LinesNextLevel;
     }
 
     public void setNumerolineas(int numerolineas) {
@@ -117,6 +137,7 @@ public final class Xogo {
     public int getMAXX() {
         return MAXX;
     }
+    // </editor-fold>  
 
     public void moverEsquerda() {
         boolean posicionValida = true;
@@ -167,46 +188,37 @@ public final class Xogo {
         }
     }
 
-    private void xenerarNovaFicha() {
-        Xogo xogoActual = this;
-        listaFichas = new HashMap<Integer, Ficha>() {
-            {
-                put(1, new FichaBarra(xogoActual));
-                put(2, new FichaT(xogoActual));
-                put(3, new FichaCadrada(xogoActual));
-                put(4, new FichaL(xogoActual));
-                put(5, new FichaLReverse(xogoActual));
-                put(6, new FichaZ(xogoActual));
-                put(7, new FichaZReverse(xogoActual));
-            }
-        };
+    private Ficha xenerarNovaFicha() {
+        Ficha ficha = null;
+        Class<? extends Ficha> claseFichaSeleccionada = null;
 
-        fichaSiguiente = listaFichas.get(numeroRandom(7));
+        claseFichaSeleccionada = listaFichas.get(contador);
+        contador++;
+        try {
+            Constructor<? extends Ficha> constructor = claseFichaSeleccionada.getDeclaredConstructor(Xogo.class);
+            ficha = constructor.newInstance(this);
 
+        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException | IllegalArgumentException e) {
+            ventanaPrincipal.getLogExcepcion().anadirExcepcionLog(e);
+        }
+        if (contador >= listaFichas.size()) {
+            contador = 0;
+        }
+        return ficha;
     }
 
-    private void comprobarRepeticionFicha() {
-        xenerarNovaFicha();
-        while (idFichas.contains(fichaSiguiente.getId())) {
-            xenerarNovaFicha();
-        }
-        idFichas.add(fichaSiguiente.id);
-        if (idFichas.size() == listaFichas.size()) {
-            idFichas.removeAll(idFichas);
-        }
+    private int randomNumber(int max) {
+        Random random = new Random();
 
+        return random.nextInt(0, max);
     }
 
     public void pintarFichaActual() {
         Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
         while (actual.hasNext()) {
             Cadrado cactual = actual.next();
-            ventanaPricipal.pintarCadrado(cactual.getLblCadrado());
+            ventanaPrincipal.pintarCadrado(cactual.getLblCadrado());
         }
-    }
-
-    private int numeroRandom(int max) {
-        return (int) Math.floor(Math.random() * max + 1);
     }
 
     public void engadirFichaAoChan() {
@@ -232,9 +244,7 @@ public final class Xogo {
             if (!ePosicionValida(cactual.getX(), cactual.getY() + LADOCADRADO)) {
                 choca = true;
             }
-
         }
-
         return choca;
     }
 
@@ -249,9 +259,7 @@ public final class Xogo {
             if ((cchan.getX() == x && cchan.getY() == y)) {
                 posicionValida = false;
             }
-
         }
-
         return posicionValida;
     }
 
@@ -272,10 +280,10 @@ public final class Xogo {
 
                 borrarLinas();
                 numeroLinas++;
-                ventanaPricipal.AumentarPuntuacionPendiente(ventanaPricipal.getSCORELINEA());
-                LinasNextLevel++;
+                ventanaPrincipal.AumentarPuntuacionPendiente(ventanaPrincipal.getSCORELINEA());
+                LinesNextLevel++;
 
-                aumentarNivel(numeroLinas, ventanaPricipal.getTimer().getDelay());
+                aumentarNivel(numeroLinas, ventanaPrincipal.getTimer().getDelay());
 
                 actualizarBloques();
             }
@@ -291,11 +299,11 @@ public final class Xogo {
         while (blinea.hasNext()) {
             Cadrado este = blinea.next();
 
-            ventanaPricipal.borrarCadrado(este.getLblCadrado());
+            ventanaPrincipal.borrarCadrado(este.getLblCadrado());
             cadradosChan.removeAll(linea);
 
         }
-        ventanaPricipal.getSonido().ReproducirSonidoLinea();
+        ventanaPrincipal.getSonido().ReproducirSonidoLinea();
 
     }
 
@@ -328,22 +336,23 @@ public final class Xogo {
 
     private void fichaStoFichaA() {
         fichaActual = fichaSiguiente;
-        comprobarRepeticionFicha();
+        fichaSiguiente = xenerarNovaFicha();
+
     }
 
     private void engadeFichaBorraLinasCompletasXeneraNovaFicha() {
 
         if (!comprobarPerder()) {
             engadirFichaAoChan();
-            ventanaPricipal.getSonido().ReproducirSuelo();
-            ventanaPricipal.AumentarPuntuacionPendiente(ventanaPricipal.getSCORECHOCACHAN());
+            ventanaPrincipal.getSonido().ReproducirSuelo();
+            ventanaPrincipal.AumentarPuntuacionPendiente(ventanaPrincipal.getSCORECHOCACHAN());
             borrarLinasCompletas();
             fichaStoFichaA();
             pintarFichaActual();
-            ventanaPricipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
+            ventanaPrincipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
 
         } else {
-            ventanaPricipal.mostrarFinDoXogo();
+            ventanaPrincipal.mostrarFinDoXogo();
             gameOver = true;
         }
 
@@ -352,10 +361,10 @@ public final class Xogo {
     public boolean aumentarNivel(int lineas, int delayActual) {
         boolean aumentaNivel = false;
         if (lineas % LINEAS_NEXT_LEVEL == 0 && delayActual > DIFICULTAD_MAX) {
-            ventanaPricipal.getTimer().setDelay(delayActual - DIFICULTAD_NIVEL);
+            ventanaPrincipal.getTimer().setDelay(delayActual - DIFICULTAD_NIVEL);
             level++;
-            ventanaPricipal.AumentarPuntuacionPendiente(ventanaPricipal.getSCORECHOCACHAN());
-            LinasNextLevel = 0;
+            ventanaPrincipal.AumentarPuntuacionPendiente(ventanaPrincipal.getSCORECHOCACHAN());
+            LinesNextLevel = 0;
             aumentaNivel = true;
         }
         return aumentaNivel;
@@ -372,18 +381,18 @@ public final class Xogo {
         }
 
         //Elige la posicion donde incluira un cuadrado y el numero de cuadrados que incluira 
-        for (int i = 0; i < numeroRandom((MAXX - LADOCADRADO) / LADOCADRADO); i++) {
-            int random = numeroRandom((MAXX - LADOCADRADO) / LADOCADRADO);
+        for (int i = 0; i < randomNumber((MAXX - LADOCADRADO) / LADOCADRADO); i++) {
+            int random = randomNumber((MAXX - LADOCADRADO) / LADOCADRADO);
 
             //Si la posicion escogida ya esta ocupada
             while (posiciones.contains(random)) {
-                random = numeroRandom((MAXX - LADOCADRADO) / LADOCADRADO);
+                random = randomNumber((MAXX - LADOCADRADO) / LADOCADRADO);
 
             }
             //Añade el cuadrado
             Cadrado cadradoPenalty = new Cadrado(random * LADOCADRADO, MAXY - LADOCADRADO, yellow);
             cadradosChan.add(cadradoPenalty);
-            ventanaPricipal.pintarCadrado(cadradoPenalty.getLblCadrado());
+            ventanaPrincipal.pintarCadrado(cadradoPenalty.getLblCadrado());
             posiciones.add(random);
 
         }
