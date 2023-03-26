@@ -17,7 +17,7 @@ public class FichaCadrada extends Ficha {
     Cadrado firstCadrado;
 
     public FichaCadrada(Xogo x, JPanel panel) {
-        super(x, null);
+        super(x, panel);
         firstCadrado = new Cadrado(panel.getWidth() / 2 - xogo.getLADOCADRADO(), 0, blue);
         cadrados.add(firstCadrado);
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY(), blue));
@@ -26,14 +26,11 @@ public class FichaCadrada extends Ficha {
 
     }
 
- 
     @Override
     public boolean rotar() {
 
         return true;
 
     }
-
-  
 
 }

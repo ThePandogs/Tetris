@@ -93,9 +93,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelScore = new javax.swing.JPanel();
         lblScoreTitle = new javax.swing.JLabel();
         lblScore = new javax.swing.JLabel();
-        panelNextFigure = new javax.swing.JPanel();
+        panelNext = new javax.swing.JPanel();
         lblNextTitle = new javax.swing.JLabel();
-        lblFichaSiguiente = new javax.swing.JLabel();
+        panelNextFigure = new javax.swing.JPanel();
         panelLevel = new javax.swing.JPanel();
         lblLevelTitle = new javax.swing.JLabel();
         progressLevel = new style.CircleProgressBar();
@@ -384,13 +384,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         gameJPanel.add(panelScore);
         panelScore.setBounds(40, 40, 220, 130);
 
-        panelNextFigure.setBackground(new java.awt.Color(231, 231, 231));
-        panelNextFigure.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        panelNextFigure.setMaximumSize(new java.awt.Dimension(220, 260));
-        panelNextFigure.setMinimumSize(new java.awt.Dimension(220, 260));
-        panelNextFigure.setOpaque(false);
-        panelNextFigure.setPreferredSize(new java.awt.Dimension(220, 260));
-        panelNextFigure.setLayout(null);
+        panelNext.setBackground(new java.awt.Color(231, 231, 231));
+        panelNext.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        panelNext.setMaximumSize(new java.awt.Dimension(220, 260));
+        panelNext.setMinimumSize(new java.awt.Dimension(220, 260));
+        panelNext.setOpaque(false);
+        panelNext.setPreferredSize(new java.awt.Dimension(220, 260));
+        panelNext.setLayout(null);
 
         lblNextTitle.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         lblNextTitle.setForeground(new java.awt.Color(255, 255, 255));
@@ -399,16 +399,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblNextTitle.setMaximumSize(new java.awt.Dimension(100, 40));
         lblNextTitle.setMinimumSize(new java.awt.Dimension(100, 40));
         lblNextTitle.setPreferredSize(new java.awt.Dimension(100, 40));
-        panelNextFigure.add(lblNextTitle);
+        panelNext.add(lblNextTitle);
         lblNextTitle.setBounds(60, 10, 100, 40);
 
-        lblFichaSiguiente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblFichaSiguiente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        panelNextFigure.add(lblFichaSiguiente);
-        lblFichaSiguiente.setBounds(10, 70, 200, 150);
+        panelNextFigure.setOpaque(false);
+        panelNextFigure.setLayout(null);
+        panelNext.add(panelNextFigure);
+        panelNextFigure.setBounds(10, 100, 200, 100);
 
-        gameJPanel.add(panelNextFigure);
-        panelNextFigure.setBounds(840, 190, 220, 240);
+        gameJPanel.add(panelNext);
+        panelNext.setBounds(840, 190, 220, 240);
 
         panelLevel.setBackground(new java.awt.Color(231, 231, 231));
         panelLevel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -653,6 +653,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return panelXogo;
     }
 
+    public JPanel getPanelNextFigure() {
+        return panelNextFigure;
+    }
+
     public Timer getTimer() {
         return timer;
     }
@@ -882,7 +886,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel backgroundPause;
     private javax.swing.JPanel gameOverPanel;
     private javax.swing.JLabel lblBackgroundGame;
-    private javax.swing.JLabel lblFichaSiguiente;
     private javax.swing.JLabel lblLevel;
     private javax.swing.JLabel lblLevelTitle;
     private javax.swing.JLabel lblLine;
@@ -906,6 +909,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel panelLine;
     private javax.swing.JPanel panelMainMenu;
     private javax.swing.JLabel panelMainMenuBorder;
+    private javax.swing.JPanel panelNext;
     private javax.swing.JPanel panelNextFigure;
     private javax.swing.JPanel panelScore;
     private javax.swing.JPanel panelTime;
@@ -930,6 +934,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void iniciarPartida() {
 
         xogo = new Xogo(this);
+        xogo.iniciarXogo();
         inicializarContadores();
         startRefreshScreen();
         startCrono();
@@ -940,7 +945,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         contadorPuntuacion();
 
         sonido.ReproducirBSO();
-        xogo.pintarFichaActual();
+        xogo.pintarFicha(xogo.getFichaActual());
     }
 
     /**
@@ -949,8 +954,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      *
      * @param lblCadrado
      */
-    public void pintarCadrado(JLabel lblCadrado) {
-        panelXogo.add(lblCadrado);
+    public void pintarCadrado(JLabel lblCadrado, JPanel panel) {
+        panel.add(lblCadrado);
         iconarCadrado(lblCadrado);
         lblCadrado.setSize(xogo.getLADOCADRADO(), xogo.getLADOCADRADO());
         lblCadrado.setOpaque(false);
@@ -972,11 +977,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      *
      * @param lblCadrado
      */
-    public void mostrarFichaSiguiente(JLabel lblCadrado) {
-        lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource(gestorRutasImagenes.getImagenesFichas().get(lblCadrado.getBackground()))));
-        panelNextFigure.add(lblCadrado);
-    }
-
     public void borrarCadrado(JLabel lblCadrado) {
         panelXogo.remove(lblCadrado);
     }

@@ -57,8 +57,6 @@ public final class Xogo {
     Random random = new Random();
     private boolean gameOver;
 
-    private List<Integer> idFichas = new ArrayList();
-
     List<Class<? extends Ficha>> listaFichas = Arrays.asList(
             FichaBarra.class,
             FichaCadrada.class,
@@ -73,12 +71,17 @@ public final class Xogo {
 
         ventanaPrincipal = ventana;
 
-        desordenarArray(listaFichas);
-        fichaSiguiente = xenerarNovaFicha(ventanaPrincipal.getPanelXogo());
-        nextFichaToActualFicha();
-        ventanaPrincipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
+        //ventanaPrincipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
         this.level = ventanaPrincipal.getLevelJSlider().getValue();
         gameOver = false;
+
+    }
+
+    public void iniciarXogo() {
+        desordenarArray(listaFichas);
+        fichaSiguiente = xenerarNovaFicha(ventanaPrincipal.getPanelNextFigure());
+        nextFichaToActualFicha(ventanaPrincipal.getPanelXogo());
+        pintarFicha(fichaSiguiente);
 
     }
 
@@ -218,11 +221,11 @@ public final class Xogo {
         return random.nextInt(0, max);
     }
 
-    public void pintarFichaActual() {
-        Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
+    public void pintarFicha(Ficha ficha) {
+        Iterator<Cadrado> actual = ficha.cadrados.iterator();
         while (actual.hasNext()) {
             Cadrado cactual = actual.next();
-            ventanaPrincipal.pintarCadrado(cactual.getLblCadrado());
+            ventanaPrincipal.pintarCadrado(cactual.getLblCadrado(), ficha.panel);
         }
     }
 
@@ -339,10 +342,23 @@ public final class Xogo {
 
     }
 
-    private void nextFichaToActualFicha() {
-        fichaActual = fichaSiguiente;
-        fichaSiguiente = xenerarNovaFicha(ventanaPrincipal.getPanelXogo());
+    private void nextFichaToActualFicha(JPanel panel) {
 
+        Class<? extends Ficha> claseFicha = fichaSiguiente.getClass();
+
+        try {
+
+            Constructor<? extends Ficha> constructor = claseFicha.getDeclaredConstructor(Xogo.class, JPanel.class);
+            Ficha nuevaFicha = constructor.newInstance(this, panel);
+            fichaActual = nuevaFicha;
+        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+
+            ventanaPrincipal.getLogExcepcion().anadirExcepcionLog(e);
+        }
+
+        fichaSiguiente = xenerarNovaFicha(ventanaPrincipal.getPanelNextFigure());
+        ventanaPrincipal.getPanelNextFigure().removeAll();
+        pintarFicha(fichaSiguiente);
     }
 
     private void engadeFichaBorraLinasCompletasXeneraNovaFicha() {
@@ -352,9 +368,9 @@ public final class Xogo {
             ventanaPrincipal.getSonido().ReproducirSuelo();
             ventanaPrincipal.AumentarPuntuacionPendiente(ventanaPrincipal.getSCORECHOCACHAN());
             borrarLinasCompletas();
-            nextFichaToActualFicha();
-            pintarFichaActual();
-            ventanaPrincipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
+            nextFichaToActualFicha(ventanaPrincipal.getPanelXogo());
+            pintarFicha(fichaActual);
+            // ventanaPrincipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
 
         } else {
             ventanaPrincipal.mostrarFinDoXogo();
@@ -387,18 +403,18 @@ public final class Xogo {
 
         //Elige la posicion donde incluira un cuadrado y el numero de cuadrados que incluira 
         for (int i = 0; i < randomNumber((MAXX - LADOCADRADO) / LADOCADRADO); i++) {
-            int random = randomNumber((MAXX - LADOCADRADO) / LADOCADRADO);
+            int posicionAleatoria = randomNumber((MAXX - LADOCADRADO) / LADOCADRADO);
 
             //Si la posicion escogida ya esta ocupada
-            while (posiciones.contains(random)) {
-                random = randomNumber((MAXX - LADOCADRADO) / LADOCADRADO);
+            while (posiciones.contains(posicionAleatoria)) {
+                posicionAleatoria = randomNumber((MAXX - LADOCADRADO) / LADOCADRADO);
 
             }
             //Añade el cuadrado
-            Cadrado cadradoPenalty = new Cadrado(random * LADOCADRADO, MAXY - LADOCADRADO, yellow);
+            Cadrado cadradoPenalty = new Cadrado(posicionAleatoria * LADOCADRADO, MAXY - LADOCADRADO, yellow);
             cadradosChan.add(cadradoPenalty);
-            ventanaPrincipal.pintarCadrado(cadradoPenalty.getLblCadrado());
-            posiciones.add(random);
+            ventanaPrincipal.pintarCadrado(cadradoPenalty.getLblCadrado(), ventanaPrincipal.getPanelXogo());
+            posiciones.add(posicionAleatoria);
 
         }
     }
