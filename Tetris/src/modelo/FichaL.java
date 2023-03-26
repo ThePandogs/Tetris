@@ -5,6 +5,7 @@
 package modelo;
 
 import static java.awt.Color.GREEN;
+import javax.swing.JPanel;
 
 /**
  *
@@ -13,22 +14,22 @@ import static java.awt.Color.GREEN;
  */
 public class FichaL extends Ficha {
 
-    Cadrado firstCadrado = new Cadrado((xogo.getMAXX() / 2) - xogo.getLADOCADRADO() * 2, xogo.getLADOCADRADO(), GREEN);
+    Cadrado firstCadrado;
 
-    public FichaL(Xogo x) {
-        super(x);
+    public FichaL(Xogo x, JPanel panel) {
+        super(x, panel);
+        firstCadrado = new Cadrado((panel.getWidth() / 2) - xogo.getLADOCADRADO() * 2, xogo.getLADOCADRADO(), GREEN);
         cadrados.add(firstCadrado);
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY(), GREEN));
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO() * 2, firstCadrado.getY(), GREEN));
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO() * 2, firstCadrado.getY() - xogo.getLADOCADRADO(), GREEN));
 
     }
-    
 
     @Override
     public boolean rotar() {
         boolean move = true;
-   
+
         int y = xogo.getFichaActual().getCadrados().get(1).getLblCadrado().getY();
         int x = xogo.getFichaActual().getCadrados().get(1).getLblCadrado().getX();
 

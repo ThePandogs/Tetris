@@ -5,6 +5,7 @@
 package modelo;
 
 import static java.awt.Color.RED;
+import javax.swing.JPanel;
 
 /**
  *
@@ -13,15 +14,16 @@ import static java.awt.Color.RED;
  */
 public class FichaZReverse extends Ficha {
 
-    Cadrado firstCadrado = new Cadrado((xogo.getMAXX() / 2), 0, RED);
+    Cadrado firstCadrado;
 
-    public FichaZReverse(Xogo x) {
-        super(x);
+    public FichaZReverse(Xogo x, JPanel panel) {
+        super(x, panel);
+        firstCadrado = new Cadrado((panel.getWidth() / 2), 0, RED);
         cadrados.add(firstCadrado);
         cadrados.add(new Cadrado(firstCadrado.getX() - xogo.getLADOCADRADO(), firstCadrado.getY(), RED));
         cadrados.add(new Cadrado(firstCadrado.getX() - xogo.getLADOCADRADO(), firstCadrado.getY() + xogo.getLADOCADRADO(), RED));
         cadrados.add(new Cadrado(firstCadrado.getX() - xogo.getLADOCADRADO() * 2, firstCadrado.getY() + xogo.getLADOCADRADO(), RED));
-       
+
     }
 
     @Override

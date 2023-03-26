@@ -5,6 +5,7 @@
 package modelo;
 
 import static java.awt.Color.white;
+import javax.swing.JPanel;
 
 /**
  *
@@ -13,21 +14,22 @@ import static java.awt.Color.white;
  */
 public class FichaLReverse extends Ficha {
 
-    Cadrado firstCadrado = new Cadrado((xogo.getMAXX() / 2) - xogo.getLADOCADRADO() * 2, xogo.getLADOCADRADO(), white);
+    Cadrado firstCadrado;
 
-    public FichaLReverse(Xogo x) {
-        super(x);
+    public FichaLReverse(Xogo x, JPanel panel) {
+        super(x, panel);
+        firstCadrado = new Cadrado((panel.getWidth() / 2) - xogo.getLADOCADRADO() * 2, xogo.getLADOCADRADO(), white);
         cadrados.add(firstCadrado);
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY(), white));
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO() * 2, firstCadrado.getY(), white));
         cadrados.add(new Cadrado(firstCadrado.getX(), firstCadrado.getY() - xogo.getLADOCADRADO(), white));
-      
+
     }
 
     @Override
     public boolean rotar() {
         boolean move = true;
-        //Rotacion de L
+      
         int y = xogo.getFichaActual().getCadrados().get(1).getLblCadrado().getY();
         int x = xogo.getFichaActual().getCadrados().get(1).getLblCadrado().getX();
 

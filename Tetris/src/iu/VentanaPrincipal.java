@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.Timer;
 import modelo.Xogo;
 import javax.swing.BorderFactory;
+import javax.swing.JPanel;
 import javax.swing.JSlider;
 
 /**
@@ -647,7 +648,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    // <editor-fold defaultstate="collapsed" desc="GettersAndSetters">           
+    // <editor-fold defaultstate="collapsed" desc="GettersAndSetters">          
+    public JPanel getPanelXogo() {
+        return panelXogo;
+    }
+
     public Timer getTimer() {
         return timer;
     }

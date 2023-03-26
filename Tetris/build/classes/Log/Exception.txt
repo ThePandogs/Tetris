@@ -8,3 +8,58 @@ Fecha:  2023-03-25
 Hora:   23:47:39
 Motivo: wrong number of arguments: 0 expected: 1
 
+Excepción: class java.lang.NoSuchMethodException
+Fecha:  2023-03-26
+Hora:   17:35:33
+Motivo: modelo.FichaCadrada.<init>(modelo.Xogo)
+
+Excepción: class java.lang.NoSuchMethodException
+Fecha:  2023-03-26
+Hora:   17:35:33
+Motivo: modelo.FichaBarra.<init>(modelo.Xogo)
+
+Excepción: class java.lang.NoSuchMethodException
+Fecha:  2023-03-26
+Hora:   17:41:22
+Motivo: modelo.FichaL.<init>(modelo.Xogo,javax.swing.JPanel)
+
+Excepción: class java.lang.NoSuchMethodException
+Fecha:  2023-03-26
+Hora:   17:41:22
+Motivo: modelo.FichaLReverse.<init>(modelo.Xogo,javax.swing.JPanel)
+
+Excepción: class java.lang.NoSuchMethodException
+Fecha:  2023-03-26
+Hora:   17:42:42
+Motivo: modelo.FichaL.<init>(modelo.Xogo,javax.swing.JPanel)
+
+Excepción: class java.lang.NoSuchMethodException
+Fecha:  2023-03-26
+Hora:   17:42:51
+Motivo: modelo.FichaZReverse.<init>(modelo.Xogo,javax.swing.JPanel)
+
+Excepción: class java.lang.NoSuchMethodException
+Fecha:  2023-03-26
+Hora:   17:42:52
+Motivo: modelo.FichaL.<init>(modelo.Xogo,javax.swing.JPanel)
+
+Excepción: class java.lang.NoSuchMethodException
+Fecha:  2023-03-26
+Hora:   17:44:03
+Motivo: modelo.FichaZReverse.<init>(modelo.Xogo,javax.swing.JPanel)
+
+Excepción: class java.lang.NoSuchMethodException
+Fecha:  2023-03-26
+Hora:   17:44:03
+Motivo: modelo.FichaT.<init>(modelo.Xogo,javax.swing.JPanel)
+
+Excepción: class java.lang.NoSuchMethodException
+Fecha:  2023-03-26
+Hora:   17:54:17
+Motivo: modelo.FichaZReverse.<init>(modelo.Xogo,javax.swing.JPanel)
+
+Excepción: class java.lang.NoSuchMethodException
+Fecha:  2023-03-26
+Hora:   17:54:17
+Motivo: modelo.FichaZReverse.<init>(modelo.Xogo,javax.swing.JPanel)
+

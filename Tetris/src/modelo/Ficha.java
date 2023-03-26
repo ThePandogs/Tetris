@@ -7,6 +7,7 @@ package modelo;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import javax.swing.JPanel;
 
 /**
  *
@@ -18,10 +19,12 @@ public abstract class Ficha {
     protected List<Cadrado> cadrados;
     protected int posicion;
     protected Xogo xogo;
+    protected JPanel panel;
 
-    public Ficha(Xogo x) {
+    public Ficha(Xogo xogo, JPanel panel) {
         cadrados = new ArrayList<>();
-        xogo = x;
+        this.xogo = xogo;
+        this.panel = panel;
 
     }
 

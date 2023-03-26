@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import javax.swing.JPanel;
 
 /**
  *
@@ -73,11 +74,9 @@ public final class Xogo {
         ventanaPrincipal = ventana;
 
         desordenarArray(listaFichas);
-        fichaSiguiente = xenerarNovaFicha();
+        fichaSiguiente = xenerarNovaFicha(ventanaPrincipal.getPanelXogo());
         nextFichaToActualFicha();
-
         ventanaPrincipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
-
         this.level = ventanaPrincipal.getLevelJSlider().getValue();
         gameOver = false;
 
@@ -190,15 +189,15 @@ public final class Xogo {
         }
     }
 
-    private Ficha xenerarNovaFicha() {
+    private Ficha xenerarNovaFicha(JPanel panel) {
         Ficha ficha = null;
         Class<? extends Ficha> claseFichaSeleccionada;
 
         claseFichaSeleccionada = listaFichas.get(contador);
         contador++;
         try {
-            Constructor<? extends Ficha> constructor = claseFichaSeleccionada.getDeclaredConstructor(Xogo.class);
-            ficha = constructor.newInstance(this);
+            Constructor<? extends Ficha> constructor = claseFichaSeleccionada.getDeclaredConstructor(Xogo.class, JPanel.class);
+            ficha = constructor.newInstance(this, panel);
 
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException | IllegalArgumentException e) {
             ventanaPrincipal.getLogExcepcion().anadirExcepcionLog(e);
@@ -342,7 +341,7 @@ public final class Xogo {
 
     private void nextFichaToActualFicha() {
         fichaActual = fichaSiguiente;
-        fichaSiguiente = xenerarNovaFicha();
+        fichaSiguiente = xenerarNovaFicha(ventanaPrincipal.getPanelXogo());
 
     }
 

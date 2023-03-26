@@ -5,6 +5,7 @@
 package modelo;
 
 import static java.awt.Color.orange;
+import javax.swing.JPanel;
 
 /**
  *
@@ -13,15 +14,16 @@ import static java.awt.Color.orange;
  */
 public class FichaT extends Ficha {
 
-    Cadrado firstCadrado = new Cadrado((xogo.getMAXX() / 2) - xogo.getLADOCADRADO() * 2, xogo.getLADOCADRADO(), orange);
+    Cadrado firstCadrado;
 
-    public FichaT(Xogo x) {
-        super(x);
+    public FichaT(Xogo x, JPanel panel) {
+        super(x, panel);
+        firstCadrado = new Cadrado((panel.getWidth() / 2) - xogo.getLADOCADRADO() * 2, xogo.getLADOCADRADO(), orange);
         cadrados.add(firstCadrado);
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY(), orange));
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO() * 2, firstCadrado.getY(), orange));
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY() - xogo.getLADOCADRADO(), orange));
-     
+
     }
 
     @Override

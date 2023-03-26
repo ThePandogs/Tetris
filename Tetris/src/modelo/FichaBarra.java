@@ -5,6 +5,7 @@
 package modelo;
 
 import static java.awt.Color.*;
+import javax.swing.JPanel;
 
 /**
  *
@@ -13,16 +14,16 @@ import static java.awt.Color.*;
  */
 public class FichaBarra extends Ficha {
 
-    Cadrado firstCadrado = new Cadrado((xogo.getMAXX() / 2) - xogo.getLADOCADRADO() * 2, xogo.getLADOCADRADO(), yellow);
+    Cadrado firstCadrado;
 
-    public FichaBarra(Xogo x) {
-        super(x);
-
+    public FichaBarra(Xogo xogo, JPanel panel) {
+        super(xogo, panel);
+        firstCadrado = new Cadrado((panel.getWidth() / 2) - xogo.getLADOCADRADO() * 2, xogo.getLADOCADRADO(), yellow);
         cadrados.add(firstCadrado);
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO(), firstCadrado.getY(), yellow));
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO() * 2, firstCadrado.getY(), yellow));
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO() * 3, firstCadrado.getY(), yellow));
-     
+
     }
 
     /**
