@@ -969,6 +969,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     public void mostrarFichaSiguiente(JLabel lblCadrado) {
         lblFichaSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource(gestorRutasImagenes.getImagenesFichas().get(lblCadrado.getBackground()))));
+        panelNextFigure.add(lblCadrado);
     }
 
     public void borrarCadrado(JLabel lblCadrado) {

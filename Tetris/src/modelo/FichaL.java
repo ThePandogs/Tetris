@@ -23,11 +23,12 @@ public class FichaL extends Ficha {
         cadrados.add(new Cadrado(firstCadrado.getX() + xogo.getLADOCADRADO() * 2, firstCadrado.getY() - xogo.getLADOCADRADO(), GREEN));
 
     }
+    
 
     @Override
     public boolean rotar() {
         boolean move = true;
-        //Rotacion de L
+   
         int y = xogo.getFichaActual().getCadrados().get(1).getLblCadrado().getY();
         int x = xogo.getFichaActual().getCadrados().get(1).getLblCadrado().getX();
 

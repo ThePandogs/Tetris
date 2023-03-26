@@ -9,8 +9,7 @@ import javax.swing.JLabel;
 
 /**
  *
- * @author a22danielas
- * @author a14carlosfd
+ * @author ThePandogs
  *
  */
 public class Cadrado {

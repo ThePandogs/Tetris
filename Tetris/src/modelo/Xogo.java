@@ -11,7 +11,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -53,6 +53,7 @@ public final class Xogo {
     private int numeroLinas = 0;
     private int LinesNextLevel = 0;
 
+    Random random = new Random();
     private boolean gameOver;
 
     private List<Integer> idFichas = new ArrayList();
@@ -66,14 +67,15 @@ public final class Xogo {
             FichaZ.class,
             FichaZReverse.class
     );
-    List<Class<? extends Ficha>> listaFichasRE;
 
     public Xogo(VentanaPrincipal ventana) {
 
         ventanaPrincipal = ventana;
 
+        desordenarArray(listaFichas);
         fichaSiguiente = xenerarNovaFicha();
-        fichaStoFichaA();
+        nextFichaToActualFicha();
+
         ventanaPrincipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
 
         this.level = ventanaPrincipal.getLevelJSlider().getValue();
@@ -190,7 +192,7 @@ public final class Xogo {
 
     private Ficha xenerarNovaFicha() {
         Ficha ficha = null;
-        Class<? extends Ficha> claseFichaSeleccionada = null;
+        Class<? extends Ficha> claseFichaSeleccionada;
 
         claseFichaSeleccionada = listaFichas.get(contador);
         contador++;
@@ -203,12 +205,16 @@ public final class Xogo {
         }
         if (contador >= listaFichas.size()) {
             contador = 0;
+            desordenarArray(listaFichas);
         }
         return ficha;
     }
 
+    private void desordenarArray(List array) {
+        Collections.shuffle(array);
+    }
+
     private int randomNumber(int max) {
-        Random random = new Random();
 
         return random.nextInt(0, max);
     }
@@ -334,7 +340,7 @@ public final class Xogo {
 
     }
 
-    private void fichaStoFichaA() {
+    private void nextFichaToActualFicha() {
         fichaActual = fichaSiguiente;
         fichaSiguiente = xenerarNovaFicha();
 
@@ -347,7 +353,7 @@ public final class Xogo {
             ventanaPrincipal.getSonido().ReproducirSuelo();
             ventanaPrincipal.AumentarPuntuacionPendiente(ventanaPrincipal.getSCORECHOCACHAN());
             borrarLinasCompletas();
-            fichaStoFichaA();
+            nextFichaToActualFicha();
             pintarFichaActual();
             ventanaPrincipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
 
