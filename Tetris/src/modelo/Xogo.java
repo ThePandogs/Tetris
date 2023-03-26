@@ -6,7 +6,8 @@ package modelo;
 
 import java.util.Iterator;
 import iu.VentanaPrincipal;
-import static java.awt.Color.yellow;
+
+import static java.awt.Color.gray;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -71,7 +72,6 @@ public final class Xogo {
 
         ventanaPrincipal = ventana;
 
-        //ventanaPrincipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
         this.level = ventanaPrincipal.getLevelJSlider().getValue();
         gameOver = false;
 
@@ -82,6 +82,10 @@ public final class Xogo {
         fichaSiguiente = xenerarNovaFicha(ventanaPrincipal.getPanelNextFigure());
         nextFichaToActualFicha(ventanaPrincipal.getPanelXogo());
         pintarFicha(fichaSiguiente);
+         pintarFicha(fichaActual);
+        pintarFichaFanstama(fichaFantasma);
+        
+        actualizarFichaFantasma();
 
     }
 
@@ -158,6 +162,7 @@ public final class Xogo {
 
         if (posicionValida) {
             fichaActual.moverEsquerda();
+            actualizarFichaFantasma();
         }
     }
 
@@ -176,20 +181,35 @@ public final class Xogo {
 
         if (posicionValida) {
             fichaActual.moverDereita();
+            actualizarFichaFantasma();
         }
     }
 
     public void rotarFicha() {
-        fichaActual.rotar();
+        if (fichaActual.rotar()) {
+            actualizarFichaFantasma();
+        }
     }
 
     public void moverFichaAbaixo() {
 
-        if (!chocaFichaCoChan()) {
+        if (!chocaFichaCoChan(fichaActual)) {
             fichaActual.moverAbaixo();
         } else {
             engadeFichaBorraLinasCompletasXeneraNovaFicha();
         }
+    }
+
+    private void actualizarFichaFantasma() {
+
+        for (int i = 0; i < fichaActual.cadrados.size(); i++) {
+            fichaFantasma.cadrados.get(i).actualizarCoordenada(fichaActual.cadrados.get(i).getX(), fichaActual.cadrados.get(i).getY());
+        }
+
+        do {
+            fichaFantasma.moverAbaixo();
+        } while (!chocaFichaCoChan(fichaFantasma));
+
     }
 
     private Ficha xenerarNovaFicha(JPanel panel) {
@@ -216,16 +236,20 @@ public final class Xogo {
         Collections.shuffle(array);
     }
 
-    private int randomNumber(int max) {
-
-        return random.nextInt(0, max);
-    }
-
     public void pintarFicha(Ficha ficha) {
         Iterator<Cadrado> actual = ficha.cadrados.iterator();
         while (actual.hasNext()) {
             Cadrado cactual = actual.next();
             ventanaPrincipal.pintarCadrado(cactual.getLblCadrado(), ficha.panel);
+        }
+    }
+
+    public void pintarFichaFanstama(Ficha ficha) {
+
+        Iterator<Cadrado> actual = ficha.cadrados.iterator();
+        while (actual.hasNext()) {
+            Cadrado cactual = actual.next();
+            ventanaPrincipal.pintarCadradoFantasma(cactual.getLblCadrado(), ficha.panel);
         }
     }
 
@@ -240,11 +264,11 @@ public final class Xogo {
 
     }
 
-    public boolean chocaFichaCoChan() {
+    public boolean chocaFichaCoChan(Ficha ficha) {
 
         boolean choca = false;
 
-        Iterator<Cadrado> actual = fichaActual.cadrados.iterator();
+        Iterator<Cadrado> actual = ficha.cadrados.iterator();
 
         while (actual.hasNext()) {
             Cadrado cactual = actual.next();
@@ -349,8 +373,9 @@ public final class Xogo {
         try {
 
             Constructor<? extends Ficha> constructor = claseFicha.getDeclaredConstructor(Xogo.class, JPanel.class);
-            Ficha nuevaFicha = constructor.newInstance(this, panel);
-            fichaActual = nuevaFicha;
+            fichaActual = constructor.newInstance(this, panel);
+            fichaFantasma = constructor.newInstance(this, panel);
+
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
 
             ventanaPrincipal.getLogExcepcion().anadirExcepcionLog(e);
@@ -359,6 +384,8 @@ public final class Xogo {
         fichaSiguiente = xenerarNovaFicha(ventanaPrincipal.getPanelNextFigure());
         ventanaPrincipal.getPanelNextFigure().removeAll();
         pintarFicha(fichaSiguiente);
+
+        actualizarFichaFantasma();
     }
 
     private void engadeFichaBorraLinasCompletasXeneraNovaFicha() {
@@ -368,13 +395,22 @@ public final class Xogo {
             ventanaPrincipal.getSonido().ReproducirSuelo();
             ventanaPrincipal.AumentarPuntuacionPendiente(ventanaPrincipal.getSCORECHOCACHAN());
             borrarLinasCompletas();
+            borrarCadradosFantasma();
             nextFichaToActualFicha(ventanaPrincipal.getPanelXogo());
             pintarFicha(fichaActual);
-            // ventanaPrincipal.mostrarFichaSiguiente(fichaSiguiente.getCadrados().get(0).getLblCadrado());
+            pintarFichaFanstama(fichaFantasma);
 
         } else {
             ventanaPrincipal.mostrarFinDoXogo();
             gameOver = true;
+        }
+
+    }
+
+    private void borrarCadradosFantasma() {
+
+        for (Cadrado cadrado : fichaFantasma.getCadrados()) {
+            ventanaPrincipal.borrarCadrado(cadrado.getLblCadrado());
         }
 
     }
@@ -391,10 +427,15 @@ public final class Xogo {
         return aumentaNivel;
     }
 
+    private int randomNumber(int min, int max) {
+
+        return random.nextInt(min, max);
+    }
+
     public void anadirCuadradosAleatorios() {
 
         ArrayList<Integer> posiciones = new ArrayList<>();
-
+        int minimoCadrados = 1;
         Iterator<Cadrado> suelo = cadradosChan.iterator();
         while (suelo.hasNext()) {
             Cadrado siguiente = suelo.next();
@@ -402,16 +443,16 @@ public final class Xogo {
         }
 
         //Elige la posicion donde incluira un cuadrado y el numero de cuadrados que incluira 
-        for (int i = 0; i < randomNumber((MAXX - LADOCADRADO) / LADOCADRADO); i++) {
-            int posicionAleatoria = randomNumber((MAXX - LADOCADRADO) / LADOCADRADO);
+        for (int i = 0; i < randomNumber(minimoCadrados, (MAXX - LADOCADRADO) / LADOCADRADO); i++) {
+            int posicionAleatoria = randomNumber(0, (MAXX - LADOCADRADO) / LADOCADRADO);
 
             //Si la posicion escogida ya esta ocupada
             while (posiciones.contains(posicionAleatoria)) {
-                posicionAleatoria = randomNumber((MAXX - LADOCADRADO) / LADOCADRADO);
+                posicionAleatoria = randomNumber(minimoCadrados, (MAXX - LADOCADRADO) / LADOCADRADO);
 
             }
             //Añade el cuadrado
-            Cadrado cadradoPenalty = new Cadrado(posicionAleatoria * LADOCADRADO, MAXY - LADOCADRADO, yellow);
+            Cadrado cadradoPenalty = new Cadrado(posicionAleatoria * LADOCADRADO, MAXY - LADOCADRADO, gray);
             cadradosChan.add(cadradoPenalty);
             ventanaPrincipal.pintarCadrado(cadradoPenalty.getLblCadrado(), ventanaPrincipal.getPanelXogo());
             posiciones.add(posicionAleatoria);

@@ -943,9 +943,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelXogo.requestFocus();
         startSpeed();
         contadorPuntuacion();
-
         sonido.ReproducirBSO();
-        xogo.pintarFicha(xogo.getFichaActual());
+
     }
 
     /**
@@ -956,10 +955,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     public void pintarCadrado(JLabel lblCadrado, JPanel panel) {
         panel.add(lblCadrado);
-        iconarCadrado(lblCadrado);
+        // iconarCadrado(lblCadrado);
         lblCadrado.setSize(xogo.getLADOCADRADO(), xogo.getLADOCADRADO());
-        lblCadrado.setOpaque(false);
-        lblCadrado.setBorder(BorderFactory.createLineBorder(Color.black, 3));
+        lblCadrado.setOpaque(true);
+        lblCadrado.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+    }
+
+    public void pintarCadradoFantasma(JLabel lblCadrado, JPanel panel) {
+        lblCadrado.setBackground(new java.awt.Color(lblCadrado.getBackground().getRed(), lblCadrado.getBackground().getGreen(), lblCadrado.getBackground().getBlue(), 100));
+
+        lblCadrado.setSize(xogo.getLADOCADRADO(), xogo.getLADOCADRADO());
+        lblCadrado.setOpaque(true);
+        lblCadrado.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+        panel.add(lblCadrado);
     }
 
     /**
@@ -1006,7 +1014,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         timerFPS.stop();
         contadorPuntuacion.stop();
         timerCrono.stop();
-
         sonido.PararBSO();
     }
 

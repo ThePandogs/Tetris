@@ -19,6 +19,7 @@ public class GestorRutasImagenes {
 
         imagenesCadrados = cargarImagenesCadrados();
     }
+
     public HashMap<Color, String> getImagenesCadrados() {
         return imagenesCadrados;
     }
@@ -30,13 +31,13 @@ public class GestorRutasImagenes {
 
         HashMap RutasImagenesCadrados = new HashMap<Color, String>() {
             {
-                put(Color.BLUE, "/resources/imagenes/azul.png");
-                put(Color.RED, "/resources/imagenes/rojo.png");
-                put(Color.YELLOW, "/resources/imagenes/amarillo.png");
-                put(Color.GREEN, "/resources/imagenes/verde.png");
-                put(Color.WHITE, "/resources/imagenes/blanco.png");
-                put(Color.MAGENTA, "/resources/imagenes/morado.png");
-                put(Color.ORANGE, "/resources/imagenes/naranja.png");
+                put(Color.BLUE, "/resources/imagenes/cadrados/azul.png");
+                put(Color.RED, "/resources/imagenes/cadrados/rojo.png");
+                put(Color.YELLOW, "/resources/imagenes/cadrados/amarillo.png");
+                put(Color.GREEN, "/resources/imagenes/cadrados/verde.png");
+                put(Color.WHITE, "/resources/imagenes/cadrados/blanco.png");
+                put(Color.MAGENTA, "/resources/imagenes/cadrados/morado.png");
+                put(Color.ORANGE, "/resources/imagenes/cadrados/naranja.png");
             }
         };
         return RutasImagenesCadrados;
