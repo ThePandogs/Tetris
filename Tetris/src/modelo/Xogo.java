@@ -82,9 +82,9 @@ public final class Xogo {
         fichaSiguiente = xenerarNovaFicha(ventanaPrincipal.getPanelNextFigure());
         nextFichaToActualFicha(ventanaPrincipal.getPanelXogo());
         pintarFicha(fichaSiguiente);
-         pintarFicha(fichaActual);
+        pintarFicha(fichaActual);
         pintarFichaFanstama(fichaFantasma);
-        
+
         actualizarFichaFantasma();
 
     }
@@ -206,9 +206,15 @@ public final class Xogo {
             fichaFantasma.cadrados.get(i).actualizarCoordenada(fichaActual.cadrados.get(i).getX(), fichaActual.cadrados.get(i).getY());
         }
 
-        do {
-            fichaFantasma.moverAbaixo();
-        } while (!chocaFichaCoChan(fichaFantasma));
+        moverFichaAbaixoAtaChan(fichaFantasma);
+
+    }
+
+    public void moverFichaAbaixoAtaChan(Ficha ficha) {
+
+        while (!chocaFichaCoChan(ficha)) {
+            ficha.moverAbaixo();
+        }
 
     }
 

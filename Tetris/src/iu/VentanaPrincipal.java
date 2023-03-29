@@ -735,6 +735,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     xogo.moverFichaAbaixo();
                     timer.restart();
                 }
+                case 32 -> {  // SPACE
+                    xogo.moverFichaAbaixoAtaChan(xogo.getFichaActual());
+                    xogo.moverFichaAbaixo();
+                }
                 case 80, 27 ->// caracter P || ESCAPE
                 {
                     if (!gameOverPanel.isVisible()) {
