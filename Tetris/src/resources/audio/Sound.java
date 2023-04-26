@@ -9,6 +9,7 @@ import iu.VentanaPrincipal;
 import static java.awt.image.ImageObserver.ABORT;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -52,31 +53,33 @@ public class Sound {
     public void ReproducirBSO() {
 
         try {
+
             BSO = AudioSystem.getClip();
-            BSO.open(AudioSystem.getAudioInputStream(BSOFile));
-            BSO.loop(ABORT);
+            BSO.open(AudioSystem.getAudioInputStream(getClass().getResourceAsStream("resources/audio/bso.wav")));
+
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
             logExcepcion.anadirExcepcionLog(ex);
         }
     }
 
-    public void ReproducirSuelo() {
+    public void ReproducirSuelo() throws UnsupportedAudioFileException {
 
         try {
-            sueloAudio = AudioSystem.getAudioInputStream(sueloFile);
-            sonidoSuelo = AudioSystem.getClip();
-            sonidoSuelo.open(sueloAudio);
+
+            sonidoSuelo.open(AudioSystem.getAudioInputStream(getClass().getResourceAsStream("resources/audio/suelo.wav")));
             sonidoSuelo.start();
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+        } catch (IOException | LineUnavailableException ex) {
             logExcepcion.anadirExcepcionLog(ex);
         }
     }
 
     public void ReproducirSonidoLinea() {
         try {
-            lineaAudio = AudioSystem.getAudioInputStream(lineaFile);
+            InputStream path;
+            path = getClass().getResourceAsStream("resources/audio/shot2.wav");
+            lineaAudio = AudioSystem.getAudioInputStream(path);
             sonidoLinea = AudioSystem.getClip();
-            sonidoLinea.open(lineaAudio);
+            sonidoLinea.open(AudioSystem.getAudioInputStream(path));
             sonidoLinea.start();
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             logExcepcion.anadirExcepcionLog(ex);
